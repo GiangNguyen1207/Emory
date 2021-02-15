@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Note" android:icon="@drawable/ic_note"/>
+    <item android:title="Graph" android:icon="@drawable/ic_graph" />
+    <item android:title="Add" android:icon="@drawable/ic_add" />
+    <item android:title="To Do" android:icon="@drawable/ic_todo" />
+    <item android:title="Settings" android:icon="@drawable/ic_settings" />
+</menu>
