@@ -94,6 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/button_shape"
+            android:textAllCaps="false"
             android:text="@string/login">
 
         </Button>
@@ -103,6 +104,7 @@
             android:text="@string/signUp"
             android:layout_marginLeft="16dp"
             android:id="@+id/btnSignUp"
+            android:textAllCaps="false"
             android:background="@drawable/button_shape">
 
         </Button>
@@ -114,5 +116,16 @@
         android:src="@drawable/fb_login">
 
     </ImageView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/cancel"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal">
+        </TextView>
     </LinearLayout>
 </ScrollView>
