@@ -6,4 +6,7 @@
     <color name='primary'>#FFF6EE</color>
     <color name='secondary'>#C87F7F</color>
     <color name='highlight'>#F0CBCA</color>
+    <color name="diaryText">#3B5998</color>
+    <color name="calendarText">#A11818</color>
+    <color name="blur">#00FFFFFF</color>
 </resources>

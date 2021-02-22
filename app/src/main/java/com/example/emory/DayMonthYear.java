@@ -3,11 +3,11 @@ package com.example.emory;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class MonthYear {
+public class DayMonthYear {
     private ArrayList<String> months;
     private Calendar calendar;
 
-    public MonthYear() {
+    public DayMonthYear() {
         this.months = new ArrayList<>();
         this.calendar = Calendar.getInstance();
         months.add("January");
@@ -26,6 +26,13 @@ public class MonthYear {
 
     public String getCurrentMonthYear() {
         return this.months.get(calendar.get(Calendar.MONTH)) + ", " + calendar.get(Calendar.YEAR);
+    }
+
+    public String getFullDate() {
+        return "Today, " +
+                calendar.get(Calendar.DATE) + ". " +
+                this.months.get(calendar.get(Calendar.MONTH)) + ", " +
+                calendar.get(Calendar.YEAR);
     }
 
     public String getPrevMonthYear(String month, int year) {
