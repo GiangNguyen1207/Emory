@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Emory</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Log In</string>
+    <string name="signUp">Sign Up</string>
+    <string name="title_activity_signup">Sign up</string>
+   <string name="Signup_message">Join to save your data with \n Emory!</string>
+    <string name="nickname">Enter your nickname</string>
+    <string name="age">Age</string>
 </resources>
