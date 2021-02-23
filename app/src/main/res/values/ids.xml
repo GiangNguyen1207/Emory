@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="back" type="id">backId</item>
+    <item name="month" type="id">monthId</item>
+    <item name="next" type="id" />
+    <item name="bottomNavigationView" type="id">bottomNavigationViewId</item>
+</resources>

@@ -1,12 +1,5 @@
 package com.example.emory;
 
-<<<<<<< HEAD
-        import androidx.appcompat.app.AppCompatActivity;
-
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.TextView;
-=======
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -15,7 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.Calendar;
->>>>>>> 039e66e... create month year nav
 
 public class EntriesActivity extends AppCompatActivity {
     private TextView month;
