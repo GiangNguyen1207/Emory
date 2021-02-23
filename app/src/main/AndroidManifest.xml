@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Emory">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <activity
             android:name=".SignupActivity"
             android:label="@string/title_activity_signup"
@@ -18,12 +19,18 @@
 =======
         <activity android:name=".Entries">
 >>>>>>> 0f672b5... ui entries view
+=======
+        <activity android:name=".EntriesActivity">
+>>>>>>> 039e66e... create month year nav
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
