@@ -10,4 +10,3 @@ public class Activities extends AppCompatActivity {
         setContentView(R.layout.activity_write_note);
         }
 }
-
