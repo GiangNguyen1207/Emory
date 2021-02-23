@@ -9,11 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Emory">
+<<<<<<< HEAD
         <activity
             android:name=".SignupActivity"
             android:label="@string/title_activity_signup"
             android:theme="@style/Theme.Emory.NoActionBar"></activity>
         <activity android:name=".MainActivity">
+=======
+        <activity android:name=".Entries">
+>>>>>>> 0f672b5... ui entries view
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
