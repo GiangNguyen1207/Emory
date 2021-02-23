@@ -1,12 +1,5 @@
 package com.example.emory;
 
-<<<<<<< HEAD
-public class Activities {
-    private String name;
-    private String icon;
-
-}
-=======
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,5 +10,3 @@ public class Activities extends AppCompatActivity {
         setContentView(R.layout.activity_write_note);
         }
 }
-
->>>>>>> develop
