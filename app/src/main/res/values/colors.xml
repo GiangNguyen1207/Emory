@@ -6,4 +6,6 @@
     <color name='primary'>#FFF6EE</color>
     <color name='secondary'>#C87F7F</color>
     <color name='highlight'>#F0CBCA</color>
+    <color name="icon">#af4b4b</color>
+    <color name="grey">#cccccc</color>
 </resources>
