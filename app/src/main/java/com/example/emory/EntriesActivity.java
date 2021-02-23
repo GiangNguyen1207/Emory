@@ -3,15 +3,12 @@ package com.example.emory;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.Calendar;
-
 public class EntriesActivity extends AppCompatActivity {
     private TextView month;
-    private MonthYear monthYear;
+    private DayMonthYear monthYear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +17,7 @@ public class EntriesActivity extends AppCompatActivity {
 
         month = findViewById(R.id.month);
 
-        monthYear = new MonthYear();
+        monthYear = new DayMonthYear();
         String currentMonthYear = monthYear.getCurrentMonthYear();
 
         month.setText(currentMonthYear);
