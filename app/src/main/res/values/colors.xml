@@ -9,4 +9,6 @@
     <color name="diaryText">#3B5998</color>
     <color name="calendarText">#A11818</color>
     <color name="blur">#00FFFFFF</color>
+    <color name="icon">#af4b4b</color>
+    <color name="grey">#cccccc</color>
 </resources>
