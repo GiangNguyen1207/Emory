@@ -3,4 +3,24 @@
     <string name="back"><![CDATA[<]]></string>
     <string name="next"><![CDATA[>]]></string>
     <string name="month">Today</string>
+    <string name="question">What have you been up to?</string>
+    <string name="note">Note</string>
+    <string name="add_note">Add Note...</string>
+    <string name="photo">Photo</string>
+    <string name="draw">Draw</string>
+    <string name="family">family</string>
+    <string name="friend">friends</string>
+    <string name="love">love</string>
+    <string name="exercise">exercise</string>
+    <string name="sport">sport</string>
+    <string name="travel">travel</string>
+    <string name="movies">movies</string>
+    <string name="gaming">gaming</string>
+    <string name="cleaning">cleaning</string>
+    <string name="sleep">sleep</string>
+    <string name="shopping">shopping</string>
+    <string name="eat">eat</string>
+    <string name="study">study</string>
+    <string name="work">work</string>
+    <string name="edit">edit/new</string>
 </resources>
