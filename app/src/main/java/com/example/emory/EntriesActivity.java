@@ -1,13 +1,11 @@
 package com.example.emory;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -30,17 +28,17 @@ public class EntriesActivity extends AppCompatActivity {
 
         month.setText(currentMonthYear);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.addMood:
-                        Intent intent = new Intent(getApplicationContext(), AddMoodActivity.class);
-                        startActivity(intent);
-                        return true;
-                }
-                return false;
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.entries:
+                    return true;
+
+                case R.id.addMood:
+                    Intent intent = new Intent(EntriesActivity.this, AddMoodActivity.class);
+                    startActivity(intent);
+                    return true;
             }
+            return false;
         });
     }
 
