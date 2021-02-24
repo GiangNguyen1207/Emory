@@ -50,7 +50,7 @@
             android:layout_height="50dp"
             android:background="@color/secondary"
             android:gravity="center"
-            android:text="@string/date"
+            android:text="@string/dateTodo"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/imageButton20"
