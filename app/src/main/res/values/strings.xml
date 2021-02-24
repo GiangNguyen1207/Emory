@@ -11,7 +11,10 @@
     <string name="cancel">Cancel</string>
     <string name="back"><![CDATA[<]]></string>
     <string name="next"><![CDATA[>]]></string>
-    <string name="month">Today</string>
+    <string name="month">This month</string>
+    <string name="date">Today</string>
+    <string name="greeting">How are you?</string>
+    <string name="calendar">Today</string>
     <string name="question">What have you been up to?</string>
     <string name="note">Note</string>
     <string name="add_note">Add Note...</string>
