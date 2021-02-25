@@ -32,15 +32,13 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_note);
         receiveEmotion();
-
+        getActivity();
         saveData();
     }
 
     public void saveData() {
-
         ImageButton doneIcon = findViewById(R.id.doneIcon);
         doneIcon.setOnClickListener((View v) -> {
-            getActivity();
             getNote();
             diary = new Diary(icon, activities, note);
             saveDiary();
@@ -51,13 +49,11 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         Intent intent = getIntent();
         icon = intent.getIntExtra("icon", 0);
         Drawable drawable = getResources().getDrawable(icon);
-        Log.d("icon", String.valueOf(drawable));
         ImageView imageView = findViewById(R.id.iconChosen);
         imageView.setImageDrawable(drawable);
     }
 
     public void getActivity() {
-
         ImageButton familyButton = findViewById(R.id.familyIcon);
         ImageButton friendButton = findViewById(R.id.friendIcon);
         ImageButton loveButton = findViewById(R.id.loveIcon);
@@ -94,39 +90,53 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.familyIcon:
                 activities.add(new Activities("family", R.id.familyIcon));
+                Log.d("clicked", String.valueOf(R.id.familyIcon));
+                break;
             case R.id.friendIcon:
                 activities.add(new Activities("friend", R.id.friendIcon));
+                break;
             case R.id.loveIcon:
                 activities.add(new Activities("love", R.id.loveIcon));
+                break;
             case R.id.sportIcon:
                 activities.add(new Activities("sport", R.id.sportIcon));
+                break;
             case R.id.exerciseIcon:
                 activities.add(new Activities("exercise", R.id.exerciseIcon));
+                break;
             case R.id.movieIcon:
                 activities.add(new Activities("movie", R.id.movieIcon));
+                break;
             case R.id.sleepIcon:
                 activities.add(new Activities("sleep", R.id.sleepIcon));
+                break;
             case R.id.travelIcon:
                 activities.add(new Activities("travel", R.id.travelIcon));
+                break;
             case R.id.studyIcon:
                 activities.add(new Activities("study", R.id.studyIcon));
+                break;
             case R.id.cleanIcon:
                 activities.add(new Activities("clean", R.id.cleanIcon));
+                break;
             case R.id.workIcon:
                 activities.add(new Activities("work", R.id.workIcon));
+                break;
             case R.id.shoppingIcon:
                 activities.add(new Activities("shopping", R.id.shoppingIcon));
+                break;
             case R.id.gameIcon:
                 activities.add(new Activities("game", R.id.gameIcon));
+                break;
             case R.id.birthdayIcon:
                 activities.add(new Activities("birthday", R.id.birthdayIcon));
+                break;
         }
     }
 
     public void getNote() {
         EditText editText = findViewById(R.id.writeNote);
         note = editText.getText().toString();
-        Log.d("note", note);
     }
 
     public void saveDiary() {
@@ -135,6 +145,6 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
 
         Gson gson = new Gson();
         editor.putString(DATE_KEY, gson.toJson(diary));
-        editor.apply();
+        editor.commit();
     }
 }
