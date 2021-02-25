@@ -35,4 +35,7 @@
     <string name="study">study</string>
     <string name="work">work</string>
     <string name="edit">edit/new</string>
+    <string name="save">Save</string>
+    <string name="todo">To Do List</string>
+    <string name="addAction">Add Activity</string>
 </resources>

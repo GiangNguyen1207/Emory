@@ -5,107 +5,112 @@
     android:layout_height="match_parent"
     android:background="@color/highlight"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:layout_margin="16dp"
-        android:text="@string/Signup_message"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:gravity="center_horizontal">
-    </TextView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nickname"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        android:textColor="@color/black">
-    </TextView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:id="@+id/edName"
-        android:background="@drawable/edit_text_shape"
-        android:layout_marginRight="16dp">
+        android:orientation="vertical">
 
-    </EditText>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/age"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        android:textColor="@color/black">
-    </TextView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:id="@+id/edAge"
-        android:background="@drawable/edit_text_shape"
-        android:layout_marginRight="16dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center_horizontal"
+            android:text="@string/Signup_message"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="18sp"></TextView>
 
-    </EditText>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/email"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        android:textColor="@color/black">
-    </TextView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:id="@+id/edEmail"
-        android:background="@drawable/edit_text_shape"
-        android:layout_marginRight="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/nickname"
+            android:textColor="@color/black"
+            android:textSize="16sp"></TextView>
 
-    </EditText>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/password"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        android:textColor="@color/black">
-    </TextView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:id="@+id/edPassword"
-        android:background="@drawable/edit_text_shape"
-        android:layout_marginRight="16dp">
+        <EditText
+            android:id="@+id/edName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/edit_text_shape">
 
-    </EditText>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="@string/signUp"
-        android:layout_margin="16dp"
-        android:layout_gravity="center"
-        android:textAllCaps="false"
-        android:background="@drawable/button_shape">
+        </EditText>
 
-    </Button>
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/age"
+            android:textColor="@color/black"
+            android:textSize="16sp"></TextView>
+
+        <EditText
+            android:id="@+id/edAge"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/edit_text_shape">
+
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/email"
+            android:textColor="@color/black"
+            android:textSize="16sp"></TextView>
+
+        <EditText
+            android:id="@+id/edEmail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/edit_text_shape">
+
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/password"
+            android:textColor="@color/black"
+            android:textSize="16sp"></TextView>
+
+        <EditText
+            android:id="@+id/edPassword"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/edit_text_shape">
+
+        </EditText>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:background="@drawable/button_shape"
+            android:text="@string/signUp"
+            android:textAllCaps="false">
+
+        </Button>
+    </LinearLayout>
 </ScrollView>
