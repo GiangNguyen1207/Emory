@@ -23,7 +23,7 @@ public class DayMonthYear extends DialogFragment {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DATE);
 
-        return new DatePickerDialog(getActivity(),
+        return new DatePickerDialog(getActivity(), R.style.date_picker_style,
                 (DatePickerDialog.OnDateSetListener) getActivity(),
                 year, month, day);
     }

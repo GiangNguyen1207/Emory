@@ -48,4 +48,10 @@
     <string name="giang">Giang</string>
     <string name="my">My</string>
     <string name="subash">Subash</string>
+    <string name='icon_smile'>Smile</string>
+    <string name='icon_happy'>Happy</string>
+    <string name='icon_excited'>Excited</string>
+    <string name='icon_sad'>Sad</string>
+    <string name='icon_cry'>Cry</string>
+    <string name='icon_awful'>Awful</string>
 </resources>

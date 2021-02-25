@@ -2,7 +2,6 @@ package com.example.emory;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,13 +11,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
-
-
 public class AddMoodActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private TextView chosenDate;
     private DayMonthYear fullDate;
-    private ImageButton btnSmile, btnHappy, btnLove, btnSad, btnCry, btnAngry, btnClose;
+    private ImageButton btnSmile, btnHappy, btnExcited, btnSad, btnCry, btnAwful, btnClose;
     private Button btnSaveMood;
     public static final String EMORY_SHARED_PREFERENCES = "EMORY_SHARED_PREFERENCES";
 
@@ -30,10 +26,10 @@ public class AddMoodActivity extends AppCompatActivity implements DatePickerDial
         chosenDate = findViewById(R.id.calendar);
         btnSmile = findViewById(R.id.smile);
         btnHappy = findViewById(R.id.happy);
-        btnLove = findViewById(R.id.love);
+        btnExcited = findViewById(R.id.excited);
         btnSad = findViewById(R.id.sad);
         btnCry = findViewById(R.id.cry);
-        btnAngry = findViewById(R.id.angry);
+        btnAwful = findViewById(R.id.awful);
         btnClose = findViewById(R.id.close);
         btnSaveMood = findViewById(R.id.saveMood);
         btnSaveMood.setVisibility(View.GONE);
@@ -49,8 +45,8 @@ public class AddMoodActivity extends AppCompatActivity implements DatePickerDial
             startNote(R.drawable.happy);
         });
 
-        btnLove.setOnClickListener((View v) -> {
-            startNote(R.drawable.love);
+        btnExcited.setOnClickListener((View v) -> {
+            startNote(R.drawable.excited);
         });
 
         btnSad.setOnClickListener((View v) -> {
@@ -61,8 +57,8 @@ public class AddMoodActivity extends AppCompatActivity implements DatePickerDial
             startNote(R.drawable.cry);
         });
 
-        btnAngry.setOnClickListener((View v) -> {
-            startNote(R.drawable.angry);
+        btnAwful.setOnClickListener((View v) -> {
+            startNote(R.drawable.awful);
         });
 
         btnClose.setOnClickListener((View v) -> {
