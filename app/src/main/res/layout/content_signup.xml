@@ -33,6 +33,7 @@
 
         <EditText
             android:id="@+id/edName"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="16dp"
@@ -53,6 +54,7 @@
 
         <EditText
             android:id="@+id/edAge"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="16dp"
@@ -73,6 +75,7 @@
 
         <EditText
             android:id="@+id/edEmail"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="16dp"
@@ -93,6 +96,8 @@
 
         <EditText
             android:id="@+id/edPassword"
+            android:textColor="@color/black"
+            android:inputType="textWebPassword"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="16dp"
