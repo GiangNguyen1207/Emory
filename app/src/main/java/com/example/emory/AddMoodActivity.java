@@ -37,33 +37,28 @@ public class AddMoodActivity extends AppCompatActivity {
 
         selectedMood = "";
         btnSmile.setOnClickListener((View v) -> {
-            selectedMood = "smile";
-            startNote(btnSmile);
+            startNote(R.drawable.smile, btnSmile);
         });
 
         btnHappy.setOnClickListener((View v) -> {
-            selectedMood = "happy";
-            startNote(btnHappy);
+            startNote(R.drawable.happy, btnHappy);
         });
 
         btnLove.setOnClickListener((View v) -> {
-            selectedMood = "love";
-            startNote(btnLove);
+
+            startNote(R.drawable.love, btnLove);
         });
 
         btnSad.setOnClickListener((View v) -> {
-            selectedMood = "sad";
-            startNote(btnSad);
+            startNote(R.drawable.sad, btnSad);
         });
 
         btnCry.setOnClickListener((View v) -> {
-            selectedMood = "cry";
-            startNote(btnCry);
+            startNote(R.drawable.cry, btnCry);
         });
 
         btnAngry.setOnClickListener((View v) -> {
-            selectedMood = "angry";
-            startNote(btnAngry);
+            startNote(R.drawable.angry, btnAngry);
         });
 
         btnClose.setOnClickListener((View v) -> {
@@ -78,9 +73,10 @@ public class AddMoodActivity extends AppCompatActivity {
         //chosenBtn.setBackgroundResource(R.color.secondary);
     }
 
-    public void startNote(ImageButton chosenBtn) {
+    public void startNote(int drawable, ImageButton chosenBtn) {
         btnSaveMood.setVisibility(View.VISIBLE);
-        Intent intent = new Intent(this, Activities.class);
+        Intent intent = new Intent(this, WriteNoteActivity.class);
+        intent.putExtra("icon", drawable);
         startActivity(intent);
     }
 }
