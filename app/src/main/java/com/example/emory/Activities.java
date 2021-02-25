@@ -1,12 +1,23 @@
 package com.example.emory;
 
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
+public class Activities {
+        private String name;
+        private int icon;
 
-public class Activities extends AppCompatActivity {
-        @Override
-        protected void onCreate (Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_write_note);
+        public Activities(String name, int icon) {
+                this.name = name;
+                this.icon = icon;
+        }
+
+        public String toString() {
+                return this.name;
+        }
+
+        public String getName() {
+                return this.name;
+        }
+
+        public int getIcon() {
+                return this.icon;
         }
 }
