@@ -12,8 +12,8 @@
         <activity android:name=".AddMoodActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".Activities" />
-        <activity android:name=".EntriesActivity" />
-        <activity android:name=".SignInActivity">
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".EntriesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,5 +25,6 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 
 </manifest>
