@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Mood {
     private String mood;
-    private ArrayList<String> activities;
+    private ArrayList<Activities> activities;
 
-    public Mood(String mood, ArrayList<String> activities) {
+    public Mood(String mood, ArrayList<Activities> activities) {
         this.mood = mood;
         this.activities = activities;
     }
@@ -15,7 +15,7 @@ public class Mood {
         return this.mood;
     }
 
-    public ArrayList<String> getActivities() {
+    public ArrayList<Activities> getActivities() {
         return this.activities;
     }
 }
