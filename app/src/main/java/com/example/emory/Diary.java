@@ -9,6 +9,7 @@ public class Diary {
 
     public Diary(int mood, ArrayList<Activities> activities, String note) {
         this.mood = mood;
+        this.activities = activities;
         this.note = note;
     }
 

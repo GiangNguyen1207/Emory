@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_close"
+        app:srcCompat="@drawable/ic_close"
         android:background="@color/blur"
         android:elevation="1dp"
         android:layout_marginTop="20dp"
@@ -50,6 +50,7 @@
             android:drawableStart="@drawable/ic_calendar_black"
             android:drawableLeft="@drawable/ic_calendar_black"
             android:drawablePadding="5dp"
+            android:onClick="onCalendarClick"
             android:padding="10dp"
             android:text="@string/calendar"
             android:textColor="@color/calendarText"
@@ -63,80 +64,183 @@
             android:layout_marginRight="50dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/smile"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/blur"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/smile" />
+                android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/happy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/blur"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/happy" />
+                <ImageButton
+                    android:id="@+id/smile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@color/blur"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/smile"
+                    android:tint="@color/smile" />
 
-            <ImageButton
-                android:id="@+id/love"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/icon_smile"
+                    android:textColor="@color/smile"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/blur"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/love" />
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/happy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@color/blur"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/happy"
+                    android:tint="@color/happy" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/icon_happy"
+                    android:textColor="@color/happy"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/excited"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@color/blur"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/excited"
+                    android:tint="@color/excited" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/icon_excited"
+                    android:textColor="@color/excited"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/sad"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/blur"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/sad" />
+                android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/cry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/blur"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/cry" />
+                <ImageButton
+                    android:id="@+id/sad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@color/blur"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/sad"
+                    android:tint="@color/sad" />
 
-            <ImageButton
-                android:id="@+id/angry"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/icon_sad"
+                    android:textColor="@color/sad"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/blur"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/angry" />
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/cry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@color/blur"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/cry"
+                    android:tint="@color/cry" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/icon_cry"
+                    android:textColor="@color/cry"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/awful"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@color/blur"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/awful"
+                    android:tint="@color/awful" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/icon_awful"
+                    android:textColor="@color/awful"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
