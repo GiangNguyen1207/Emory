@@ -1,22 +1,19 @@
 package com.example.emory;
-import com.google.gson.Gson;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.util.Calendar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.gson.Gson;
+
 
 public class AddMoodActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private TextView chosenDate;
@@ -42,30 +39,30 @@ public class AddMoodActivity extends AppCompatActivity implements DatePickerDial
         btnSaveMood.setVisibility(View.GONE);
 
         fullDate = new DayMonthYear();
-        chosenDate.setText(fullDate.getFullDate());
+        chosenDate.setText(fullDate.getCurrentFullDate());
 
         btnSmile.setOnClickListener((View v) -> {
-            startNote(R.drawable.smile, btnSmile);
+            startNote(R.drawable.smile);
         });
 
         btnHappy.setOnClickListener((View v) -> {
-            startNote(R.drawable.happy, btnHappy);
+            startNote(R.drawable.happy);
         });
 
         btnLove.setOnClickListener((View v) -> {
-            startNote(R.drawable.love, btnLove);
+            startNote(R.drawable.love);
         });
 
         btnSad.setOnClickListener((View v) -> {
-            startNote(R.drawable.sad, btnSad);
+            startNote(R.drawable.sad);
         });
 
         btnCry.setOnClickListener((View v) -> {
-            startNote(R.drawable.cry, btnCry);
+            startNote(R.drawable.cry);
         });
 
         btnAngry.setOnClickListener((View v) -> {
-            startNote(R.drawable.angry, btnAngry);
+            startNote(R.drawable.angry);
         });
 
         btnClose.setOnClickListener((View v) -> {
@@ -81,35 +78,20 @@ public class AddMoodActivity extends AppCompatActivity implements DatePickerDial
 
     }
 
-    public void startNote(int drawable, ImageButton chosenBtn) {
+    public void startNote(int drawable) {
         btnSaveMood.setVisibility(View.VISIBLE);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(EMORY_SHARED_PREFERENCES, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        Gson gson = new Gson();
-        Diary diary = new Diary();
-        editor.putString(fullDate.getCurrentMonthYear(), gson.toJson(diary));
-
-        Intent intent = new Intent(this, Activities.class);
+        Intent intent = new Intent(this, WriteNoteActivity.class);
         intent.putExtra("icon", drawable);
         startActivity(intent);
     }
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-
-        Log.d("Date", currentDate);
-        chosenDate.setText(currentDate);
+    public void onCalendarClick(View v) {
+        fullDate.show(getSupportFragmentManager(), "date picker");
     }
 
-    public void onCalendarClick(View v) {
-        DialogFragment datePicker = new CalendarPicker();
-        datePicker.show(getSupportFragmentManager(), "date picker");
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        chosenDate.setText(fullDate.setFullDate(year, month, dayOfMonth));
     }
 }

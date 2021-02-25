@@ -1,11 +1,32 @@
 package com.example.emory;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class DayMonthYear {
+public class DayMonthYear extends DialogFragment {
     private ArrayList<String> months;
     private Calendar calendar;
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DATE);
+
+        return new DatePickerDialog(getActivity(),
+                (DatePickerDialog.OnDateSetListener) getActivity(),
+                year, month, day);
+    }
 
     public DayMonthYear() {
         this.months = new ArrayList<>();
@@ -24,19 +45,18 @@ public class DayMonthYear {
         months.add("December");
     }
 
-    public String getCurrentMonthYear() {
-        return this.months.get(calendar.get(Calendar.MONTH)) + ", " + calendar.get(Calendar.YEAR);
-    }
-
-    public String getFullDate() {
-        return "Today, " +
-                calendar.get(Calendar.DATE) + ". " +
+    public String getCurrentFullDate() {
+        return calendar.get(Calendar.DATE) + ". " +
                 this.months.get(calendar.get(Calendar.MONTH)) + ", " +
                 calendar.get(Calendar.YEAR);
     }
 
+    public String getCurrentMonthYear() {
+        return this.months.get(calendar.get(Calendar.MONTH)) + ", " + calendar.get(Calendar.YEAR);
+    }
+
     public String getPrevMonthYear(String month, int year) {
-        String prevMonth =  "";
+        String prevMonth = "";
         int curYear = year;
 
         if (month.equals("January")) {
@@ -69,5 +89,10 @@ public class DayMonthYear {
             }
         }
         return nextMonth + ", " + curYear;
+    }
+
+
+    public String setFullDate(int year, int month, int date) {
+        return date + ". " + this.months.get((month)) + ", " + year;
     }
 }

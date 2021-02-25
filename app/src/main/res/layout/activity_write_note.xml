@@ -46,7 +46,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="413dp"
+        android:layout_width="397dp"
         android:layout_height="63dp"
         android:background="@color/secondary"
         android:fadingEdge="none"
@@ -54,7 +54,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <ImageView
+            android:id="@+id/iconChosen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/note"
@@ -226,6 +234,7 @@
 
         <ImageButton
             android:id="@+id/familyIcon"
+            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -236,6 +245,7 @@
 
         <ImageButton
             android:id="@+id/friendIcon"
+            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -246,6 +256,7 @@
 
         <ImageButton
             android:id="@+id/loveIcon"
+            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -256,6 +267,7 @@
 
         <ImageButton
             android:id="@+id/sportIcon"
+            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -266,6 +278,7 @@
 
         <ImageButton
             android:id="@+id/exerciseIcon"
+            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -341,6 +354,7 @@
 
         <ImageButton
             android:id="@+id/movieIcon"
+            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -351,6 +365,7 @@
 
         <ImageButton
             android:id="@+id/sleepIcon"
+            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -361,6 +376,7 @@
 
         <ImageButton
             android:id="@+id/travelIcon"
+            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -371,6 +387,7 @@
 
         <ImageButton
             android:id="@+id/studyIcon"
+            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -381,6 +398,7 @@
 
         <ImageButton
             android:id="@+id/cleanIcon"
+            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -457,6 +475,7 @@
 
         <ImageButton
             android:id="@+id/workIcon"
+            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="44dp"
@@ -467,6 +486,7 @@
 
         <ImageButton
             android:id="@+id/shoppingIcon"
+            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="36dp"
@@ -477,6 +497,7 @@
 
         <ImageButton
             android:id="@+id/gameIcon"
+            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="36dp"
@@ -486,14 +507,15 @@
             app:srcCompat="@drawable/baseline_videogame_asset_black_18dp" />
 
         <ImageButton
-            android:id="@+id/addActionIcon"
+            android:id="@+id/birthdayIcon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"
-            android:tint="#0E0E0E"
-            app:srcCompat="@drawable/ic_add"
+            android:src="@drawable/selected_icon"
+            android:tint="@color/icon"
             android:background="@drawable/circle"
+            app:srcCompat="@drawable/baseline_celebration_black_18dp"
             tools:ignore="VectorDrawableCompat" />
     </LinearLayout>
 
