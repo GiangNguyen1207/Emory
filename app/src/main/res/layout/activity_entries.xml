@@ -6,91 +6,105 @@
     android:layout_height="match_parent"
     tools:context=".EntriesActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primary"
-            android:orientation="horizontal"
-            android:padding="5dp">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:gravity="center"
-                android:onClick="onBack"
-                android:text="@string/back"
-                android:textColor="@color/secondary"
-                android:textSize="24sp" />
+                android:background="@color/primary"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
-            <TextView
-                android:id="@+id/month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/annie_use_your_telescope"
-                android:gravity="center"
-                android:onClick="@"
-                android:text="@string/month"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                <TextView
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="onBack"
+                    android:text="@string/back"
+                    android:textColor="@color/secondary"
+                    android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/next"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/annie_use_your_telescope"
+                    android:gravity="center"
+                    android:onClick="@"
+                    android:text="@string/month"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="onNext"
+                    android:text="@string/next"
+                    android:textColor="@color/secondary"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:gravity="center"
-                android:onClick="onNext"
-                android:text="@string/next"
-                android:textColor="@color/secondary"
-                android:textSize="24sp" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_radius_highlight"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_radius_secondary"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/date"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/diaryData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="@string/date"
+                        android:textColor="@color/diaryText" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/shape_radius_secondary"
-            android:elevation="1dp"
-            android:paddingLeft="20dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:text="@string/date"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:id="@+id/diaryData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="-10dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/shape_radius_highlight"
-            android:paddingLeft="20dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="10dp"
-            android:text="@string/date"
-            android:textColor="@color/diaryText" />
-
-    </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

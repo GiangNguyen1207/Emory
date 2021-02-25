@@ -1,14 +1,18 @@
 package com.example.emory;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class EntriesActivity extends AppCompatActivity {
     private TextView month;
     private DayMonthYear monthYear;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,11 +20,26 @@ public class EntriesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_entries);
 
         month = findViewById(R.id.month);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.entries);
 
         monthYear = new DayMonthYear();
         String currentMonthYear = monthYear.getCurrentMonthYear();
 
         month.setText(currentMonthYear);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.entries:
+                    return true;
+
+                case R.id.addMood:
+                    Intent intent = new Intent(EntriesActivity.this, AddMoodActivity.class);
+                    startActivity(intent);
+                    return true;
+            }
+            return false;
+        });
     }
 
     public void onBack(View v) {

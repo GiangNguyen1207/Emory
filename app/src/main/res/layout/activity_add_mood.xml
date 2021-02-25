@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".AddMoodActivity">
 
+    <ImageButton
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_close"
+        android:background="@color/blur"
+        android:elevation="1dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,8 +26,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/greeting"
@@ -45,8 +59,8 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="50dp"
             android:orientation="horizontal">
 
             <ImageButton
@@ -55,9 +69,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/blur"
-                android:scaleType="fitCenter"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/smile" />
 
             <ImageButton
@@ -66,9 +80,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/blur"
-                android:scaleType="fitCenter"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/happy" />
 
             <ImageButton
@@ -77,9 +91,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/blur"
-                android:scaleType="fitCenter"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/love" />
 
         </LinearLayout>
@@ -97,9 +111,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/blur"
-                android:scaleType="fitCenter"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/sad" />
 
             <ImageButton
@@ -108,9 +122,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/blur"
-                android:scaleType="fitCenter"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/cry" />
 
             <ImageButton
@@ -119,9 +133,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/blur"
-                android:scaleType="fitCenter"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/angry" />
 
         </LinearLayout>
@@ -130,9 +144,9 @@
             android:id="@+id/saveMood"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/ic_check_circle"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
+            android:background="@drawable/ic_check_circle"
             android:enabled="false" />
 
     </LinearLayout>
