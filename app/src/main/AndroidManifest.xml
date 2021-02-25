@@ -11,8 +11,7 @@
         android:theme="@style/Theme.Emory">
         <activity android:name=".SignupActivity"></activity>
         <activity android:name=".EntriesActivity" />
-        <activity android:name=".Activities" />
-        <activity android:name=".SignInActivity">
+        <activity android:name=".Activities">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,5 +23,6 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 
 </manifest>

@@ -36,7 +36,16 @@
     <string name="work">work</string>
     <string name="edit">edit/new</string>
     <string name="save">Save</string>
-    <string name="date">28, Jan</string>
+    <string name="dateTodo">28, Jan</string>
     <string name="todo">To Do List</string>
     <string name="addAction">Add Activity</string>
+    <string name="Enter">Enter Activity...</string>
+    <string name="Nickname">Nickname</string>
+    <string name="editnickname">Change nickname</string>
+    <string name="editpassword">Change password</string>
+    <string name="editactions">Edit activity</string>
+    <string name="group5">Group 5</string>
+    <string name="giang">Giang</string>
+    <string name="my">My</string>
+    <string name="subash">Subash</string>
 </resources>
