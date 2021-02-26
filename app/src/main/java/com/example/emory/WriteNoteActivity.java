@@ -1,18 +1,26 @@
 package com.example.emory;
 
+
 import android.content.Context;
+<<<<<<< app/src/main/java/com/example/emory/WriteNoteActivity.java
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+=======
 import android.content.Intent;
 import android.content.SharedPreferences;
+>>>>>>> app/src/main/java/com/example/emory/WriteNoteActivity.java
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.SharedPreferences;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -20,6 +28,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class WriteNoteActivity extends AppCompatActivity implements View.OnClickListener {
+
     private static final String SHARED_PREFS = "sharedPrefs";
     private ArrayList<Activities> activities = new ArrayList<>();
     private int icon;
@@ -32,6 +41,8 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_write_note);
         getDataFromAddMood();
         getActivity();
+        getImage();
+        receiveImage();
         saveData();
     }
 
@@ -131,6 +142,28 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void saveDiary() {
+        Gson gson = new Gson();
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String data = sharedPreferences.getString(date, null);
+
+    public void getImage() {
+        ImageButton addImage = findViewById(R.id.addPhoto);
+        addImage.setOnClickListener((View v) -> {
+            Intent intent = new Intent(this, AddImage.class);
+            startActivity(intent);
+        });
+    }
+
+    public void receiveImage() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String mImage = preferences.getString("image", null);
+        ImageView photo = findViewById(R.id.photoChosen);
+        Bitmap bitmap = BitmapFactory.decodeFile(mImage);
+        photo.setImageBitmap(bitmap);
+    }
+
+    public void saveData() {
         Gson gson = new Gson();
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
