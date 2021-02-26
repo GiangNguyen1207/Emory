@@ -54,4 +54,6 @@
     <string name='icon_sad'>Sad</string>
     <string name='icon_cry'>Cry</string>
     <string name='icon_awful'>Awful</string>
+    <string name="take_photo_icon">Take Photo</string>
+    <string name="open_gallery_icon">Open Gallery</string>
 </resources>
