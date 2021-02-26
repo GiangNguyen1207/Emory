@@ -25,8 +25,6 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     private int icon;
     private String date, note;
     private ArrayList<Diary> diaries = new ArrayList<>();
-    private Gson gson = new Gson();
-    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +131,8 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void saveDiary() {
-        sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String data = sharedPreferences.getString(date, null);
 
