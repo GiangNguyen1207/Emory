@@ -1,56 +1,45 @@
 package com.example.emory;
 
-
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
 import android.content.Intent;
-import android.preference.PreferenceManager;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.SharedPreferences;
+
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class WriteNoteActivity extends AppCompatActivity implements View.OnClickListener {
-
     private static final String SHARED_PREFS = "sharedPrefs";
-    private static final String DATE_KEY = "Today";
-    private Diary diary;
     private ArrayList<Activities> activities = new ArrayList<>();
     private int icon;
-    private String note;
+    private String date, note;
+    private ArrayList<Diary> diaries = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_note);
-        receiveEmotion();
+        getDataFromAddMood();
         getActivity();
-        getImage();
-        receiveImage();
         saveData();
     }
 
-    public void saveData() {
-        ImageButton doneIcon = findViewById(R.id.doneIcon);
-        doneIcon.setOnClickListener((View v) -> {
-            getNote();
-            diary = new Diary(icon, activities, note);
-            saveDiary();
-        });
-    }
-
-    public void receiveEmotion() {
+    public void getDataFromAddMood() {
         Intent intent = getIntent();
         icon = intent.getIntExtra("icon", 0);
+        date = intent.getStringExtra("date");
+
         Drawable drawable = getResources().getDrawable(icon);
         ImageView imageView = findViewById(R.id.iconChosen);
         imageView.setImageDrawable(drawable);
@@ -93,7 +82,6 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.familyIcon:
                 activities.add(new Activities("family", R.id.familyIcon));
-                Log.d("clicked", String.valueOf(R.id.familyIcon));
                 break;
             case R.id.friendIcon:
                 activities.add(new Activities("friend", R.id.friendIcon));
@@ -143,28 +131,26 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void saveDiary() {
+        Gson gson = new Gson();
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        String data = sharedPreferences.getString(date, null);
 
-        Gson gson = new Gson();
-        editor.putString(DATE_KEY, gson.toJson(diary));
+        if (data != null) {
+            Type diaryType = new TypeToken<ArrayList<Diary>>() {
+            }.getType();
+            diaries = gson.fromJson(data, diaryType);
+        }
+        diaries.add(new Diary(icon, activities, note));
+        editor.putString(date, gson.toJson(diaries));
         editor.apply();
     }
 
-
-    public void getImage() {
-        ImageButton addImage = findViewById(R.id.addPhoto);
-        addImage.setOnClickListener((View v) -> {
-            Intent intent = new Intent(this, AddImage.class);
-            startActivity(intent);
+    public void saveData() {
+        ImageButton doneIcon = findViewById(R.id.doneIcon);
+        doneIcon.setOnClickListener((View v) -> {
+            getNote();
+            saveDiary();
         });
-    }
-
-    public void receiveImage() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String mImage = preferences.getString("image", null);
-        ImageView photo = findViewById(R.id.photoChosen);
-        Bitmap bitmap = BitmapFactory.decodeFile(mImage);
-        photo.setImageBitmap(bitmap);
     }
 }

@@ -79,6 +79,7 @@ public class AddMoodActivity extends AppCompatActivity implements DatePickerDial
 
         Intent intent = new Intent(this, WriteNoteActivity.class);
         intent.putExtra("icon", drawable);
+        intent.putExtra("date", chosenDate.getText().toString());
         startActivity(intent);
     }
 

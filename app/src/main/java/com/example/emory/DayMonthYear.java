@@ -55,36 +55,40 @@ public class DayMonthYear extends DialogFragment {
         return this.months.get(calendar.get(Calendar.MONTH)) + ", " + calendar.get(Calendar.YEAR);
     }
 
-    public String getPrevMonthYear(String month, int year) {
+    public String getPrevMonthYear(String date) {
+        String[] parts = date.split(", ");
+        Integer year = Integer.parseInt(parts[1]);
         String prevMonth = "";
         int curYear = year;
 
-        if (month.equals("January")) {
+        if (parts[0].equals("January")) {
             prevMonth = "December";
             curYear -= 1;
             return prevMonth + ", " + curYear;
         }
 
         for (int i = 0; i < months.size(); i++) {
-            if (months.get(i).equals(month)) {
+            if (months.get(i).equals(parts[0])) {
                 prevMonth = months.get(i - 1);
             }
         }
         return prevMonth + ", " + curYear;
     }
 
-    public String getNextMonthYear(String month, int year) {
+    public String getNextMonthYear(String date) {
+        String[] parts = date.split(", ");
+        Integer year = Integer.parseInt(parts[1]);
         String nextMonth = "";
         int curYear = year;
 
-        if (month.equals("December")) {
+        if (parts[0].equals("December")) {
             nextMonth = "January";
             curYear += 1;
             return nextMonth + ", " + curYear;
         }
 
         for (int i = 0; i < months.size(); i++) {
-            if (months.get(i).equals(month)) {
+            if (months.get(i).equals(parts[0])) {
                 nextMonth = months.get(i + 1);
             }
         }
@@ -94,5 +98,12 @@ public class DayMonthYear extends DialogFragment {
 
     public String setFullDate(int year, int month, int date) {
         return date + ". " + this.months.get((month)) + ", " + year;
+    }
+
+    public int getDaysInMonth(String monthYear) {
+        String[] parts = monthYear.split(", ");
+        calendar.set(Calendar.MONTH, months.indexOf(parts[0]));
+        int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        return daysInMonth;
     }
 }

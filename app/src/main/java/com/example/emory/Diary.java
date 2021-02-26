@@ -21,6 +21,9 @@ public class Diary {
         return this.note;
     }
 
+    public String toString() {
+        return String.valueOf(this.mood) + this.activities + this.note;
+    }
 }
 
 
