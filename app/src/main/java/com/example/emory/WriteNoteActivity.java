@@ -3,8 +3,11 @@ package com.example.emory;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -32,6 +35,8 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_write_note);
         getDataFromAddMood();
         getActivity();
+        getImage();
+        receiveImage();
         saveData();
     }
 
@@ -152,5 +157,21 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             getNote();
             saveDiary();
         });
+    }
+
+    public void getImage() {
+        ImageButton addImage = findViewById(R.id.addPhoto);
+        addImage.setOnClickListener((View v) -> {
+            Intent intent = new Intent(this, AddImage.class);
+            startActivity(intent);
+        });
+    }
+
+    public void receiveImage() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String mImage = preferences.getString("image", null);
+        ImageView photo = findViewById(R.id.photoChosen);
+        Bitmap bitmap = BitmapFactory.decodeFile(mImage);
+        photo.setImageBitmap(bitmap);
     }
 }
