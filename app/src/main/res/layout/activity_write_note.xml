@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.84" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -234,7 +234,6 @@
 
         <ImageButton
             android:id="@+id/familyIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -245,7 +244,6 @@
 
         <ImageButton
             android:id="@+id/friendIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -256,7 +254,6 @@
 
         <ImageButton
             android:id="@+id/loveIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -267,7 +264,6 @@
 
         <ImageButton
             android:id="@+id/sportIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -278,7 +274,6 @@
 
         <ImageButton
             android:id="@+id/exerciseIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -354,7 +349,6 @@
 
         <ImageButton
             android:id="@+id/movieIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -365,7 +359,6 @@
 
         <ImageButton
             android:id="@+id/sleepIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -376,7 +369,6 @@
 
         <ImageButton
             android:id="@+id/travelIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -387,7 +379,6 @@
 
         <ImageButton
             android:id="@+id/studyIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -398,7 +389,6 @@
 
         <ImageButton
             android:id="@+id/cleanIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -475,7 +465,6 @@
 
         <ImageButton
             android:id="@+id/workIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="44dp"
@@ -486,7 +475,6 @@
 
         <ImageButton
             android:id="@+id/shoppingIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="36dp"
@@ -497,7 +485,6 @@
 
         <ImageButton
             android:id="@+id/gameIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="36dp"
@@ -512,7 +499,6 @@
             android:layout_height="50dp"
             android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"
-            android:src="@drawable/selected_icon"
             android:tint="@color/icon"
             android:background="@drawable/circle"
             app:srcCompat="@drawable/baseline_celebration_black_18dp"
@@ -562,5 +548,16 @@
             android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"/>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/photoChosen"
+        android:layout_width="3dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

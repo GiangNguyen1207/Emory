@@ -1,31 +1,32 @@
 package com.example.emory;
 
+
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.SharedPreferences;
-
 import com.google.gson.Gson;
-
 import java.util.ArrayList;
 
 public class WriteNoteActivity extends AppCompatActivity implements View.OnClickListener {
+
     private static final String SHARED_PREFS = "sharedPrefs";
     private static final String DATE_KEY = "Today";
     private Diary diary;
     private ArrayList<Activities> activities = new ArrayList<>();
     private int icon;
-    String note;
-
+    private String note;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,8 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_write_note);
         receiveEmotion();
         getActivity();
+        getImage();
+        receiveImage();
         saveData();
     }
 
@@ -145,6 +148,23 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
 
         Gson gson = new Gson();
         editor.putString(DATE_KEY, gson.toJson(diary));
-        editor.commit();
+        editor.apply();
+    }
+
+
+    public void getImage() {
+        ImageButton addImage = findViewById(R.id.addPhoto);
+        addImage.setOnClickListener((View v) -> {
+            Intent intent = new Intent(this, AddImage.class);
+            startActivity(intent);
+        });
+    }
+
+    public void receiveImage() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String mImage = preferences.getString("image", null);
+        ImageView photo = findViewById(R.id.photoChosen);
+        Bitmap bitmap = BitmapFactory.decodeFile(mImage);
+        photo.setImageBitmap(bitmap);
     }
 }
