@@ -26,4 +26,5 @@ public class Mood {
     public ArrayList<Activities> getActivities() {
         return this.activities;
     }
+
 }

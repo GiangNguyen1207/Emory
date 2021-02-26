@@ -20,4 +20,5 @@ public class Activities {
         public int getIcon() {
                 return this.icon;
         }
+
 }
