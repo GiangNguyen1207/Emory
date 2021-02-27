@@ -49,7 +49,6 @@ public class DiaryListAdapter extends BaseAdapter {
         TextView date = convertView.findViewById(R.id.date);
         ListView itemView = convertView.findViewById(R.id.itemView);
         DiaryAdapter diaryAdapter = new DiaryAdapter(this.context, diaryList.getDiaryData());
-        Log.d("diaryList", String.valueOf(diaryList.getDiaryData()));
 
         date.setText(String.valueOf(diaryList.getDate()));
         itemView.setAdapter(diaryAdapter);

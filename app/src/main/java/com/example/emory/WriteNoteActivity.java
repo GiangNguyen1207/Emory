@@ -8,13 +8,10 @@ import android.graphics.BitmapFactory;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -32,7 +29,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     private static final String SHARED_PREFS = "sharedPrefs";
     private String selectedImagePath;
     private static final int GALLERY_REQUEST = 1;
-    private ArrayList<Activities> activities = new ArrayList<>();
+    private ArrayList<Action> activities = new ArrayList<>();
     private int icon;
     private String date, note;
     private ArrayList<Diary> diaries = new ArrayList<>();
@@ -93,46 +90,46 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.familyIcon:
-                activities.add(new Activities("family", R.id.familyIcon));
+                activities.add(new Action("family", R.id.familyIcon));
                 break;
             case R.id.friendIcon:
-                activities.add(new Activities("friend", R.id.friendIcon));
+                activities.add(new Action("friend", R.id.friendIcon));
                 break;
             case R.id.loveIcon:
-                activities.add(new Activities("love", R.id.loveIcon));
+                activities.add(new Action("love", R.id.loveIcon));
                 break;
             case R.id.sportIcon:
-                activities.add(new Activities("sport", R.id.sportIcon));
+                activities.add(new Action("sport", R.id.sportIcon));
                 break;
             case R.id.exerciseIcon:
-                activities.add(new Activities("exercise", R.id.exerciseIcon));
+                activities.add(new Action("exercise", R.id.exerciseIcon));
                 break;
             case R.id.movieIcon:
-                activities.add(new Activities("movie", R.id.movieIcon));
+                activities.add(new Action("movie", R.id.movieIcon));
                 break;
             case R.id.sleepIcon:
-                activities.add(new Activities("sleep", R.id.sleepIcon));
+                activities.add(new Action("sleep", R.id.sleepIcon));
                 break;
             case R.id.travelIcon:
-                activities.add(new Activities("travel", R.id.travelIcon));
+                activities.add(new Action("travel", R.id.travelIcon));
                 break;
             case R.id.studyIcon:
-                activities.add(new Activities("study", R.id.studyIcon));
+                activities.add(new Action("study", R.id.studyIcon));
                 break;
             case R.id.cleanIcon:
-                activities.add(new Activities("clean", R.id.cleanIcon));
+                activities.add(new Action("clean", R.id.cleanIcon));
                 break;
             case R.id.workIcon:
-                activities.add(new Activities("work", R.id.workIcon));
+                activities.add(new Action("work", R.id.workIcon));
                 break;
             case R.id.shoppingIcon:
-                activities.add(new Activities("shopping", R.id.shoppingIcon));
+                activities.add(new Action("shopping", R.id.shoppingIcon));
                 break;
             case R.id.gameIcon:
-                activities.add(new Activities("game", R.id.gameIcon));
+                activities.add(new Action("game", R.id.gameIcon));
                 break;
             case R.id.birthdayIcon:
-                activities.add(new Activities("birthday", R.id.birthdayIcon));
+                activities.add(new Action("birthday", R.id.birthdayIcon));
                 break;
         }
     }
