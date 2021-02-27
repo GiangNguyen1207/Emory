@@ -18,11 +18,14 @@ public class Diary {
     }
 
     public String getNote() {
+        if (this.note.isEmpty()) {
+            return "Nothing was written...";
+        }
         return this.note;
     }
 
     public String toString() {
-        return String.valueOf(this.mood) + this.activities + this.note;
+        return String.valueOf(this.mood);
     }
 }
 

@@ -81,7 +81,9 @@ public class EntriesActivity extends AppCompatActivity {
             Type diaryType = new TypeToken<ArrayList<Diary>>() {
             }.getType();
             diaries = gson.fromJson(data, diaryType);
-            diaryList.add(new DiaryList(i + ". " + date, diaries));
+            if (diaries.size() > 0) {
+                diaryList.add(new DiaryList(i + ". " + date, diaries));
+            }
         }
 
         DiaryListAdapter diaryListAdapter = new DiaryListAdapter(this, diaryList);
