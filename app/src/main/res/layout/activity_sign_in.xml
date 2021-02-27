@@ -61,6 +61,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:id="@+id/edEmail"
+            android:textColor="@color/black"
             android:background="@drawable/edit_text_shape"
             android:layout_marginRight="16dp">
 
@@ -80,6 +81,8 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:id="@+id/edPassword"
+            android:textColor="@color/black"
+            android:inputType="textWebPassword"
             android:background="@drawable/edit_text_shape"
             android:layout_marginRight="16dp">
 

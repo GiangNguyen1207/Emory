@@ -1,12 +1,20 @@
 package com.example.emory;
 
+
 import android.content.Context;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,7 +28,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class WriteNoteActivity extends AppCompatActivity implements View.OnClickListener {
+
     private static final String SHARED_PREFS = "sharedPrefs";
+    private String selectedImagePath;
+    private static final int GALLERY_REQUEST = 1;
     private ArrayList<Activities> activities = new ArrayList<>();
     private int icon;
     private String date, note;
@@ -32,6 +43,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_write_note);
         getDataFromAddMood();
         getActivity();
+        getImage();
         saveData();
     }
 
@@ -130,6 +142,35 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         note = editText.getText().toString();
     }
 
+    public void getImage() {
+        ImageButton addImage = findViewById(R.id.addPhoto);
+        addImage.setOnClickListener((View v) -> {
+            Intent intent = new Intent(this, AddImage.class);
+            startActivity(intent);
+        });
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == GALLERY_REQUEST) {
+                Uri selectedImageUri = data.getData();
+                selectedImagePath = getPath(selectedImageUri);
+                System.out.println("Image Path : " + selectedImagePath);
+                ImageView im1 = findViewById(R.id.photoChosen);
+                im1.setImageURI(selectedImageUri);
+            }
+        }
+    }
+
+    public String getPath(Uri uri) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
+
     public void saveDiary() {
         Gson gson = new Gson();
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -152,5 +193,23 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             getNote();
             saveDiary();
         });
+    }
+
+    @Override
+    protected void onPause() {
+        SharedPreferences sp = getSharedPreferences("AppSharedPref", MODE_PRIVATE); // Open SharedPreferences with name AppSharedPref
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("ImagePath", selectedImagePath); // Store selectedImagePath with key "ImagePath". This key will be then used to retrieve data.
+        editor.commit();
+        super.onPause();
+    }
+
+    protected void onResume() {
+        SharedPreferences sp = getSharedPreferences("AppSharedPref", MODE_PRIVATE);
+        selectedImagePath = sp.getString("ImagePath", "");
+        Bitmap myBitmap = BitmapFactory.decodeFile(selectedImagePath);
+        ImageView im1 = findViewById(R.id.photoChosen);
+        im1.setImageBitmap(myBitmap);
+        super.onResume();
     }
 }
