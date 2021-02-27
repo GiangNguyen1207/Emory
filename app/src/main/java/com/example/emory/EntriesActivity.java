@@ -77,17 +77,16 @@ public class EntriesActivity extends AppCompatActivity {
         Integer daysOfMonths = monthYear.getDaysInMonth(date);
 
         for (int i = 1; i <= daysOfMonths; i++) {
-            String data = sharedPreferences.getString(i + ". " + date, null);
+            String data = sharedPreferences.getString(i + ". " + date, String.valueOf(new ArrayList<Diary>()));
             Type diaryType = new TypeToken<ArrayList<Diary>>() {
             }.getType();
             diaries = gson.fromJson(data, diaryType);
-            diaryList.add(new DiaryList(monthYear.getCurrentFullDate(), diaries));
+            diaryList.add(new DiaryList(i + ". " + date, diaries));
         }
 
-        Log.d("diaryList", String.valueOf(diaryList));
-
-        DiaryAdapter diaryAdapter = new DiaryAdapter(this, diaryList);
+        DiaryListAdapter diaryListAdapter = new DiaryListAdapter(this, diaryList);
         ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(diaryAdapter);
+        listView.setAdapter(diaryListAdapter);
     }
+
 }
