@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Diary {
     private int mood;
-    private ArrayList<Activities> activities;
+    private ArrayList<Action> actions;
     private String note;
 
-    public Diary(int mood, ArrayList<Activities> activities, String note) {
+    public Diary(int mood, ArrayList<Action> actions, String note) {
         this.mood = mood;
-        this.activities = activities;
+        this.actions = actions;
         this.note = note;
     }
 
@@ -18,11 +18,18 @@ public class Diary {
     }
 
     public String getNote() {
+        if (this.note.isEmpty()) {
+            return "Nothing was written...";
+        }
         return this.note;
     }
 
+    public ArrayList<Action> getActions() {
+        return this.actions;
+    }
+
     public String toString() {
-        return String.valueOf(this.mood) + this.activities + this.note;
+        return this.mood + " " + String.valueOf(this.actions);
     }
 }
 
