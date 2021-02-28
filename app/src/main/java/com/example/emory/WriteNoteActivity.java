@@ -3,24 +3,27 @@ package com.example.emory;
 
 import android.content.Context;
 import android.database.Cursor;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.content.Intent;
+
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
+
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -28,11 +31,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class WriteNoteActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final int REQUEST_IMAGE_CAPTURE = 0;
-    private static final int GALLERY_REQUEST = 1;
+
     private static final String SHARED_PREFS = "sharedPrefs";
     private String selectedImagePath;
-    private ArrayList<Activities> activities = new ArrayList<>();
+    private static final int GALLERY_REQUEST = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 0;
+    private ArrayList<Action> activities = new ArrayList<>();
     private int icon;
     private String date, note;
     private ArrayList<Diary> diaries = new ArrayList<>();
@@ -71,7 +75,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         ImageButton workButton = findViewById(R.id.workIcon);
         ImageButton shoppingButton = findViewById(R.id.shoppingIcon);
         ImageButton gameButton = findViewById(R.id.gameIcon);
-        ImageButton birthdayButton = findViewById(R.id.birthdayIcon);
+        ImageButton birthdayButton = findViewById(R.id.celebration);
 
         familyButton.setOnClickListener(this);
         friendButton.setOnClickListener(this);
@@ -93,46 +97,46 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.familyIcon:
-                activities.add(new Activities("family", R.id.familyIcon));
+                activities.add(new Action("family", R.drawable.action_ic_family));
                 break;
             case R.id.friendIcon:
-                activities.add(new Activities("friend", R.id.friendIcon));
+                activities.add(new Action("friend", R.drawable.action_ic_friends));
                 break;
             case R.id.loveIcon:
-                activities.add(new Activities("love", R.id.loveIcon));
+                activities.add(new Action("love", R.drawable.action_ic_favourite));
                 break;
             case R.id.sportIcon:
-                activities.add(new Activities("sport", R.id.sportIcon));
+                activities.add(new Action("sport", R.drawable.action_ic_fitness));
                 break;
             case R.id.exerciseIcon:
-                activities.add(new Activities("exercise", R.id.exerciseIcon));
+                activities.add(new Action("exercise", R.drawable.action_ic_walking));
                 break;
             case R.id.movieIcon:
-                activities.add(new Activities("movie", R.id.movieIcon));
+                activities.add(new Action("movie", R.drawable.action_ic_movie));
                 break;
             case R.id.sleepIcon:
-                activities.add(new Activities("sleep", R.id.sleepIcon));
+                activities.add(new Action("sleep", R.drawable.action_ic_sleep));
                 break;
             case R.id.travelIcon:
-                activities.add(new Activities("travel", R.id.travelIcon));
+                activities.add(new Action("travel", R.drawable.action_ic_travel));
                 break;
             case R.id.studyIcon:
-                activities.add(new Activities("study", R.id.studyIcon));
+                activities.add(new Action("study", R.drawable.action_ic_study));
                 break;
             case R.id.cleanIcon:
-                activities.add(new Activities("clean", R.id.cleanIcon));
+                activities.add(new Action("clean", R.drawable.action_ic_cleaning));
                 break;
             case R.id.workIcon:
-                activities.add(new Activities("work", R.id.workIcon));
+                activities.add(new Action("work", R.drawable.action_ic_work));
                 break;
             case R.id.shoppingIcon:
-                activities.add(new Activities("shopping", R.id.shoppingIcon));
+                activities.add(new Action("shopping", R.drawable.action_ic_shopping));
                 break;
             case R.id.gameIcon:
-                activities.add(new Activities("game", R.id.gameIcon));
+                activities.add(new Action("game", R.drawable.action_ic_games));
                 break;
-            case R.id.birthdayIcon:
-                activities.add(new Activities("birthday", R.id.birthdayIcon));
+            case R.id.celebration:
+                activities.add(new Action("birthday", R.drawable.action_ic_celebration));
                 break;
         }
     }
@@ -142,44 +146,12 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         note = editText.getText().toString();
     }
 
-    public void saveDiary() {
-        Gson gson = new Gson();
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        String data = sharedPreferences.getString(date, null);
-
-        if (data != null) {
-            Type diaryType = new TypeToken<ArrayList<Diary>>() {
-            }.getType();
-            diaries = gson.fromJson(data, diaryType);
-        }
-        diaries.add(new Diary(icon, activities, note));
-        editor.putString(date, gson.toJson(diaries));
-        editor.apply();
-    }
-
-    public void saveData() {
-        ImageButton doneIcon = findViewById(R.id.doneIcon);
-        doneIcon.setOnClickListener((View v) -> {
-            getNote();
-            saveDiary();
-        });
-    }
-
     public void getImage() {
         ImageButton addImage = findViewById(R.id.addPhoto);
         addImage.setOnClickListener((View v) -> {
             Intent intent = new Intent(this, AddImage.class);
-            startActivityForResult(intent, 1);
+            startActivity(intent);
         });
-    }
-
-    public String getPath(Uri uri) {
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = managedQuery(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
     }
 
     @Override
@@ -207,6 +179,37 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    public String getPath(Uri uri) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
+
+    public void saveDiary() {
+        Gson gson = new Gson();
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String data = sharedPreferences.getString(date, null);
+
+        if (data != null) {
+            Type diaryType = new TypeToken<ArrayList<Diary>>() {
+            }.getType();
+            diaries = gson.fromJson(data, diaryType);
+        }
+        diaries.add(new Diary(icon, activities, note));
+        editor.putString(date, gson.toJson(diaries));
+        editor.apply();
+    }
+
+    public void saveData() {
+        ImageButton doneIcon = findViewById(R.id.doneIcon);
+        doneIcon.setOnClickListener((View v) -> {
+            getNote();
+            saveDiary();
+        });
+    }
 
     @Override
     protected void onPause() {

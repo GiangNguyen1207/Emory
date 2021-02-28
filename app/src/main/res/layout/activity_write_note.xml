@@ -103,12 +103,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:drawableLeft="@drawable/baseline_camera_alt_black_18dp"
+        android:drawableLeft="@drawable/ic_camera"
         android:drawableTint="@color/black"
         android:text="@string/photo"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:drawableStartCompat="@drawable/baseline_camera_alt_black_18dp"
+        android:gravity="center_vertical"
+        app:drawableStartCompat="@drawable/ic_camera"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -190,7 +191,7 @@
             android:layout_marginLeft="16dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_family_restroom_black_18dp" />
+            app:srcCompat="@drawable/action_ic_family" />
 
         <ImageButton
             android:id="@+id/friendIcon"
@@ -200,7 +201,7 @@
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_people_alt_black_18dp" />
+            app:srcCompat="@drawable/action_ic_friends" />
 
         <ImageButton
             android:id="@+id/loveIcon"
@@ -210,7 +211,7 @@
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_favorite_black_18dp" />
+            app:srcCompat="@drawable/action_ic_favourite" />
 
         <ImageButton
             android:id="@+id/sportIcon"
@@ -220,7 +221,7 @@
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_fitness_center_black_18dp" />
+            app:srcCompat="@drawable/action_ic_fitness" />
 
         <ImageButton
             android:id="@+id/exerciseIcon"
@@ -230,7 +231,7 @@
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_nordic_walking_black_18dp" />
+            app:srcCompat="@drawable/action_ic_walking" />
     </LinearLayout>
 
     <LinearLayout
@@ -305,7 +306,7 @@
             android:layout_marginLeft="16dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_theaters_black_18dp" />
+            app:srcCompat="@drawable/action_ic_movie" />
 
         <ImageButton
             android:id="@+id/sleepIcon"
@@ -315,7 +316,7 @@
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_bed_black_18dp" />
+            app:srcCompat="@drawable/action_ic_sleep" />
 
         <ImageButton
             android:id="@+id/travelIcon"
@@ -325,7 +326,7 @@
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_airplane_ticket_black_18dp" />
+            app:srcCompat="@drawable/action_ic_travel" />
 
         <ImageButton
             android:id="@+id/studyIcon"
@@ -335,7 +336,7 @@
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_school_black_18dp" />
+            app:srcCompat="@drawable/action_ic_study" />
 
         <ImageButton
             android:id="@+id/cleanIcon"
@@ -347,7 +348,7 @@
             android:layout_marginRight="16dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_cleaning_services_black_18dp" />
+            app:srcCompat="@drawable/action_ic_cleaning" />
     </LinearLayout>
 
     <LinearLayout
@@ -421,7 +422,7 @@
             android:layout_marginLeft="44dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_business_center_black_18dp" />
+            app:srcCompat="@drawable/action_ic_work" />
 
         <ImageButton
             android:id="@+id/shoppingIcon"
@@ -431,7 +432,7 @@
             android:layout_marginLeft="36dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_shopping_cart_black_18dp" />
+            app:srcCompat="@drawable/action_ic_shopping" />
 
         <ImageButton
             android:id="@+id/gameIcon"
@@ -441,17 +442,17 @@
             android:layout_marginLeft="36dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_videogame_asset_black_18dp" />
+            app:srcCompat="@drawable/action_ic_games" />
 
         <ImageButton
-            android:id="@+id/birthdayIcon"
+            android:id="@+id/celebration"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"
             android:tint="@color/icon"
             android:background="@drawable/circle"
-            app:srcCompat="@drawable/baseline_celebration_black_18dp"
+            app:srcCompat="@drawable/action_ic_celebration"
             tools:ignore="VectorDrawableCompat" />
     </LinearLayout>
 
@@ -491,10 +492,10 @@
             android:layout_marginLeft="30dp"/>
 
         <TextView
-            android:id="@+id/addMore"
+            android:id="@+id/celebrationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/edit"
+            android:text="@string/celebration"
             android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"/>
     </LinearLayout>

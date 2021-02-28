@@ -58,5 +58,6 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
         startActivityForResult(cameraIntent, GALLERY_REQUEST);
         finish();
     }
+
 }
 
