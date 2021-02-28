@@ -36,7 +36,7 @@ public class AddTodoListActivity extends AppCompatActivity {
             Intent intent = new Intent(this, TodoDetailsActivity.class);
             startActivityForResult(intent, 1);
             SharedPrefsSingleton.init(this);
-
+            saveData();
         });
     }
 
