@@ -492,7 +492,7 @@
             android:layout_marginLeft="30dp"/>
 
         <TextView
-            android:id="@+id/celebration"
+            android:id="@+id/celebrationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/celebration"
