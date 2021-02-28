@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/diaryItems"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -16,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/diaryIcons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -29,38 +31,14 @@
                 android:src="@drawable/awful"
                 app:tint="@color/diaryText" />
 
-            <LinearLayout
+            <GridView
                 android:id="@+id/activityList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/singleActivity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/itemActionIcon"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        app:tint="@color/diaryText" />
-
-                    <TextView
-                        android:id="@+id/itemActionText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textColor="@color/diaryText"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+                android:layout_weight="1"
+                android:numColumns="4"/>
 
         </LinearLayout>
 

@@ -68,7 +68,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         ImageButton workButton = findViewById(R.id.workIcon);
         ImageButton shoppingButton = findViewById(R.id.shoppingIcon);
         ImageButton gameButton = findViewById(R.id.gameIcon);
-        ImageButton birthdayButton = findViewById(R.id.birthdayIcon);
+        ImageButton birthdayButton = findViewById(R.id.celebration);
 
         familyButton.setOnClickListener(this);
         friendButton.setOnClickListener(this);
@@ -90,46 +90,46 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.familyIcon:
-                activities.add(new Action("family", R.id.familyIcon));
+                activities.add(new Action("family", R.drawable.action_ic_family));
                 break;
             case R.id.friendIcon:
-                activities.add(new Action("friend", R.id.friendIcon));
+                activities.add(new Action("friend", R.drawable.action_ic_friends));
                 break;
             case R.id.loveIcon:
-                activities.add(new Action("love", R.id.loveIcon));
+                activities.add(new Action("love", R.drawable.action_ic_favourite));
                 break;
             case R.id.sportIcon:
-                activities.add(new Action("sport", R.id.sportIcon));
+                activities.add(new Action("sport", R.drawable.action_ic_fitness));
                 break;
             case R.id.exerciseIcon:
-                activities.add(new Action("exercise", R.id.exerciseIcon));
+                activities.add(new Action("exercise", R.drawable.action_ic_walking));
                 break;
             case R.id.movieIcon:
-                activities.add(new Action("movie", R.id.movieIcon));
+                activities.add(new Action("movie", R.drawable.action_ic_movie));
                 break;
             case R.id.sleepIcon:
-                activities.add(new Action("sleep", R.id.sleepIcon));
+                activities.add(new Action("sleep", R.drawable.action_ic_sleep));
                 break;
             case R.id.travelIcon:
-                activities.add(new Action("travel", R.id.travelIcon));
+                activities.add(new Action("travel", R.drawable.action_ic_travel));
                 break;
             case R.id.studyIcon:
-                activities.add(new Action("study", R.id.studyIcon));
+                activities.add(new Action("study", R.drawable.action_ic_study));
                 break;
             case R.id.cleanIcon:
-                activities.add(new Action("clean", R.id.cleanIcon));
+                activities.add(new Action("clean", R.drawable.action_ic_cleaning));
                 break;
             case R.id.workIcon:
-                activities.add(new Action("work", R.id.workIcon));
+                activities.add(new Action("work", R.drawable.action_ic_work));
                 break;
             case R.id.shoppingIcon:
-                activities.add(new Action("shopping", R.id.shoppingIcon));
+                activities.add(new Action("shopping", R.drawable.action_ic_shopping));
                 break;
             case R.id.gameIcon:
-                activities.add(new Action("game", R.id.gameIcon));
+                activities.add(new Action("game", R.drawable.action_ic_games));
                 break;
-            case R.id.birthdayIcon:
-                activities.add(new Action("birthday", R.id.birthdayIcon));
+            case R.id.celebration:
+                activities.add(new Action("birthday", R.drawable.action_ic_celebration));
                 break;
         }
     }
