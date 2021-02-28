@@ -3,21 +3,27 @@ package com.example.emory;
 
 import android.content.Context;
 import android.database.Cursor;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.content.Intent;
+
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -29,6 +35,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     private static final String SHARED_PREFS = "sharedPrefs";
     private String selectedImagePath;
     private static final int GALLERY_REQUEST = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 0;
     private ArrayList<Action> activities = new ArrayList<>();
     private int icon;
     private String date, note;
@@ -147,16 +154,28 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == GALLERY_REQUEST) {
-                Uri selectedImageUri = data.getData();
-                selectedImagePath = getPath(selectedImageUri);
-                System.out.println("Image Path : " + selectedImagePath);
-                ImageView im1 = findViewById(R.id.photoChosen);
-                im1.setImageURI(selectedImageUri);
-            }
+        switch (requestCode) {
+            case REQUEST_IMAGE_CAPTURE:
+                if (resultCode == RESULT_OK) {
+                    Uri selectedImageUri = data.getData();
+                    selectedImagePath = getPath(selectedImageUri);
+                    System.out.println("Image Path : " + selectedImagePath);
+                    ImageView imageView = findViewById(R.id.photoChosen);
+                    imageView.setImageBitmap(BitmapFactory.decodeFile(selectedImagePath));
+
+                }
+            case GALLERY_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    Uri selectedImageUri = data.getData();
+                    selectedImagePath = getPath(selectedImageUri);
+                    System.out.println("Image Path : " + selectedImagePath);
+                    ImageView imageView = findViewById(R.id.photoChosen);
+                    imageView.setImageBitmap(BitmapFactory.decodeFile(selectedImagePath));
+                }
+
         }
     }
 

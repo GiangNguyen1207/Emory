@@ -45,7 +45,7 @@
             app:srcCompat="@drawable/baseline_keyboard_arrow_left_black_18dp" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/dateTodoList"
             android:layout_width="253dp"
             android:layout_height="50dp"
             android:background="@color/secondary"
@@ -66,23 +66,36 @@
             android:tint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintStart_toEndOf="@+id/dateTodoList"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_keyboard_arrow_right_black_18dp" />
 
         <ListView
-            android:layout_width="267dp"
-            android:layout_height="517dp"
+            android:id="@+id/listView"
+            android:layout_width="337dp"
+            android:layout_height="522dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/dateTodoList"
             app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/addTodoBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="46dp"
+            android:text="@string/addTodobutton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateTodoList" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:layout_width="408dp"
+        android:layout_width="0dp"
         android:layout_height="58dp"
         android:background="@color/primary"
         android:orientation="horizontal"
@@ -95,7 +108,7 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="379dp"
+            android:layout_width="350dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="serif"
