@@ -13,8 +13,8 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 public class TodoDetailsActivity extends AppCompatActivity {
-    //TodoList todolist = TodoList.getInstance();
-    ArrayList<Todo> todos = new ArrayList<>();
+    TodoList todolist = TodoList.getInstance();
+    ArrayList<TodoList> todos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,8 @@ public class TodoDetailsActivity extends AppCompatActivity {
 
             Todo todo = new Todo(nameEditText.getText().toString(),
                     deadlineEditText.getText().toString(), noteEditText.getText().toString());
-            todos.add(todo);
+            todolist.addActivity(todo);
+            todos.add(todolist);
             Gson gson = new Gson();
             SharedPrefsSingleton sp = SharedPrefsSingleton.getInstance();
             sp.put("SAMPLE", gson.toJson(todos));
