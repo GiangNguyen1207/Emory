@@ -52,7 +52,7 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
         cameraIntent.setType("image/*");
         cameraIntent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(cameraIntent, GALLERY_REQUEST);
-        //finish();
+        finish();
     }
 
     @Override

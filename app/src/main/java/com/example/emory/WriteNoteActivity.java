@@ -158,6 +158,46 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
+    /*@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("data", String.valueOf(data));
+        switch (requestCode) {
+            case REQUEST_IMAGE_CAPTURE:
+                if (resultCode == RESULT_OK) {
+                    Uri selectedImageUri = data.getData();
+                    selectedImagePath = getPath(selectedImageUri);
+                    System.out.println("Image Path : " + selectedImagePath);
+                    ImageView imageView = findViewById(R.id.photoChosen);
+                    imageView.setImageBitmap(BitmapFactory.decodeFile(selectedImagePath));
+
+                }
+            case GALLERY_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    Uri selectedImageUri = data.getData();
+                    //selectedImagePath = getPath(selectedImageUri);
+                    //System.out.println("Image Path : " + selectedImagePath);
+                    try {
+                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImageUri));
+                        Log.d("bitmap", String.valueOf(bitmap));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    ImageView imageView = findViewById(R.id.photoChosen);
+                    imageView.setImageBitmap(BitmapFactory.decodeFile(selectedImagePath));
+                }
+
+        }
+    
+
+    public String getPath(Uri uri) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }*/
+
     public void saveDiary() {
         Gson gson = new Gson();
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
