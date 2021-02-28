@@ -1,22 +1,19 @@
 package com.example.emory;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.FileNotFoundException;
 
 public class AddImage extends AppCompatActivity implements View.OnClickListener {
     private static final int REQUEST_IMAGE_CAPTURE = 0;
@@ -35,7 +32,6 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
         btn2.setOnClickListener(this);
     }
 
-
     public void onClick(View v) {
         if (v.getId() == R.id.takePhotoBtn) {
             openCamera();
@@ -52,12 +48,42 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
     }
 
     public void openGallery() {
-        Intent cameraIntent = new Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent cameraIntent = new Intent(Intent.ACTION_GET_CONTENT);
         cameraIntent.setType("image/*");
         cameraIntent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(cameraIntent, GALLERY_REQUEST);
         finish();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_IMAGE_CAPTURE:
+                if (resultCode == RESULT_OK) {
+                    String selectedImageUri = data.getData().getPath();
+                    System.out.println("Image Path : " + selectedImagePath);
+                    ImageView imageView = findViewById(R.id.photoChosen);
+                    imageView.setImageBitmap(BitmapFactory.decodeFile(selectedImagePath));
+
+                }
+                break;
+            case GALLERY_REQUEST:
+            if (resultCode == RESULT_OK) {
+                String image = data.getData().getPath();
+                Log.d("bitmap", String.valueOf(image));
+                //Uri selectedImageUri = data.getData();
+                //selectedImagePath = getPath(selectedImageUri);
+                //System.out.println("Image Path : " + selectedImagePath);
+            /*try {
+                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImageUri));
+                Log.d("bitmap", String.valueOf(bitmap));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }*/
+                break;
+            }
+        }
+    }
 }
 
