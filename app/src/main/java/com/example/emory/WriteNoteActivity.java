@@ -17,8 +17,10 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -27,11 +29,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class WriteNoteActivity extends AppCompatActivity implements View.OnClickListener {
-
     private static final String SHARED_PREFS = "sharedPrefs";
     private String selectedImagePath;
     private static final int GALLERY_REQUEST = 1;
@@ -154,9 +158,10 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("data", String.valueOf(data));
         switch (requestCode) {
             case REQUEST_IMAGE_CAPTURE:
                 if (resultCode == RESULT_OK) {
@@ -170,14 +175,20 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             case GALLERY_REQUEST:
                 if (resultCode == RESULT_OK) {
                     Uri selectedImageUri = data.getData();
-                    selectedImagePath = getPath(selectedImageUri);
-                    System.out.println("Image Path : " + selectedImagePath);
+                    //selectedImagePath = getPath(selectedImageUri);
+                    //System.out.println("Image Path : " + selectedImagePath);
+                    try {
+                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImageUri));
+                        Log.d("bitmap", String.valueOf(bitmap));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     ImageView imageView = findViewById(R.id.photoChosen);
                     imageView.setImageBitmap(BitmapFactory.decodeFile(selectedImagePath));
                 }
 
         }
-    }
+    
 
     public String getPath(Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
@@ -185,7 +196,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
         return cursor.getString(column_index);
-    }
+    }*/
 
     public void saveDiary() {
         Gson gson = new Gson();
@@ -211,7 +222,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
-    @Override
+    /*@Override
     protected void onPause() {
         SharedPreferences sp = getSharedPreferences("AppSharedPref", MODE_PRIVATE); // Open SharedPreferences with name AppSharedPref
         SharedPreferences.Editor editor = sp.edit();
@@ -227,5 +238,5 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         ImageView im1 = findViewById(R.id.photoChosen);
         im1.setImageBitmap(myBitmap);
         super.onResume();
-    }
+    }*/
 }
