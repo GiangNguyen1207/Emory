@@ -12,16 +12,18 @@ import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AddImage extends AppCompatActivity implements View.OnClickListener{
+public class AddImage extends AppCompatActivity implements View.OnClickListener {
     private static final int REQUEST_IMAGE_CAPTURE = 0;
     private static final int GALLERY_REQUEST = 1;
     Uri mCapturedImageURI;
-    private BitmapFactory.Options options;
-    private byte[] fileName;
     ImageButton btn1, btn2;
+    private String selectedImagePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener{
         btn2.setOnClickListener(this);
     }
 
+
     public void onClick(View v) {
         if (v.getId() == R.id.takePhotoBtn) {
             openCamera();
@@ -42,63 +45,51 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener{
     }
 
     private void openCamera() {
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, fileName);
-        mCapturedImageURI = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-
         Intent cameraIntent = new Intent("android.media.action.IMAGE_CAPTURE");
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, mCapturedImageURI);
         startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
+        finish();
     }
 
     public void openGallery() {
-        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        galleryIntent.setType("image/*");
-        startActivityForResult(galleryIntent, GALLERY_REQUEST);
+        Intent cameraIntent = new Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        cameraIntent.setType("image/*");
+        cameraIntent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(cameraIntent, GALLERY_REQUEST);
+        finish();
+    }
+
+    public String getPath(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        SharedPreferences preferences =
-                PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
         switch (requestCode) {
             case REQUEST_IMAGE_CAPTURE:
                 if (resultCode == RESULT_OK) {
-                    String[] projection = {MediaStore.Images.Media.DATA};
+                    Uri selectedImageUri = data.getData();
+                    selectedImagePath = getPath(selectedImageUri);
+                    System.out.println("Image Path : " + selectedImagePath);
+                    ImageView imageView = findViewById(R.id.photoChosen);
+                    imageView.setImageBitmap(BitmapFactory.decodeFile(selectedImagePath));
 
-                    Cursor cursor = managedQuery(mCapturedImageURI, projection, null, null, null);
-                    int column_index_data = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                    cursor.moveToFirst();
-                    String capturedImageFilePath = cursor.getString(column_index_data);
-                    Log.d("photos*******", " in camera take int  " + capturedImageFilePath);
-
-                    Bitmap photo_camera = BitmapFactory.decodeFile(capturedImageFilePath, options);
-
-                    if (data != null) {
-                        editor.putString("image", capturedImageFilePath);
-                    }
                 }
             case GALLERY_REQUEST:
                 if (resultCode == RESULT_OK) {
-                    Uri selectedImage = data.getData();
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-                    Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-                    cursor.moveToFirst();
-
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String filePath = cursor.getString(columnIndex);
-                    cursor.close();
-
-//                  Bitmap photo = BitmapFactory.decodeFile(filePath);
-                    Bitmap photo_gallery = BitmapFactory.decodeFile(filePath, options);
-                    editor.putString("image", filePath);
+                    Uri selectedImageUri = data.getData();
+                    selectedImagePath = getPath(selectedImageUri);
+                    System.out.println("Image Path : " + selectedImagePath);
+                    ImageView imageView = findViewById(R.id.photoChosen);
+                    imageView.setImageBitmap(BitmapFactory.decodeFile(selectedImagePath));
                 }
 
         }
-        editor.commit();
     }
 }
 

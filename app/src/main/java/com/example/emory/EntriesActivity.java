@@ -1,8 +1,10 @@
 package com.example.emory;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +12,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
@@ -77,17 +81,18 @@ public class EntriesActivity extends AppCompatActivity {
         Integer daysOfMonths = monthYear.getDaysInMonth(date);
 
         for (int i = 1; i <= daysOfMonths; i++) {
-            String data = sharedPreferences.getString(i + ". " + date, null);
+            String data = sharedPreferences.getString(i + ". " + date, String.valueOf(new ArrayList<Diary>()));
             Type diaryType = new TypeToken<ArrayList<Diary>>() {
             }.getType();
             diaries = gson.fromJson(data, diaryType);
-            diaryList.add(new DiaryList(monthYear.getCurrentFullDate(), diaries));
+            if (diaries.size() > 0) {
+                diaryList.add(new DiaryList(i + ". " + date, diaries));
+            }
         }
 
-        Log.d("diaryList", String.valueOf(diaryList));
-
-        DiaryAdapter diaryAdapter = new DiaryAdapter(this, diaryList);
+        DiaryListAdapter diaryListAdapter = new DiaryListAdapter(this, diaryList);
         ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(diaryAdapter);
+        listView.setAdapter(diaryListAdapter);
     }
+
 }
