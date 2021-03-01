@@ -57,7 +57,6 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
         cameraIntent.setType("image/*");
         cameraIntent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(cameraIntent, GALLERY_REQUEST);
-        //finish();
     }
 
     @Override
@@ -75,24 +74,8 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
             case GALLERY_REQUEST:
             if (resultCode == RESULT_OK) {
                 super.onActivityResult(requestCode, resultCode, data);
-                String image = data.getData().getPath();
-                /*Intent output = new Intent();
-                output.putExtra("image", image);
-                setResult(RESULT_OK, output);*/
-                SharedPreferences sp = getSharedPreferences("AppSharedPref", MODE_PRIVATE); // Open SharedPreferences with name AppSharedPref
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putString("ImagePath", image); // Store selectedImagePath with key "ImagePath". This key will be then used to retrieve data.
-                editor.apply();
-                Log.d("bitmap", String.valueOf(image));
-                //Uri selectedImageUri = data.getData();
-                //selectedImagePath = getPath(selectedImageUri);
-                //System.out.println("Image Path : " + selectedImagePath);
-            /*try {
-                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImageUri));
-                Log.d("bitmap", String.valueOf(bitmap));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }*/
+                setResult(RESULT_OK, data);
+                finish();
                 break;
             }
         }

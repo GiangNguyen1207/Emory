@@ -28,6 +28,16 @@ public class Diary {
         return this.actions;
     }
 
+    public boolean checkExistingMood(ArrayList<Diary> diaries, int mood) {
+        Boolean existedMood = false;
+        for (Diary diary: diaries) {
+            if (diary.getMood() == mood) {
+                existedMood = true;
+            }
+        }
+        return existedMood;
+    }
+
     public String toString() {
         return this.mood + " " + String.valueOf(this.actions);
     }

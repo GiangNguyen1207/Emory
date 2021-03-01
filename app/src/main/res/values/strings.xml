@@ -60,4 +60,5 @@
     <string name="addTodobutton">Add</string>
     <string name="deadlineTodo">Deadline</string>
     <string name="noteTodo">Note</string>
+    <string name="moodCountTitle">Mood Count</string>
 </resources>
