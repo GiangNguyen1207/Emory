@@ -188,7 +188,6 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
                 }
 
         }
-    
 
     public String getPath(Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
