@@ -54,11 +54,15 @@ public class EntriesActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.toDoList:
-                    startActivity(new Intent(this, TodoDetailsActivity.class));
+                    startActivity(new Intent(this, AddTodoListActivity.class));
                     return true;
 
                 case R.id.settings:
                     startActivity(new Intent(this, SettingsActivity.class));
+                    return true;
+
+                case R.id.moodGraph:
+                    startActivity(new Intent(this, MoodAnalytics.class));
                     return true;
             }
             return false;
