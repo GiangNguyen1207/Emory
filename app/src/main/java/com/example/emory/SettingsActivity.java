@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingsActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +21,7 @@ public class SettingsActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.entries:
                     startActivity(new Intent(this, EntriesActivity.class));
-
+                    return true;
                 case R.id.addMood:
                     startActivity(new Intent(this, AddMoodActivity.class));
                     return true;

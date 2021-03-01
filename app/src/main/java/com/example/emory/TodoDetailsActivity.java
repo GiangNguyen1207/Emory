@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class TodoDetailsActivity extends AppCompatActivity {
     TodoList todolist = TodoList.getInstance();
     ArrayList<TodoList> todos = new ArrayList<>();
+    private static final String SHARED_PREFS = "sharedPrefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +60,9 @@ public class TodoDetailsActivity extends AppCompatActivity {
             todolist.addActivity(todo);
             todos.add(todolist);
             Gson gson = new Gson();
-            SharedPrefsSingleton sp = SharedPrefsSingleton.getInstance();
-            sp.put("SAMPLE", gson.toJson(todos));
+            SharedPreferences sp = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("SAMPLE", gson.toJson(todos));
             finish();
         });
     }
