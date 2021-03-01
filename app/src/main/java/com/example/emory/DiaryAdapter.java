@@ -55,7 +55,9 @@ public class DiaryAdapter extends BaseAdapter {
         GridView activityList = convertView.findViewById(R.id.activityList);
 
         itemMood.setImageDrawable(mood);
-        activityList.setAdapter(new ActionAdapter(this.context, this.actions));
+        if (!actions.isEmpty()) {
+            activityList.setAdapter(new ActionAdapter(this.context, this.actions));
+        }
         itemNote.setText("Note: " + diary.getNote());
 
         return convertView;

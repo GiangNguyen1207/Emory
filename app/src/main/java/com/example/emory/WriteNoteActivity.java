@@ -185,7 +185,10 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         else {
             Toast.makeText(this, "Error Saving Image", Toast.LENGTH_SHORT).show();
         }
+<<<<<<< HEAD
+=======
     }
+>>>>>>> develop
 
     /*public String getPath(Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
