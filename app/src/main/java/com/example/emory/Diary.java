@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class Diary {
@@ -45,22 +44,37 @@ public class Diary {
         return bitmap;
     }
 
-    public String getPic() {
-        return this.pic;
-    }
+    public int getMoodIndicator(String moodName) {
+        int indicator = 0;
+        switch (moodName) {
+            case "excited":
+                indicator = 5;
+                break;
 
-    public boolean checkExistingMood(ArrayList<Diary> diaries, int mood) {
-        Boolean existedMood = false;
-        for (Diary diary : diaries) {
-            if (diary.getMood() == mood) {
-                existedMood = true;
-            }
+            case "happy":
+                indicator = 4;
+                break;
+
+            case "good":
+                indicator = 3;
+                break;
+
+            case "sad":
+                indicator = 2;
+                break;
+
+            case "awful":
+                indicator = 1;
+                break;
+
+            default:
+                break;
         }
-        return existedMood;
+        return indicator;
     }
 
     public String toString() {
-        return this.mood + " " + String.valueOf(this.actions);
+        return this.mood + " " + this.actions;
     }
 }
 

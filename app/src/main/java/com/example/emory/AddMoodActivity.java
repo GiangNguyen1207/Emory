@@ -38,7 +38,7 @@ public class AddMoodActivity extends AppCompatActivity implements DatePickerDial
         chosenDate.setText(fullDate.getCurrentFullDate());
 
         btnSmile.setOnClickListener((View v) -> {
-            startNote(R.drawable.smile);
+            startNote(R.drawable.good);
         });
 
         btnHappy.setOnClickListener((View v) -> {
@@ -54,7 +54,7 @@ public class AddMoodActivity extends AppCompatActivity implements DatePickerDial
         });
 
         btnCry.setOnClickListener((View v) -> {
-            startNote(R.drawable.cry);
+            startNote(R.drawable.terrible);
         });
 
         btnAwful.setOnClickListener((View v) -> {

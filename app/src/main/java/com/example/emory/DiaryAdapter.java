@@ -59,9 +59,7 @@ public class DiaryAdapter extends BaseAdapter {
         Drawable mood = ContextCompat.getDrawable(context, diary.getMood());
         itemMood.setImageDrawable(mood);
         itemNote.setText("Note: " + diary.getNote());
-
-        Bitmap pic = diary.decodePic();
-        itemPic.setImageBitmap(pic);
+        itemPic.setImageBitmap(diary.decodePic());
 
         return convertView;
     }

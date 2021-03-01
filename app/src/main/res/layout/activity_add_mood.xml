@@ -79,15 +79,15 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/smile"
-                    android:tint="@color/smile" />
+                    android:src="@drawable/good"
+                    android:tint="@color/good" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/icon_smile"
-                    android:textColor="@color/smile"
+                    android:text="@string/icon_good"
+                    android:textColor="@color/good"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -201,15 +201,15 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/cry"
-                    android:tint="@color/cry" />
+                    android:src="@drawable/awful"
+                    android:tint="@color/awful" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/icon_cry"
-                    android:textColor="@color/cry"
+                    android:text="@string/icon_awful"
+                    android:textColor="@color/awful"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -229,15 +229,15 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/awful"
-                    android:tint="@color/awful" />
+                    android:src="@drawable/terrible"
+                    android:tint="@color/terrible" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/icon_awful"
-                    android:textColor="@color/awful"
+                    android:text="@string/icon_terrible"
+                    android:textColor="@color/terrible"
                     android:textSize="14sp" />
 
             </LinearLayout>
