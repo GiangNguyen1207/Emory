@@ -67,7 +67,6 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
             case REQUEST_IMAGE_CAPTURE:
                 if (resultCode == RESULT_OK) {
                     String selectedImageUri = data.getData().getPath();
-                    System.out.println("Image Path : " + selectedImagePath);
                     ImageView imageView = findViewById(R.id.photoChosen);
                     imageView.setImageBitmap(BitmapFactory.decodeFile(selectedImagePath));
 
