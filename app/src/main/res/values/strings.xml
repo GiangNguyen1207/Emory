@@ -23,6 +23,7 @@
     <string name="family">family</string>
     <string name="friend">friends</string>
     <string name="love">love</string>
+    <string name="error_message">Should not be empty</string>
     <string name="exercise">exercise</string>
     <string name="sport">sport</string>
     <string name="travel">travel</string>
@@ -36,7 +37,7 @@
     <string name="work">work</string>
     <string name="edit">edit/new</string>
     <string name="save">Save</string>
-    <string name="date">28, Jan</string>
+   <!-- <string name="date">28, Jan</string> -->
     <string name="todo">To Do List</string>
     <string name="addAction">Add Activity</string>
 </resources>
