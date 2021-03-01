@@ -1,69 +1,69 @@
 package com.example.emory;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class AddMoodActivity extends AppCompatActivity {
-    private TextView calendar;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AddMoodActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+    private TextView chosenDate;
     private DayMonthYear fullDate;
-    private ImageButton btnSmile, btnHappy, btnLove, btnSad, btnCry, btnAngry;
+    private ImageButton btnSmile, btnHappy, btnExcited, btnSad, btnCry, btnAwful, btnClose;
     private Button btnSaveMood;
-    private String selectedMood;
+    public static final String EMORY_SHARED_PREFERENCES = "EMORY_SHARED_PREFERENCES";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_mood);
 
-        calendar = findViewById(R.id.calendar);
+        chosenDate = findViewById(R.id.calendar);
         btnSmile = findViewById(R.id.smile);
         btnHappy = findViewById(R.id.happy);
-        btnLove = findViewById(R.id.love);
+        btnExcited = findViewById(R.id.excited);
         btnSad = findViewById(R.id.sad);
         btnCry = findViewById(R.id.cry);
-        btnAngry = findViewById(R.id.angry);
+        btnAwful = findViewById(R.id.awful);
+        btnClose = findViewById(R.id.close);
         btnSaveMood = findViewById(R.id.saveMood);
         btnSaveMood.setVisibility(View.GONE);
 
         fullDate = new DayMonthYear();
-        calendar.setText(fullDate.getFullDate());
+        chosenDate.setText(fullDate.getCurrentFullDate());
 
-        selectedMood = "";
         btnSmile.setOnClickListener((View v) -> {
-            selectedMood = "smile";
-            startNote(btnSmile);
+            startNote(R.drawable.smile);
         });
 
         btnHappy.setOnClickListener((View v) -> {
-            selectedMood = "happy";
-            startNote(btnHappy);
+            startNote(R.drawable.happy);
         });
 
-        btnLove.setOnClickListener((View v) -> {
-            selectedMood = "love";
-            startNote(btnLove);
+        btnExcited.setOnClickListener((View v) -> {
+            startNote(R.drawable.excited);
         });
 
         btnSad.setOnClickListener((View v) -> {
-            selectedMood = "sad";
-            startNote(btnSad);
+            startNote(R.drawable.sad);
         });
 
         btnCry.setOnClickListener((View v) -> {
-            selectedMood = "cry";
-            startNote(btnCry);
+            startNote(R.drawable.cry);
         });
 
-        btnAngry.setOnClickListener((View v) -> {
-            selectedMood = "angry";
-            startNote(btnAngry);
+        btnAwful.setOnClickListener((View v) -> {
+            startNote(R.drawable.awful);
+        });
+
+        btnClose.setOnClickListener((View v) -> {
+            Intent intent = new Intent(this, EntriesActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -71,11 +71,23 @@ public class AddMoodActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //chosenBtn.setBackgroundResource(R.color.secondary);
+
     }
 
-    public void startNote(ImageButton chosenBtn) {
+    public void startNote(int drawable) {
         btnSaveMood.setVisibility(View.VISIBLE);
-        Intent intent = new Intent(this, Activities.class);
+
+        Intent intent = new Intent(this, WriteNoteActivity.class);
+        intent.putExtra("icon", drawable);
         startActivity(intent);
+    }
+
+    public void onCalendarClick(View v) {
+        fullDate.show(getSupportFragmentManager(), "date picker");
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        chosenDate.setText(fullDate.setFullDate(year, month, dayOfMonth));
     }
 }

@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Emory">
-        <activity android:name=".SignupActivity"></activity>
-        <activity android:name=".EntriesActivity" />
-        <activity android:name=".Activities" />
-        <activity android:name=".SignInActivity">
+        <activity android:name=".WriteNoteActivity"/>
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".AddMoodActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,5 +24,6 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 
 </manifest>

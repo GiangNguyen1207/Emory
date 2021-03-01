@@ -11,4 +11,10 @@
     <color name="blur">#00FFFFFF</color>
     <color name="icon">#af4b4b</color>
     <color name="grey">#cccccc</color>
+    <color name="smile">#bd9354</color>
+    <color name="happy">#82B2B8</color>
+    <color name="excited">#8DA47E</color>
+    <color name="sad">#F9968B</color>
+    <color name="cry">#C54B6C</color>
+    <color name="awful">#897C87</color>
 </resources>
