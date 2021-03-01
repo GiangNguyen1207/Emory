@@ -25,7 +25,7 @@ import java.util.List;
 
 
 public class AddTodoListActivity extends AppCompatActivity {
-    //TodoList todolist = TodoList.getInstance();
+    TodoList todolist = TodoList.getInstance();
     ArrayList<Todo> todos = new ArrayList<>();
     private static final String SHARED_PREFS = "sharedPrefs";
 
@@ -63,12 +63,12 @@ public class AddTodoListActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        loadData();
+
         ListView lv = findViewById(R.id.listView);
         lv.setAdapter(new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_checked,
-                todos)
+                todolist.getAllTodo())
         );
 
         lv.setOnItemClickListener((AdapterView<?> adapterView, View view, int i, long l) -> {

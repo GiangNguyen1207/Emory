@@ -22,7 +22,9 @@
         android:theme="@style/Theme.Emory">
 
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".TodoDetailsActivity" />
+        <activity android:name=".TodoDetailsActivity"/>
+        <activity android:name=".AddTodoListActivity"/>
+        <activity android:name=".TodoListDetails" />
         <activity android:name=".MoodAnalytics" />
         <activity android:name=".AddImage" />
         <activity android:name=".AddMoodActivity" />

@@ -24,7 +24,7 @@ public class TodoDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_details);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        /*BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.toDoList);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -48,7 +48,7 @@ public class TodoDetailsActivity extends AppCompatActivity {
                     return true;
             }
             return false;
-        });
+        });*/
 
         saveTodoList();
     }
