@@ -38,6 +38,9 @@ public class DiaryListAdapter extends BaseAdapter {
         return position;
     }
 
+    public void clearData() {
+        diaryLists.clear();
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
