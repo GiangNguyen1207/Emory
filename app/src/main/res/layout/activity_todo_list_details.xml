@@ -4,11 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/highlight"
     tools:context=".TodoListDetails">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constaint"
         android:layout_width="340dp"
         android:layout_height="640dp"
+        android:background="@drawable/radius_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,34 +20,47 @@
         <TextView
             android:id="@+id/nameTextView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:paddingLeft="20dp"
             android:text="TextView"
+            android:background="@drawable/shape_text"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/deadlineTextView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="20dp"
             android:text="TextView"
+            android:textSize="24sp"
+            android:background="@drawable/shape_text"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
 
         <TextView
             android:id="@+id/noteTextView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="20dp"
             android:text="TextView"
+            android:textSize="24sp"
+            android:background="@drawable/shape_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/deadlineTextView"
-            app:layout_constraintVertical_bias="0.029" />
+            app:layout_constraintVertical_bias="0.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

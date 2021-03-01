@@ -16,6 +16,8 @@ import java.lang.reflect.Type;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -33,11 +35,8 @@ public class AddTodoListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todolist);
-        Button addButton = findViewById(R.id.addTodoBtn);
-        addButton.setOnClickListener((View v) -> {
-            Intent intent = new Intent(this, TodoDetailsActivity.class);
-            startActivityForResult(intent, 1);
-        });
+        FloatingActionButton floatBtn = findViewById(R.id.addTodoBtn);
+        floatBtn.setOnClickListener(view -> getDetails());
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.toDoList);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -63,7 +62,7 @@ public class AddTodoListActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        loadData();
         ListView lv = findViewById(R.id.listView);
         lv.setAdapter(new ArrayAdapter<>(
                 this,
@@ -76,7 +75,14 @@ public class AddTodoListActivity extends AppCompatActivity {
             nextActivity.putExtra("indexOfTodo", i);
             startActivity(nextActivity);
         });
+
     }
+
+    /*@Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        todolist.remove(position);
+        adapter.notifyDataSetChanged();
+    }*/
 
     /*@Override
     protected void onPause() {
@@ -93,6 +99,11 @@ public class AddTodoListActivity extends AppCompatActivity {
         }.getType();
         todos = gson.fromJson(dataReceived, type);
         Log.d("hello", String.valueOf(todos));
+    }
+
+    public void getDetails() {
+        Intent intent = new Intent(this, TodoDetailsActivity.class);
+        startActivityForResult(intent, 1);
     }
 
     /*public void saveData() {

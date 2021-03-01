@@ -45,6 +45,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="340dp"
         android:layout_height="640dp"
+        android:background="@color/whiteBlur"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,57 +54,80 @@
         <EditText
             android:id="@+id/nameTodoEditText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="@string/nameTodo"
+            android:inputType="textPersonName"
+            android:paddingStart="20dp"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/icon"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:paddingLeft="20dp"
-            android:paddingStart="20dp"/>
-
-        <EditText
-            android:id="@+id/deadlineEditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="@string/deadlineTodo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameTodoEditText"
-            android:paddingLeft="20dp"
-            android:paddingStart="20dp"/>
+            app:layout_constraintVertical_bias="0.052" />
 
         <EditText
             android:id="@+id/noteEditText"
             android:layout_width="336dp"
             android:layout_height="102dp"
-            android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="@string/noteTodo"
             android:inputType="textPersonName"
             android:paddingStart="20dp"
             android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/icon"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/deadlineEditText" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.379" />
 
         <Button
             android:id="@+id/addTodo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="171dp"
+            android:layout_height="48dp"
+            android:background="@drawable/circle2"
+            android:gravity="center"
             android:text="@string/addTodobutton"
+            android:textColor="@color/white"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/noteEditText"
-            app:layout_constraintVertical_bias="0.31"
+            app:layout_constraintVertical_bias="0.223" />
+
+        <TextView
+            android:id="@+id/deadlineEditText"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:paddingTop="10dp"
+            android:drawableStart="@drawable/ic_calendar_black"
+            android:drawableLeft="@drawable/ic_calendar_black"
+            android:drawablePadding="5dp"
+            android:onClick="onCalendarClick"
+            android:paddingStart="20dp"
             android:paddingLeft="20dp"
-            android:paddingStart="20dp"/>
+            android:text="@string/calendar"
+            android:textColor="@color/icon"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/noteEditText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameTodoEditText"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
