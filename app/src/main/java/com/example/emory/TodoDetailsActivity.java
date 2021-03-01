@@ -24,32 +24,6 @@ public class TodoDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_details);
 
-        /*BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.toDoList);
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.entries:
-                    startActivity(new Intent(this, EntriesActivity.class));
-                    return true;
-
-                case R.id.addMood:
-                    startActivity(new Intent(this, AddMoodActivity.class));
-                    return true;
-
-                case R.id.toDoList:
-                    return true;
-
-                case R.id.settings:
-                    startActivity(new Intent(this, SettingsActivity.class));
-                    return true;
-
-                case R.id.moodGraph:
-                    startActivity(new Intent(this, MoodAnalytics.class));
-                    return true;
-            }
-            return false;
-        });*/
-
         saveTodoList();
     }
 

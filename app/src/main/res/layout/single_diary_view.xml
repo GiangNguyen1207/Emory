@@ -7,9 +7,10 @@
     <LinearLayout
         android:id="@+id/diaryItems"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,9 +20,9 @@
         <LinearLayout
             android:id="@+id/diaryIcons"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/itemMood"
@@ -34,11 +35,11 @@
             <GridView
                 android:id="@+id/activityList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:numColumns="4"/>
+                android:numColumns="4" />
 
         </LinearLayout>
 
@@ -46,16 +47,14 @@
             android:id="@+id/itemNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Today"
-            android:layout_marginBottom="10dp"
             android:textColor="@color/diaryText"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/itemPic"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Today"
-            android:textColor="@color/diaryText" />
+            android:scaleType="fitCenter"
+            android:layout_gravity="center" />
 
     </LinearLayout>
 

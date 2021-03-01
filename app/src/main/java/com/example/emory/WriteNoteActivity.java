@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -31,6 +33,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -48,7 +51,8 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     private int icon;
     private String date, note;
     private ArrayList<Diary> diaries = new ArrayList<>();
-    String selectedImagePath;
+    private Bitmap bitmap;
+    private String encodePic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +173,8 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {
             try {
-                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
+                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
+                encodeBitmap();
                 ImageView imageView = findViewById(R.id.photoChosen);
                 imageView.setImageBitmap(bitmap);
             } catch (FileNotFoundException e) {
@@ -180,6 +185,14 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             Toast.makeText(this, "Error Saving Image", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void encodeBitmap() {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
+        byte[] b = output.toByteArray();
+        encodePic = Base64.encodeToString(b, Base64.DEFAULT);
+    }
+
 
     public void saveDiary() {
         Gson gson = new Gson();
@@ -192,7 +205,8 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             }.getType();
             diaries = gson.fromJson(data, diaryType);
         }
-        diaries.add(new Diary(icon, activities, note));
+
+        diaries.add(new Diary(icon, activities, note, encodePic));
         editor.putString(date, gson.toJson(diaries));
         editor.apply();
     }
