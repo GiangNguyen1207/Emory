@@ -17,13 +17,14 @@ import java.util.ArrayList;
 public class TodoDetailsActivity extends AppCompatActivity {
     TodoList todolist = TodoList.getInstance();
     ArrayList<TodoList> todos = new ArrayList<>();
+    private static final String SHARED_PREFS = "sharedPrefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_details);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        /*BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.toDoList);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -47,7 +48,7 @@ public class TodoDetailsActivity extends AppCompatActivity {
                     return true;
             }
             return false;
-        });
+        });*/
 
         saveTodoList();
     }
@@ -64,8 +65,9 @@ public class TodoDetailsActivity extends AppCompatActivity {
             todolist.addActivity(todo);
             todos.add(todolist);
             Gson gson = new Gson();
-            SharedPrefsSingleton sp = SharedPrefsSingleton.getInstance();
-            sp.put("SAMPLE", gson.toJson(todos));
+            SharedPreferences sp = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("SAMPLE", gson.toJson(todos));
             finish();
         });
     }
