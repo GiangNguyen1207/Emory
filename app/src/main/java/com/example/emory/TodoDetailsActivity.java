@@ -29,6 +29,7 @@ public class TodoDetailsActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.entries:
                     startActivity(new Intent(this, EntriesActivity.class));
+                    return true;
 
                 case R.id.addMood:
                     startActivity(new Intent(this, AddMoodActivity.class));
@@ -39,6 +40,10 @@ public class TodoDetailsActivity extends AppCompatActivity {
 
                 case R.id.settings:
                     startActivity(new Intent(this, SettingsActivity.class));
+                    return true;
+
+                case R.id.moodGraph:
+                    startActivity(new Intent(this, MoodAnalytics.class));
                     return true;
             }
             return false;
