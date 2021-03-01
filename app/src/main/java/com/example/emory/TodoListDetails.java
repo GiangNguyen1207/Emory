@@ -13,7 +13,6 @@ public class TodoListDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_list_details);
-
         TodoList todoList = TodoList.getInstance();
         Bundle b = getIntent().getExtras();
         int indexOfTodo = b.getInt("indexOfTodo");

@@ -1,6 +1,7 @@
 package com.example.emory;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -13,7 +14,10 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class AddImage extends AppCompatActivity implements View.OnClickListener {
     private static final int REQUEST_IMAGE_CAPTURE = 0;
@@ -38,13 +42,14 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
         } else if (v.getId() == R.id.openGalleryBtn) {
             openGallery();
         }
+
     }
 
     private void openCamera() {
         Intent cameraIntent = new Intent("android.media.action.IMAGE_CAPTURE");
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, mCapturedImageURI);
         startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
-        finish();
+        //finish();
     }
 
     public void openGallery() {
@@ -52,7 +57,7 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
         cameraIntent.setType("image/*");
         cameraIntent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(cameraIntent, GALLERY_REQUEST);
-        finish();
+        //finish();
     }
 
     @Override
@@ -70,7 +75,15 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
                 break;
             case GALLERY_REQUEST:
             if (resultCode == RESULT_OK) {
+                super.onActivityResult(requestCode, resultCode, data);
                 String image = data.getData().getPath();
+                /*Intent output = new Intent();
+                output.putExtra("image", image);
+                setResult(RESULT_OK, output);*/
+                SharedPreferences sp = getSharedPreferences("AppSharedPref", MODE_PRIVATE); // Open SharedPreferences with name AppSharedPref
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString("ImagePath", image); // Store selectedImagePath with key "ImagePath". This key will be then used to retrieve data.
+                editor.apply();
                 Log.d("bitmap", String.valueOf(image));
                 //Uri selectedImageUri = data.getData();
                 //selectedImagePath = getPath(selectedImageUri);
@@ -84,6 +97,8 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
                 break;
             }
         }
+        finish();
+
     }
 }
 
