@@ -46,10 +46,8 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
     }
 
     private void openCamera() {
-        Intent cameraIntent = new Intent("android.media.action.IMAGE_CAPTURE");
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, mCapturedImageURI);
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
-        //finish();
     }
 
     public void openGallery() {
@@ -62,25 +60,13 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case REQUEST_IMAGE_CAPTURE:
-                if (resultCode == RESULT_OK) {
-                    String selectedImageUri = data.getData().getPath();
-                    ImageView imageView = findViewById(R.id.photoChosen);
-                    imageView.setImageBitmap(BitmapFactory.decodeFile(selectedImagePath));
-
-                }
-                break;
-            case GALLERY_REQUEST:
+        if (requestCode == GALLERY_REQUEST || requestCode == REQUEST_IMAGE_CAPTURE) {
             if (resultCode == RESULT_OK) {
                 super.onActivityResult(requestCode, resultCode, data);
                 setResult(RESULT_OK, data);
-                finish();
-                break;
             }
         }
         finish();
-
     }
 }
 
