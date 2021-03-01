@@ -168,35 +168,18 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {
-                SharedPreferences sharedPreferences = getSharedPreferences("AppSharedPref", MODE_PRIVATE);
-                selectedImagePath = sharedPreferences.getString("ImagePath", null);
-                Log.d("bitmaptaken", selectedImagePath);
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
                 ImageView imageView = findViewById(R.id.photoChosen);
-                Bitmap bmp = BitmapFactory.decodeFile(selectedImagePath);
-                imageView.setImageBitmap(bmp);
-                imageView.invalidate();
+                imageView.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-
-            /*String selectedImagePath = data.getStringExtra("image");
-            ImageView imageView = findViewById(R.id.photoChosen);
-            Bitmap bitmap = BitmapFactory.decodeFile(selectedImagePath);
-            imageView.setImageBitmap(bitmap);
-            imageView.invalidate();*/
         else {
             Toast.makeText(this, "Error Saving Image", Toast.LENGTH_SHORT).show();
         }
-<<<<<<< HEAD
-=======
     }
->>>>>>> develop
-
-    /*public String getPath(Uri uri) {
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = managedQuery(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }*/
 
     public void saveDiary() {
         Gson gson = new Gson();
@@ -223,13 +206,4 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             startActivity(intent);
         });
     }
-
-    /*@Override
-    protected void onPause() {
-        SharedPreferences sp = getSharedPreferences("AppSharedPref", MODE_PRIVATE); // Open SharedPreferences with name AppSharedPref
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString("ImagePath", selectedImagePath); // Store selectedImagePath with key "ImagePath". This key will be then used to retrieve data.
-        editor.commit();
-        super.onPause();
-    }*/
 }
