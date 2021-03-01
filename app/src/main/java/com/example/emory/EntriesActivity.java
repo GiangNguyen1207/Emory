@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class EntriesActivity extends AppCompatActivity {
     private DayMonthYear monthYear;
     private BottomNavigationView bottomNavigationView;
     private ArrayList<DiaryList> diaryList = new ArrayList<>();
+    private ListView listView;
     private static final String SHARED_PREFS = "sharedPrefs";
 
     @Override
@@ -48,31 +50,45 @@ public class EntriesActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.addMood:
-                    Intent intent = new Intent(EntriesActivity.this, AddMoodActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(this, AddMoodActivity.class));
+                    return true;
+
+                case R.id.toDoList:
+                    startActivity(new Intent(this, TodoDetailsActivity.class));
+                    return true;
+
+                case R.id.settings:
+                    startActivity(new Intent(this, SettingsActivity.class));
                     return true;
             }
             return false;
         });
 
-        createListView();
+        createListView(false);
     }
 
     public void onBack(View v) {
         month = findViewById(R.id.month);
-        String text = month.getText().toString();
-        String prevMonthYear = monthYear.getPrevMonthYear(text);
+        String prevMonthYear = monthYear.getPrevMonthYear(month.getText().toString());
         month.setText(prevMonthYear);
+        removeExistingListView();
+        createListView(true);
     }
 
     public void onNext(View v) {
         month = findViewById(R.id.month);
-        String text = month.getText().toString();
-        String nextMonthYear = monthYear.getNextMonthYear(text);
+        String nextMonthYear = monthYear.getNextMonthYear(month.getText().toString());
         month.setText(nextMonthYear);
+        removeExistingListView();
+        createListView(true);
     }
 
-    public void createListView() {
+    public void removeExistingListView() {
+        DiaryListAdapter diaryListAdapter = (DiaryListAdapter) listView.getAdapter();
+        diaryListAdapter.clearData();
+    }
+
+    public void createListView(Boolean movement) {
         Gson gson = new Gson();
         ArrayList<Diary> diaries;
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -90,9 +106,8 @@ public class EntriesActivity extends AppCompatActivity {
             }
         }
 
-        DiaryListAdapter diaryListAdapter = new DiaryListAdapter(this, diaryList);
-        ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(diaryListAdapter);
+        listView = findViewById(R.id.listView);
+        listView.setAdapter(new DiaryListAdapter(this, diaryList));
     }
 
 }

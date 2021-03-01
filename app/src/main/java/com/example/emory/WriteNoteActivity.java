@@ -216,6 +216,8 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         doneIcon.setOnClickListener((View v) -> {
             getNote();
             saveDiary();
+            Intent intent = new Intent(this, EntriesActivity.class);
+            startActivity(intent);
         });
     }
 
