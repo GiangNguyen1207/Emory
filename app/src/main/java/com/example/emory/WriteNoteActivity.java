@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 
+import android.renderscript.ScriptGroup;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -51,8 +54,8 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     private int icon;
     private String date, note;
     private ArrayList<Diary> diaries = new ArrayList<>();
-    private Bitmap bitmap;
     private String encodePic;
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,15 +178,23 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             try {
                 bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
                 encodeBitmap();
+                //Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 150, 100, true);
+                /*Uri selectedImage = data.getData();
+                InputStream imageStream = getContentResolver().openInputStream(selectedImage);*/
                 ImageView imageView = findViewById(R.id.photoChosen);
                 imageView.setImageBitmap(bitmap);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         }
-        else {
-            Toast.makeText(this, "Error Saving Image", Toast.LENGTH_SHORT).show();
-        }
+
+        /*if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
+            Bundle extras = data.getExtras();
+            Bitmap image = (Bitmap) extras.get("data");
+            ImageView imageView = findViewById(R.id.photoChosen);
+            imageView.setImageBitmap(image);
+
+        }*/
     }
 
     public void encodeBitmap() {
@@ -212,8 +223,8 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void saveData() {
-        ImageButton doneIcon = findViewById(R.id.doneIcon);
-        doneIcon.setOnClickListener((View v) -> {
+        FloatingActionButton floatBtn = findViewById(R.id.doneIcon);
+        floatBtn.setOnClickListener(view -> {
             getNote();
             saveDiary();
             Intent intent = new Intent(this, EntriesActivity.class);
