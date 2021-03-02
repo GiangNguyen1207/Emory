@@ -187,6 +187,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
                 if (resultCode == RESULT_OK) {
                     try {
                         bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
+                        encodeBitmap();
                         //Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 150, 100, true);
                         /*Uri selectedImage = data.getData();
                         InputStream imageStream = getContentResolver().openInputStream(selectedImage);*/
@@ -203,6 +204,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
                 if (resultCode == RESULT_OK) {
                     Bundle extras = data.getExtras();
                     bitmap = (Bitmap) extras.get("data");
+                    encodeBitmap();
                     ImageView imageView = findViewById(R.id.photoChosen);
                     imageView.setImageBitmap(bitmap);
                 } else {
@@ -245,7 +247,6 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         FloatingActionButton floatBtn = findViewById(R.id.doneIcon);
         floatBtn.setOnClickListener(view -> {
             getNote();
-            encodeBitmap();
             saveDiary();
             Intent intent = new Intent(this, EntriesActivity.class);
             startActivity(intent);
