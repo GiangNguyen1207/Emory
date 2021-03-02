@@ -1,14 +1,13 @@
 package com.example.emory;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -50,15 +49,20 @@ public class DiaryAdapter extends BaseAdapter {
             convertView = View.inflate(this.context, R.layout.single_diary_view, null);
         }
         ImageView itemMood = convertView.findViewById(R.id.itemMood);
+        ImageView itemPic = convertView.findViewById(R.id.itemPic);
         TextView itemNote = convertView.findViewById(R.id.itemNote);
-        //Drawable mood = ContextCompat.getDrawable(context, diary.getMood());
-        GridView activityList = convertView.findViewById(R.id.activityList);
 
-        //itemMood.setImageDrawable(mood);
+        Drawable mood = ContextCompat.getDrawable(context, diary.retrieveMoodIdFromName());
+        itemMood.setImageDrawable(mood);
+
+        GridView activityList = convertView.findViewById(R.id.activityList);
         if (!actions.isEmpty()) {
             activityList.setAdapter(new ActionAdapter(this.context, this.actions));
         }
+
         itemNote.setText("Note: " + diary.getNote());
+        Bitmap pic = diary.decodePic();
+        itemPic.setImageBitmap(pic);
 
         return convertView;
     }

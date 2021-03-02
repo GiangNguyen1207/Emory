@@ -4,10 +4,18 @@ package com.example.emory;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+
+import android.renderscript.ScriptGroup;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -19,6 +27,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -31,7 +44,8 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     private String icon;
     private String date, note;
     private ArrayList<Diary> diaries = new ArrayList<>();
-    String selectedImagePath;
+    private String encodePic;
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +55,10 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         getActivity();
         getImage();
         saveData();
+
+        /*SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        settings.edit().remove("2. March, 2021").commit();*/
     }
 
     public void getDataFromAddMood() {
@@ -93,16 +111,16 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
                 activities.add(new Action("family", R.drawable.action_ic_family));
                 break;
             case R.id.friendIcon:
-                activities.add(new Action("friend", R.drawable.action_ic_friends));
+                activities.add(new Action("friends", R.drawable.action_ic_friends));
                 break;
             case R.id.loveIcon:
-                activities.add(new Action("love", R.drawable.action_ic_favourite));
+                activities.add(new Action("favourite", R.drawable.action_ic_favourite));
                 break;
             case R.id.sportIcon:
-                activities.add(new Action("sport", R.drawable.action_ic_fitness));
+                activities.add(new Action("fitness", R.drawable.action_ic_fitness));
                 break;
             case R.id.exerciseIcon:
-                activities.add(new Action("exercise", R.drawable.action_ic_walking));
+                activities.add(new Action("walking", R.drawable.action_ic_walking));
                 break;
             case R.id.movieIcon:
                 activities.add(new Action("movie", R.drawable.action_ic_movie));
@@ -117,7 +135,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
                 activities.add(new Action("study", R.drawable.action_ic_study));
                 break;
             case R.id.cleanIcon:
-                activities.add(new Action("clean", R.drawable.action_ic_cleaning));
+                activities.add(new Action("cleaning", R.drawable.action_ic_cleaning));
                 break;
             case R.id.workIcon:
                 activities.add(new Action("work", R.drawable.action_ic_work));
@@ -126,10 +144,10 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
                 activities.add(new Action("shopping", R.drawable.action_ic_shopping));
                 break;
             case R.id.gameIcon:
-                activities.add(new Action("game", R.drawable.action_ic_games));
+                activities.add(new Action("games", R.drawable.action_ic_games));
                 break;
             case R.id.celebration:
-                activities.add(new Action("birthday", R.drawable.action_ic_celebration));
+                activities.add(new Action("celebration", R.drawable.action_ic_celebration));
                 break;
         }
     }
@@ -152,17 +170,34 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {
             try {
-                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
+                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
+                encodeBitmap();
+                //Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 150, 100, true);
+                /*Uri selectedImage = data.getData();
+                InputStream imageStream = getContentResolver().openInputStream(selectedImage);*/
                 ImageView imageView = findViewById(R.id.photoChosen);
                 imageView.setImageBitmap(bitmap);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         }
-        else {
-            Toast.makeText(this, "Error Saving Image", Toast.LENGTH_SHORT).show();
-        }
+
+        /*if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
+            Bundle extras = data.getExtras();
+            Bitmap image = (Bitmap) extras.get("data");
+            ImageView imageView = findViewById(R.id.photoChosen);
+            imageView.setImageBitmap(image);
+
+        }*/
     }
+
+    public void encodeBitmap() {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
+        byte[] b = output.toByteArray();
+        encodePic = Base64.encodeToString(b, Base64.DEFAULT);
+    }
+
 
     public void saveDiary() {
         Gson gson = new Gson();
@@ -175,14 +210,15 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             }.getType();
             diaries = gson.fromJson(data, diaryType);
         }
-        diaries.add(new Diary(icon, activities, note));
+
+        diaries.add(new Diary(icon, activities, note, encodePic));
         editor.putString(date, gson.toJson(diaries));
         editor.apply();
     }
 
     public void saveData() {
-        ImageButton doneIcon = findViewById(R.id.doneIcon);
-        doneIcon.setOnClickListener((View v) -> {
+        FloatingActionButton floatBtn = findViewById(R.id.doneIcon);
+        floatBtn.setOnClickListener(view -> {
             getNote();
             saveDiary();
             Intent intent = new Intent(this, EntriesActivity.class);

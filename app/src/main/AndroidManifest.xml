@@ -27,11 +27,11 @@
         <activity android:name=".TodoListDetails" />
         <activity android:name=".MoodAnalytics" />
         <activity android:name=".AddImage" />
-        <activity android:name=".AddMoodActivity" />
+        <activity android:name=".EntriesActivity" />
         <activity android:name=".WriteNoteActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".EntriesActivity">
+        <activity android:name=".AddMoodActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,6 +42,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <receiver android:name=".Reminder"/>
     </application>
 
 </manifest>
