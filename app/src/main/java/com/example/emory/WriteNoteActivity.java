@@ -1,38 +1,26 @@
 package com.example.emory;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-
-import android.renderscript.ScriptGroup;
-import android.text.Layout;
+import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
@@ -48,6 +36,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     private ArrayList<Diary> diaries = new ArrayList<>();
     private String encodePic;
     private Bitmap bitmap;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,35 +162,73 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     public void getImage() {
         ImageButton addImage = findViewById(R.id.addPhoto);
         addImage.setOnClickListener((View v) -> {
-            Intent intent = new Intent(this, AddImage.class);
-            startActivityForResult(intent, 1);
+            dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_import_picture);
+            checkBtnClick(dialog);
+            dialog.show();
         });
+    }
+
+    public void checkBtnClick(Dialog dialog) {
+        ImageButton btnCamera = dialog.findViewById(R.id.takePhotoBtn);
+        ImageButton btnGallery = dialog.findViewById(R.id.openGalleryBtn);
+        btnCamera.setOnClickListener((View v) -> {
+            openCamera();
+        });
+        btnGallery.setOnClickListener((View v) -> {
+            openGallery();
+        });
+    }
+
+    private void openCamera() {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
+    }
+
+    public void openGallery() {
+        Intent cameraIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        cameraIntent.setType("image/*");
+        cameraIntent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(cameraIntent, GALLERY_REQUEST);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {
-            try {
-                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
-                encodeBitmap();
-                //Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 150, 100, true);
-                /*Uri selectedImage = data.getData();
-                InputStream imageStream = getContentResolver().openInputStream(selectedImage);*/
-                ImageView imageView = findViewById(R.id.photoChosen);
-                imageView.setImageBitmap(bitmap);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+        switch (requestCode) {
+            case GALLERY_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    try {
+                        bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
+                        encodeBitmap();
+                        //Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 150, 100, true);
+                        /*Uri selectedImage = data.getData();
+                        InputStream imageStream = getContentResolver().openInputStream(selectedImage);*/
+                        ImageView imageView = findViewById(R.id.photoChosen);
+                        imageView.setImageBitmap(bitmap);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        Toast.makeText(this, "Error loading file", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+
+            case REQUEST_IMAGE_CAPTURE:
+                if (resultCode == RESULT_OK) {
+                    Bundle extras = data.getExtras();
+                    bitmap = (Bitmap) extras.get("data");
+                    encodeBitmap();
+                    ImageView imageView = findViewById(R.id.photoChosen);
+                    imageView.setImageBitmap(bitmap);
+                } else {
+                    Toast.makeText(this, "Error loading file", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            default:
+                break;
         }
-
-        /*if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
-            Bundle extras = data.getExtras();
-            Bitmap image = (Bitmap) extras.get("data");
-            ImageView imageView = findViewById(R.id.photoChosen);
-            imageView.setImageBitmap(image);
-
-        }*/
+        dialog.dismiss();
     }
 
     public void encodeBitmap() {

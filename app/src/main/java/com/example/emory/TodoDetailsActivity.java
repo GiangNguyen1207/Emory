@@ -49,31 +49,7 @@ public class TodoDetailsActivity extends AppCompatActivity implements DatePicker
         fullDate = new DayMonthYear();
         deadlineEditText = findViewById(R.id.deadlineEditText);
         deadlineEditText.setText(fullDate.getCurrentFullDate());
-        /*BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.toDoList);
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.entries:
-                    startActivity(new Intent(this, EntriesActivity.class));
-                    return true;
 
-                case R.id.addMood:
-                    startActivity(new Intent(this, AddMoodActivity.class));
-                    return true;
-
-                case R.id.toDoList:
-                    return true;
-
-                case R.id.settings:
-                    startActivity(new Intent(this, SettingsActivity.class));
-                    return true;
-
-                case R.id.moodGraph:
-                    startActivity(new Intent(this, MoodAnalytics.class));
-                    return true;
-            }
-            return false;
-        });*/
         saveTodoList();
     }
 
@@ -92,7 +68,7 @@ public class TodoDetailsActivity extends AppCompatActivity implements DatePicker
             SharedPreferences sp = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("todolist", gson.toJson(todos));
-
+            editor.commit();
             Intent intent = new Intent(TodoDetailsActivity.this, AddTodoListActivity.class);
             startActivity(intent);
             finish();
