@@ -30,8 +30,8 @@
         <activity android:name=".EntriesActivity" />
         <activity android:name=".WriteNoteActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".AddMoodActivity" />
-        <activity android:name=".SignInActivity">
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".AddMoodActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

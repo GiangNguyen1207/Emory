@@ -49,7 +49,7 @@ public class ActionAdapter extends BaseAdapter {
         ImageView itemActionIcon = convertView.findViewById(R.id.itemActionIcon);
         TextView itemActionText = convertView.findViewById(R.id.itemActionText);
 
-        Drawable actionIcon = ContextCompat.getDrawable(context, action.getIcon());
+        Drawable actionIcon = ContextCompat.getDrawable(context, action.retrieveName());
         itemActionIcon.setImageDrawable(actionIcon);
         itemActionText.setText(action.getName());
 

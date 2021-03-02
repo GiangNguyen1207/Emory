@@ -26,7 +26,7 @@ public class SignInActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_in);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         btnSignUp=findViewById(R.id.btnRegister);
         btnLogin=findViewById(R.id.btnLogin);
         edEmail=findViewById(R.id.edLoginEmail);
