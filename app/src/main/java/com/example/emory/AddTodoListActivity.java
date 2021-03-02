@@ -30,6 +30,7 @@ import java.util.List;
 public class AddTodoListActivity extends AppCompatActivity {
     TodoList todolist = TodoList.getInstance();
     ArrayList<TodoList> todos = new ArrayList<>();
+    ArrayList<TodoList> todo2 = new ArrayList<>();
     private static final String SHARED_PREFS = "sharedPrefs";
 
     @Override
@@ -59,16 +60,30 @@ public class AddTodoListActivity extends AppCompatActivity {
             }
             return false;
         });
-        reload();
 
     }
+    private void getDetails() {
+        Intent intent = new Intent(this, TodoDetailsActivity.class);
+        startActivityForResult(intent, 1);
+    }
 
-    private void reload() {
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //private void reload() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        String dataReceived = sharedPreferences.getString("todolist", String.valueOf(new ArrayList<TodoList>()));
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<TodoList>>() {
+        }.getType();
+        todo2 = gson.fromJson(dataReceived, type);
+        Log.d("hello", String.valueOf(todo2));
         ListView lv = findViewById(R.id.listView);
         lv.setAdapter(new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_checked,
-                todolist.getAllTodo())
+                todo2.get(0).getAllTodo())
         );
 
         lv.setOnItemClickListener((AdapterView<?> adapterView, View view, int i, long l) -> {
@@ -85,41 +100,29 @@ public class AddTodoListActivity extends AppCompatActivity {
     }
 
 
+
     /*@Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         todolist.remove(position);
         adapter.notifyDataSetChanged();
     }*/
 
-    /*@Override
+    @Override
     protected void onPause() {
         super.onPause();
         Log.d("tag", "app onPause...");
-        saveData();
-    }*/
 
-    /*public void loadData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String dataReceived = sharedPreferences.getString("SAMPLE", null);
-        Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<Todo>>() {
-        }.getType();
-        todolist = gson.fromJson(dataReceived, type);
-        Log.d("hello", String.valueOf(todolist));
-    }*/
-
-    public void getDetails() {
-        Intent intent = new Intent(this, TodoDetailsActivity.class);
-        startActivityForResult(intent, 1);
     }
 
-    /*public void saveData() {
+    /*private void saveData() {
         Gson gson = new Gson();
         todos.add(todolist);
         SharedPreferences sp = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("SAMPLE", gson.toJson(todos));
+        Log.d("hi", String.valueOf(todos));
     }*/
+
 
 }
 

@@ -86,12 +86,12 @@ public class TodoDetailsActivity extends AppCompatActivity implements DatePicker
             Todo todo = new Todo(nameEditText.getText().toString(),
                     deadlineEditText.getText().toString(), noteEditText.getText().toString());
             todolist.addActivity(todo);
-            /*todos.add(todolist);
+            todos.add(todolist);
+            Log.d("haha", String.valueOf(todos));
             Gson gson = new Gson();
             SharedPreferences sp = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
-            editor.putString("SAMPLE", gson.toJson(todos));*/
-
+            editor.putString("todolist", gson.toJson(todos));
 
             Intent intent = new Intent(TodoDetailsActivity.this, AddTodoListActivity.class);
             startActivity(intent);
