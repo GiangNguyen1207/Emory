@@ -3,17 +3,17 @@ package com.example.emory;
 import java.util.ArrayList;
 
 public class Diary {
-    private int mood;
+    private String mood;
     private ArrayList<Action> actions;
     private String note;
 
-    public Diary(int mood, ArrayList<Action> actions, String note) {
+    public Diary(String mood, ArrayList<Action> actions, String note) {
         this.mood = mood;
         this.actions = actions;
         this.note = note;
     }
 
-    public int getMood() {
+    public String getMood() {
         return this.mood;
     }
 
@@ -26,16 +26,6 @@ public class Diary {
 
     public ArrayList<Action> getActions() {
         return this.actions;
-    }
-
-    public boolean checkExistingMood(ArrayList<Diary> diaries, int mood) {
-        Boolean existedMood = false;
-        for (Diary diary: diaries) {
-            if (diary.getMood() == mood) {
-                existedMood = true;
-            }
-        }
-        return existedMood;
     }
 
     public String toString() {

@@ -2,25 +2,12 @@ package com.example.emory;
 
 
 import android.content.Context;
-import android.database.Cursor;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.content.Intent;
 import android.content.SharedPreferences;
-
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.content.Intent;
-
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -28,16 +15,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Type;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class WriteNoteActivity extends AppCompatActivity implements View.OnClickListener {
@@ -45,7 +28,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     private static final int GALLERY_REQUEST = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 0;
     private ArrayList<Action> activities = new ArrayList<>();
-    private int icon;
+    private String icon;
     private String date, note;
     private ArrayList<Diary> diaries = new ArrayList<>();
     String selectedImagePath;
@@ -62,11 +45,12 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
 
     public void getDataFromAddMood() {
         Intent intent = getIntent();
-        icon = intent.getIntExtra("icon", 0);
+        icon = intent.getStringExtra("icon");
         date = intent.getStringExtra("date");
 
-        Drawable drawable = getResources().getDrawable(icon);
+        int resourceId = getResources().getIdentifier("com.example.emory:drawable/" + icon, null, null);
         ImageView imageView = findViewById(R.id.iconChosen);
+        Drawable drawable = getResources().getDrawable(resourceId);
         imageView.setImageDrawable(drawable);
     }
 
@@ -161,7 +145,6 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             Intent intent = new Intent(this, AddImage.class);
             startActivityForResult(intent, 1);
         });
-
     }
 
     @Override

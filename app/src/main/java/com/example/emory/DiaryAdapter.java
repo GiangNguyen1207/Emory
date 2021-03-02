@@ -51,10 +51,10 @@ public class DiaryAdapter extends BaseAdapter {
         }
         ImageView itemMood = convertView.findViewById(R.id.itemMood);
         TextView itemNote = convertView.findViewById(R.id.itemNote);
-        Drawable mood = ContextCompat.getDrawable(context, diary.getMood());
+        //Drawable mood = ContextCompat.getDrawable(context, diary.getMood());
         GridView activityList = convertView.findViewById(R.id.activityList);
 
-        itemMood.setImageDrawable(mood);
+        //itemMood.setImageDrawable(mood);
         if (!actions.isEmpty()) {
             activityList.setAdapter(new ActionAdapter(this.context, this.actions));
         }
