@@ -69,7 +69,6 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         for(int h=0; h < layout.getChildCount(); h++) {
             View view = layout.getChildAt(h);
             view.setOnClickListener(this);
-
         }
         /*ImageButton familyButton = findViewById(R.id.familyIcon);
         ImageButton friendButton = findViewById(R.id.friendIcon);
@@ -113,7 +112,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
                 iconClicked(v.getId(), "family", R.drawable.action_ic_family);
                 break;
             case R.id.friendIcon:
-                activities.add(new Action("friends", R.drawable.action_ic_friends));
+                iconClicked(v.getId(), "friend", R.drawable.action_ic_friends);
                 break;
             case R.id.loveIcon:
                 activities.add(new Action("favourite", R.drawable.action_ic_favourite));
@@ -274,11 +273,12 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         Action action = new Action(name, drawable);
         ImageButton imgBtn = findViewById(id);
         if(activities.contains(action)){
+            imgBtn.setBackgroundResource(R.drawable.icon_clicked);
             activities.remove(action);
-            imgBtn.setBackgroundColor(getColor(R.color.secondary));
         } else {
             activities.add(action);
             imgBtn.setBackgroundColor(getColor(R.color.white));
+
         }
     }
 }
