@@ -62,7 +62,7 @@ public class AddImage extends AppCompatActivity implements View.OnClickListener 
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GALLERY_REQUEST || requestCode == REQUEST_IMAGE_CAPTURE) {
             if (resultCode == RESULT_OK) {
-                super.onActivityResult(requestCode, resultCode, data);
+               //super.onActivityResult(requestCode, resultCode, data);
                 setResult(RESULT_OK, data);
             }
         }
