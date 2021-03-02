@@ -1,6 +1,6 @@
 package com.example.emory;
 
-public class Action {
+public class Action implements Comparable<Action>{
     private String name;
     private int icon;
 
@@ -21,4 +21,9 @@ public class Action {
         return this.icon;
     }
 
+
+    @Override
+    public int compareTo(Action o) {
+        return this.name.compareTo(o.name);
+    }
 }

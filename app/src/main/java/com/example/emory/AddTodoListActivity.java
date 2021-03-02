@@ -59,14 +59,11 @@ public class AddTodoListActivity extends AppCompatActivity {
             }
             return false;
         });
+        reload();
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //saveData();
-        //loadData();
+    private void reload() {
         ListView lv = findViewById(R.id.listView);
         lv.setAdapter(new ArrayAdapter<>(
                 this,

@@ -92,6 +92,9 @@ public class TodoDetailsActivity extends AppCompatActivity implements DatePicker
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("SAMPLE", gson.toJson(todos));*/
 
+
+            Intent intent = new Intent(TodoDetailsActivity.this, AddTodoListActivity.class);
+            startActivity(intent);
             finish();
         });
     }
