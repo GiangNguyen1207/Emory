@@ -12,17 +12,15 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
@@ -48,6 +46,10 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         getActivity();
         getImage();
         saveData();
+
+        /*SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        settings.edit().remove("2. March, 2021").commit();*/
     }
 
     public void getDataFromAddMood() {
@@ -61,8 +63,14 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         imageView.setImageDrawable(drawable);
     }
 
+    //loop to check id of imageButton
     public void getActivity() {
-        ImageButton familyButton = findViewById(R.id.familyIcon);
+        ViewGroup layout = findViewById(R.id.linearLayout3);
+        for(int h=0; h < layout.getChildCount(); h++) {
+            View view = layout.getChildAt(h);
+            view.setOnClickListener(this);
+        }
+        /*ImageButton familyButton = findViewById(R.id.familyIcon);
         ImageButton friendButton = findViewById(R.id.friendIcon);
         ImageButton loveButton = findViewById(R.id.loveIcon);
         ImageButton sportButton = findViewById(R.id.sportIcon);
@@ -90,17 +98,21 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         workButton.setOnClickListener(this);
         shoppingButton.setOnClickListener(this);
         gameButton.setOnClickListener(this);
-        birthdayButton.setOnClickListener(this);
+        birthdayButton.setOnClickListener(this);*/
     }
+
+    /*
+    create a layout object
+     */
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.familyIcon:
-                activities.add(new Action("family", R.drawable.action_ic_family));
+                iconClicked(v.getId(), "family", R.drawable.action_ic_family);
                 break;
             case R.id.friendIcon:
-                activities.add(new Action("friends", R.drawable.action_ic_friends));
+                iconClicked(v.getId(), "friend", R.drawable.action_ic_friends);
                 break;
             case R.id.loveIcon:
                 activities.add(new Action("favourite", R.drawable.action_ic_favourite));
@@ -251,5 +263,22 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             Intent intent = new Intent(this, EntriesActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void iconClicked(int id, String name, int drawable) {
+        /*check if the activities arr list contains the actions family or not
+                if not, the first time user click, add + change background
+                if yes, the second time change background + remove
+                 */
+        Action action = new Action(name, drawable);
+        ImageButton imgBtn = findViewById(id);
+        if(activities.contains(action)){
+            imgBtn.setBackgroundResource(R.drawable.icon_clicked);
+            activities.remove(action);
+        } else {
+            activities.add(action);
+            imgBtn.setBackgroundColor(getColor(R.color.white));
+
+        }
     }
 }
