@@ -52,6 +52,7 @@
 
         <ListView
             android:id="@+id/listView"
+            android:choiceMode="multipleChoice"
             android:layout_width="342dp"
             android:layout_height="544dp"
             app:layout_constraintBottom_toBottomOf="parent"

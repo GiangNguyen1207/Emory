@@ -31,5 +31,9 @@ public class TodoList {
     public String toString() {
         return "name";
     }
+
+    public Todo remove(int indexOfTodo) {
+        return this.todolist.remove(indexOfTodo);
+    }
 }
 
