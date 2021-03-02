@@ -20,10 +20,6 @@ public class Diary {
         this.pic = pic;
     }
 
-    public String getMood() {
-        return this.mood;
-    }
-
     public String getNote() {
         if (this.note.isEmpty()) {
             return "Nothing was written...";
