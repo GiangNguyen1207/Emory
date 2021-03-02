@@ -1,28 +1,16 @@
 package com.example.emory;
 
 
+import android.app.Dialog;
 import android.content.Context;
-import android.database.Cursor;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.content.Intent;
 import android.content.SharedPreferences;
-
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.content.Intent;
-
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -30,17 +18,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Type;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class WriteNoteActivity extends AppCompatActivity implements View.OnClickListener {
@@ -48,11 +33,12 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     private static final int GALLERY_REQUEST = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 0;
     private ArrayList<Action> activities = new ArrayList<>();
-    private int icon;
+    private String icon;
     private String date, note;
     private ArrayList<Diary> diaries = new ArrayList<>();
-    private Bitmap bitmap;
     private String encodePic;
+    private Bitmap bitmap;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +52,12 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
 
     public void getDataFromAddMood() {
         Intent intent = getIntent();
-        icon = intent.getIntExtra("icon", 0);
+        icon = intent.getStringExtra("icon");
         date = intent.getStringExtra("date");
 
-        Drawable drawable = getResources().getDrawable(icon);
+        int resourceId = getResources().getIdentifier("com.example.emory:drawable/" + icon, null, null);
         ImageView imageView = findViewById(R.id.iconChosen);
+        Drawable drawable = getResources().getDrawable(resourceId);
         imageView.setImageDrawable(drawable);
     }
 
@@ -113,16 +100,16 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
                 activities.add(new Action("family", R.drawable.action_ic_family));
                 break;
             case R.id.friendIcon:
-                activities.add(new Action("friend", R.drawable.action_ic_friends));
+                activities.add(new Action("friends", R.drawable.action_ic_friends));
                 break;
             case R.id.loveIcon:
-                activities.add(new Action("love", R.drawable.action_ic_favourite));
+                activities.add(new Action("favourite", R.drawable.action_ic_favourite));
                 break;
             case R.id.sportIcon:
-                activities.add(new Action("sport", R.drawable.action_ic_fitness));
+                activities.add(new Action("fitness", R.drawable.action_ic_fitness));
                 break;
             case R.id.exerciseIcon:
-                activities.add(new Action("exercise", R.drawable.action_ic_walking));
+                activities.add(new Action("walking", R.drawable.action_ic_walking));
                 break;
             case R.id.movieIcon:
                 activities.add(new Action("movie", R.drawable.action_ic_movie));
@@ -137,7 +124,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
                 activities.add(new Action("study", R.drawable.action_ic_study));
                 break;
             case R.id.cleanIcon:
-                activities.add(new Action("clean", R.drawable.action_ic_cleaning));
+                activities.add(new Action("cleaning", R.drawable.action_ic_cleaning));
                 break;
             case R.id.workIcon:
                 activities.add(new Action("work", R.drawable.action_ic_work));
@@ -146,10 +133,10 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
                 activities.add(new Action("shopping", R.drawable.action_ic_shopping));
                 break;
             case R.id.gameIcon:
-                activities.add(new Action("game", R.drawable.action_ic_games));
+                activities.add(new Action("games", R.drawable.action_ic_games));
                 break;
             case R.id.celebration:
-                activities.add(new Action("birthday", R.drawable.action_ic_celebration));
+                activities.add(new Action("celebration", R.drawable.action_ic_celebration));
                 break;
         }
     }
@@ -162,28 +149,71 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     public void getImage() {
         ImageButton addImage = findViewById(R.id.addPhoto);
         addImage.setOnClickListener((View v) -> {
-            Intent intent = new Intent(this, AddImage.class);
-            startActivityForResult(intent, 1);
+            dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_import_picture);
+            checkBtnClick(dialog);
+            dialog.show();
         });
+    }
 
+    public void checkBtnClick(Dialog dialog) {
+        ImageButton btnCamera = dialog.findViewById(R.id.takePhotoBtn);
+        ImageButton btnGallery = dialog.findViewById(R.id.openGalleryBtn);
+        btnCamera.setOnClickListener((View v) -> {
+            openCamera();
+        });
+        btnGallery.setOnClickListener((View v) -> {
+            openGallery();
+        });
+    }
+
+    private void openCamera() {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
+    }
+
+    public void openGallery() {
+        Intent cameraIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        cameraIntent.setType("image/*");
+        cameraIntent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(cameraIntent, GALLERY_REQUEST);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {
-            try {
-                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
-                encodeBitmap();
-                ImageView imageView = findViewById(R.id.photoChosen);
-                imageView.setImageBitmap(bitmap);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+        switch (requestCode) {
+            case GALLERY_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    try {
+                        bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
+                        //Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 150, 100, true);
+                        /*Uri selectedImage = data.getData();
+                        InputStream imageStream = getContentResolver().openInputStream(selectedImage);*/
+                        ImageView imageView = findViewById(R.id.photoChosen);
+                        imageView.setImageBitmap(bitmap);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        Toast.makeText(this, "Error loading file", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+
+            case REQUEST_IMAGE_CAPTURE:
+                if (resultCode == RESULT_OK) {
+                    Bundle extras = data.getExtras();
+                    bitmap = (Bitmap) extras.get("data");
+                    ImageView imageView = findViewById(R.id.photoChosen);
+                    imageView.setImageBitmap(bitmap);
+                } else {
+                    Toast.makeText(this, "Error loading file", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            default:
+                break;
         }
-        else {
-            Toast.makeText(this, "Error Saving Image", Toast.LENGTH_SHORT).show();
-        }
+        dialog.dismiss();
     }
 
     public void encodeBitmap() {
@@ -212,9 +242,10 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void saveData() {
-        ImageButton doneIcon = findViewById(R.id.doneIcon);
-        doneIcon.setOnClickListener((View v) -> {
+        FloatingActionButton floatBtn = findViewById(R.id.doneIcon);
+        floatBtn.setOnClickListener(view -> {
             getNote();
+            encodeBitmap();
             saveDiary();
             Intent intent = new Intent(this, EntriesActivity.class);
             startActivity(intent);

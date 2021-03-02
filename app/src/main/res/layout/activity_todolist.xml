@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/highlight">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -22,75 +23,44 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="340dp"
-        android:layout_height="660dp"
+        android:layout_height="623dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:background="@drawable/radius_background"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.752">
 
-        <ImageButton
-            android:id="@+id/imageButton20"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@color/secondary"
-            android:tint="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_keyboard_arrow_left_black_18dp" />
-
-        <TextView
-            android:id="@+id/dateTodoList"
-            android:layout_width="253dp"
-            android:layout_height="50dp"
-            android:background="@color/secondary"
-            android:gravity="center"
-            android:text="@string/dateTodo"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@+id/imageButton20"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/imageButton21"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginLeft="1dp"
-            android:background="@color/secondary"
-            android:tint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/dateTodoList"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_keyboard_arrow_right_black_18dp" />
-
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="337dp"
-            android:layout_height="522dp"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addTodoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:clickable="true"
+            app:backgroundTint="@color/icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dateTodoList"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/listView"
+            app:layout_constraintVertical_bias="0.571"
+            app:srcCompat="@drawable/ic_add" />
 
-        <Button
-            android:id="@+id/addTodoBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="46dp"
-            android:text="@string/addTodobutton"
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="342dp"
+            android:layout_height="544dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dateTodoList" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+        </ListView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
