@@ -60,7 +60,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:id="@+id/edEmail"
+            android:id="@+id/edLoginEmail"
             android:textColor="@color/black"
             android:background="@drawable/edit_text_shape"
             android:layout_marginRight="16dp">
@@ -80,7 +80,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:id="@+id/edPassword"
+            android:id="@+id/edLoginPassword"
             android:textColor="@color/black"
             android:inputType="textWebPassword"
             android:background="@drawable/edit_text_shape"
@@ -98,6 +98,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/button_shape"
                 android:textAllCaps="false"
+                android:id="@+id/btnLogin"
                 android:text="@string/login">
 
             </Button>
@@ -106,7 +107,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/signUp"
                 android:layout_marginLeft="16dp"
-                android:id="@+id/btnSignUp"
+                android:id="@+id/btnRegister"
                 android:textAllCaps="false"
                 android:background="@drawable/button_shape">
 

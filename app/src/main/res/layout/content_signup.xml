@@ -114,6 +114,7 @@
             android:layout_margin="16dp"
             android:background="@drawable/button_shape"
             android:text="@string/signUp"
+            android:id="@+id/btnSignUp"
             android:textAllCaps="false">
 
         </Button>
