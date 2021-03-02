@@ -1,18 +1,35 @@
 package com.example.emory;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class EntriesActivity extends AppCompatActivity {
     private TextView month;
     private DayMonthYear monthYear;
     private BottomNavigationView bottomNavigationView;
+    private ArrayList<DiaryList> diaryList = new ArrayList<>();
+    private ListView listView;
+    private static final String SHARED_PREFS = "sharedPrefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +42,6 @@ public class EntriesActivity extends AppCompatActivity {
 
         monthYear = new DayMonthYear();
         String currentMonthYear = monthYear.getCurrentMonthYear();
-
         month.setText(currentMonthYear);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -34,29 +50,68 @@ public class EntriesActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.addMood:
-                    Intent intent = new Intent(EntriesActivity.this, AddMoodActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(this, AddMoodActivity.class));
+                    return true;
+
+                case R.id.toDoList:
+                    startActivity(new Intent(this, AddTodoListActivity.class));
+                    return true;
+
+                case R.id.settings:
+                    startActivity(new Intent(this, SettingsActivity.class));
+                    return true;
+
+                case R.id.moodGraph:
+                    startActivity(new Intent(this, MoodAnalytics.class));
                     return true;
             }
             return false;
         });
+
+        createListView(false);
     }
 
     public void onBack(View v) {
         month = findViewById(R.id.month);
-        String text = month.getText().toString();
-        String[] dateValues = text.split(", ");
-
-        String prevMonthYear = monthYear.getPrevMonthYear(dateValues[0], Integer.parseInt(dateValues[1]));
+        String prevMonthYear = monthYear.getPrevMonthYear(month.getText().toString());
         month.setText(prevMonthYear);
+        removeExistingListView();
+        createListView(true);
     }
 
     public void onNext(View v) {
         month = findViewById(R.id.month);
-        String text = month.getText().toString();
-        String[] dateValues = text.split(", ");
-
-        String nextMonthYear = monthYear.getNextMonthYear(dateValues[0], Integer.parseInt(dateValues[1]));
+        String nextMonthYear = monthYear.getNextMonthYear(month.getText().toString());
         month.setText(nextMonthYear);
+        removeExistingListView();
+        createListView(true);
     }
+
+    public void removeExistingListView() {
+        DiaryListAdapter diaryListAdapter = (DiaryListAdapter) listView.getAdapter();
+        diaryListAdapter.clearData();
+    }
+
+    public void createListView(Boolean movement) {
+        Gson gson = new Gson();
+        ArrayList<Diary> diaries;
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
+        String date = month.getText().toString();
+        Integer daysOfMonths = monthYear.getDaysInMonth(date);
+
+        for (int i = 1; i <= daysOfMonths; i++) {
+            String data = sharedPreferences.getString(i + ". " + date, String.valueOf(new ArrayList<Diary>()));
+            Type diaryType = new TypeToken<ArrayList<Diary>>() {
+            }.getType();
+            diaries = gson.fromJson(data, diaryType);
+            if (!diaries.isEmpty()) {
+                diaryList.add(new DiaryList(i + ". " + date, diaries));
+            }
+        }
+
+        listView = findViewById(R.id.listView);
+        listView.setAdapter(new DiaryListAdapter(this, diaryList));
+    }
+
 }

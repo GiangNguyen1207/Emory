@@ -34,7 +34,7 @@
     <string name="eat">eat</string>
     <string name="study">study</string>
     <string name="work">work</string>
-    <string name="edit">edit/new</string>
+    <string name="celebration">celebrations</string>
     <string name="save">Save</string>
     <string name="dateTodo">28, Jan</string>
     <string name="todo">To Do List</string>
@@ -54,5 +54,12 @@
     <string name='icon_sad'>Sad</string>
     <string name='icon_cry'>Cry</string>
     <string name='icon_awful'>Awful</string>
-    <string name="error_message">Should not be empty</string>
+    <string name="take_photo_icon">Take Photo</string>
+    <string name="open_gallery_icon">Open Gallery</string>
+    <string name="nameTodo">Name</string>
+    <string name="addTodobutton">Add</string>
+    <string name="deadlineTodo">Deadline</string>
+    <string name="noteTodo">Note</string>
+    <string name="moodCountTitle">Mood Count</string>
+    <string name="editDetails">Edit</string>
 </resources>

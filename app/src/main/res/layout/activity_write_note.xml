@@ -1,27 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/addDrawing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#FFFFFF"
-        android:tint="#0E0E0E"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_add"
-        tools:ignore="VectorDrawableCompat" />
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -36,13 +22,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.7" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -66,7 +45,7 @@
 
     <TextView
         android:id="@+id/note"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -82,7 +61,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:drawableStart="@drawable/baseline_notes_black_18dp" />
 
     <ImageButton
         android:id="@+id/expandNote"
@@ -128,18 +108,17 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:drawableLeft="@drawable/baseline_camera_alt_black_18dp"
+        android:drawableLeft="@drawable/ic_camera"
         android:drawableTint="@color/black"
         android:text="@string/photo"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:drawableStartCompat="@drawable/baseline_camera_alt_black_18dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        android:gravity="center_vertical"
+        app:drawableStartCompat="@drawable/ic_camera"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <ImageButton
         android:id="@+id/addPhoto"
@@ -150,34 +129,12 @@
         android:layout_marginRight="16dp"
         android:background="#FFFFFF"
         android:tint="#0E0E0E"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_add"
         tools:ignore="VectorDrawableCompat" />
-
-    <TextView
-        android:id="@+id/draw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:drawableTint="@color/black"
-        android:text="@string/draw"
-        android:textColor="#414141"
-        android:textStyle="bold"
-        app:drawableLeftCompat="@drawable/baseline_palette_black_18dp"
-        app:drawableStartCompat="@drawable/baseline_palette_black_18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/question"
@@ -196,32 +153,6 @@
         app:layout_constraintVertical_bias="0.025"
         android:gravity="center"/>
 
-    <ImageButton
-        android:id="@+id/doneIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle2"
-        android:tint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.637"
-        app:srcCompat="@drawable/baseline_done_black_18dp" />
-
-    <TextView
-        android:id="@+id/saveAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/doneIcon"
-        app:layout_constraintVertical_bias="0.304" />
-
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="389dp"
@@ -234,58 +165,53 @@
 
         <ImageButton
             android:id="@+id/familyIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_family_restroom_black_18dp" />
+            app:srcCompat="@drawable/action_ic_family" />
 
         <ImageButton
             android:id="@+id/friendIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_people_alt_black_18dp" />
+            app:srcCompat="@drawable/action_ic_friends" />
 
         <ImageButton
             android:id="@+id/loveIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_favorite_black_18dp" />
+            app:srcCompat="@drawable/action_ic_favourite" />
 
         <ImageButton
             android:id="@+id/sportIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_fitness_center_black_18dp" />
+            app:srcCompat="@drawable/action_ic_fitness" />
 
         <ImageButton
             android:id="@+id/exerciseIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_nordic_walking_black_18dp" />
+            app:srcCompat="@drawable/action_ic_walking" />
     </LinearLayout>
 
     <LinearLayout
@@ -354,51 +280,46 @@
 
         <ImageButton
             android:id="@+id/movieIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_theaters_black_18dp" />
+            app:srcCompat="@drawable/action_ic_movie" />
 
         <ImageButton
             android:id="@+id/sleepIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_bed_black_18dp" />
+            app:srcCompat="@drawable/action_ic_sleep" />
 
         <ImageButton
             android:id="@+id/travelIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_airplane_ticket_black_18dp" />
+            app:srcCompat="@drawable/action_ic_travel" />
 
         <ImageButton
             android:id="@+id/studyIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
             android:layout_marginLeft="28dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_school_black_18dp" />
+            app:srcCompat="@drawable/action_ic_study" />
 
         <ImageButton
             android:id="@+id/cleanIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="28dp"
@@ -407,7 +328,7 @@
             android:layout_marginRight="16dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_cleaning_services_black_18dp" />
+            app:srcCompat="@drawable/action_ic_cleaning" />
     </LinearLayout>
 
     <LinearLayout
@@ -475,47 +396,43 @@
 
         <ImageButton
             android:id="@+id/workIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="44dp"
             android:layout_marginLeft="44dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_business_center_black_18dp" />
+            app:srcCompat="@drawable/action_ic_work" />
 
         <ImageButton
             android:id="@+id/shoppingIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_shopping_cart_black_18dp" />
+            app:srcCompat="@drawable/action_ic_shopping" />
 
         <ImageButton
             android:id="@+id/gameIcon"
-            android:src="@drawable/selected_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"
             android:background="@drawable/circle"
             android:tint="@color/icon"
-            app:srcCompat="@drawable/baseline_videogame_asset_black_18dp" />
+            app:srcCompat="@drawable/action_ic_games" />
 
         <ImageButton
-            android:id="@+id/birthdayIcon"
+            android:id="@+id/celebration"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"
-            android:src="@drawable/selected_icon"
             android:tint="@color/icon"
             android:background="@drawable/circle"
-            app:srcCompat="@drawable/baseline_celebration_black_18dp"
+            app:srcCompat="@drawable/action_ic_celebration"
             tools:ignore="VectorDrawableCompat" />
     </LinearLayout>
 
@@ -555,12 +472,43 @@
             android:layout_marginLeft="30dp"/>
 
         <TextView
-            android:id="@+id/addMore"
+            android:id="@+id/celebrationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/edit"
+            android:text="@string/celebration"
             android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"/>
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/photoChosen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:layout_constraintVertical_bias="0.255" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/doneIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:clickable="true"
+        android:layout_gravity="end|center"
+        android:tint="@color/white"
+        app:backgroundTint="@color/icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/baseline_done_black_18dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

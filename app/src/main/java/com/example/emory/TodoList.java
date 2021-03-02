@@ -10,12 +10,11 @@ public class TodoList {
         return listInstance;
     }
 
-    private List<Todo> todolist;
-
+    private ArrayList<Todo> todolist;
     private TodoList() {
         this.todolist = new ArrayList<>();
-        todolist.add(new Todo("Math homework", "25/2/2021"));
     }
+
     public List<Todo> getAllTodo() {
         return this.todolist;
     }
@@ -27,6 +26,10 @@ public class TodoList {
 
     public void addActivity(Todo todo) {
         this.todolist.add(todo);
+    }
+
+    public String toString() {
+        return "name";
     }
 }
 
