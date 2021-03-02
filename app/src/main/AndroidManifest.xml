@@ -5,7 +5,9 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <queries>
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -20,10 +22,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Emory">
-
+        <activity android:name=".NoteActivity"></activity>
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".TodoDetailsActivity"/>
-        <activity android:name=".AddTodoListActivity"/>
+        <activity android:name=".TodoDetailsActivity" />
+        <activity android:name=".AddTodoListActivity" />
         <activity android:name=".TodoListDetails" />
         <activity android:name=".MoodAnalytics" />
         <activity android:name=".AddImage" />
@@ -31,7 +33,9 @@
         <activity android:name=".WriteNoteActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".AddMoodActivity" />
-        <activity android:name=".SignInActivity">
+        <activity
+            android:name=".SignInActivity"
+            android:theme="@style/Theme.Emory.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,7 +46,8 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <receiver android:name=".Reminder"/>
+
+        <receiver android:name=".Reminder" />
     </application>
 
 </manifest>
