@@ -202,9 +202,9 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             case REQUEST_IMAGE_CAPTURE:
                 if (resultCode == RESULT_OK) {
                     Bundle extras = data.getExtras();
-                    Bitmap image = (Bitmap) extras.get("data");
+                    bitmap = (Bitmap) extras.get("data");
                     ImageView imageView = findViewById(R.id.photoChosen);
-                    imageView.setImageBitmap(image);
+                    imageView.setImageBitmap(bitmap);
                 } else {
                     Toast.makeText(this, "Error loading file", Toast.LENGTH_SHORT).show();
                 }
