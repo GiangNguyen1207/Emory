@@ -1,6 +1,8 @@
 package com.example.emory;
 
-public class Action implements Comparable<Action>{
+import java.lang.reflect.Field;
+
+public class Action {
     private String name;
     private int icon;
 
@@ -17,13 +19,21 @@ public class Action implements Comparable<Action>{
         return this.name;
     }
 
+    public String getResourceName() {
+        return "action_ic_" + this.name;
+    }
+
     public int getIcon() {
         return this.icon;
     }
 
-
-    @Override
-    public int compareTo(Action o) {
-        return this.name.compareTo(o.name);
+    public int retrieveName() {
+        try {
+            Field field = R.drawable.class.getDeclaredField(this.getResourceName());
+            return field.getInt(field);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 }
