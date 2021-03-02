@@ -34,7 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.moodGraph:
-                    startActivity(new Intent(this, MoodAnalytics.class));
+                    startActivity(new Intent(this, MoodAnalyticsActivity.class));
                     return true;
             }
             return false;

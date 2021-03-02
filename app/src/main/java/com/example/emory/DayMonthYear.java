@@ -45,6 +45,10 @@ public class DayMonthYear extends DialogFragment {
         months.add("December");
     }
 
+    public int getCurrentDay() {
+        return calendar.get(Calendar.DATE);
+    }
+
     public String getCurrentFullDate() {
         return calendar.get(Calendar.DATE) + ". " +
                 this.months.get(calendar.get(Calendar.MONTH)) + ", " +

@@ -13,6 +13,9 @@ public class Diary {
     private String note;
     private String pic;
 
+    public Diary() {
+    }
+
     public Diary(String mood, ArrayList<Action> actions, String note, String pic) {
         this.mood = mood;
         this.actions = actions;
@@ -43,35 +46,6 @@ public class Diary {
                     .decodeByteArray(decodedByte, 0, decodedByte.length);
         }
         return bitmap;
-    }
-
-    public int getMoodIndicator(String moodName) {
-        int indicator = 0;
-        switch (moodName) {
-            case "excited":
-                indicator = 5;
-                break;
-
-            case "happy":
-                indicator = 4;
-                break;
-
-            case "good":
-                indicator = 3;
-                break;
-
-            case "sad":
-                indicator = 2;
-                break;
-
-            case "awful":
-                indicator = 1;
-                break;
-
-            default:
-                break;
-        }
-        return indicator;
     }
 
     public int retrieveMoodIdFromName() {

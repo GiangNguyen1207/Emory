@@ -64,4 +64,11 @@
     <string name="moodGraphTitle">Mood Graph</string>
     <string name="editDetails">Edit</string>
     <string name="error_message">Error</string>
+    <string name="zero">Terrible: 0</string>
+    <string name="one">Awful: 1</string>
+    <string name="two">Sad: 2</string>
+    <string name="three">Good: 3</string>
+    <string name="four">Happy: 4</string>
+    <string name="five">Excited: 5</string>
+    <string name="mood_index">Mood index:</string>
 </resources>
