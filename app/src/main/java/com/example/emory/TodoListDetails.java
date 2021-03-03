@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class TodoListDetails extends AppCompatActivity {
     ArrayList<TodoList> todo3 = new ArrayList<>();
+
     private static final String SHARED_PREFS = "sharedPrefs";
 
     @Override
@@ -28,6 +29,7 @@ public class TodoListDetails extends AppCompatActivity {
         Type type = new TypeToken<ArrayList<TodoList>>() {
         }.getType();
         todo3 = gson.fromJson(dataReceived, type);
+        //TodoList todoList = TodoList.getInstance();
         Bundle b = getIntent().getExtras();
         int indexOfTodo = b.getInt("indexOfTodo");
 

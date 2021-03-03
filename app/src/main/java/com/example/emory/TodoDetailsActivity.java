@@ -1,19 +1,12 @@
 package com.example.emory;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,15 +14,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import com.google.gson.Gson;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class TodoDetailsActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     TodoList todolist = TodoList.getInstance();
@@ -38,9 +27,10 @@ public class TodoDetailsActivity extends AppCompatActivity implements DatePicker
     private DayMonthYear fullDate;
     EditText nameEditText, noteEditText;
     TextView deadlineEditText;
+    Calendar now = Calendar.getInstance();
 
-    public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
-    private final static String default_notification_channel_id = "default" ;
+    public static final String NOTIFICATION_CHANNEL_ID = "10001";
+    private final static String default_notification_channel_id = "default";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,27 +72,35 @@ public class TodoDetailsActivity extends AppCompatActivity implements DatePicker
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         deadlineEditText.setText(fullDate.setFullDate(year, month, dayOfMonth));
-        scheduleNotification(getNotification(deadlineEditText.getText().toString()) , 1) ;
+        now.set(Calendar.YEAR, year);
+        now.set(Calendar.MONTH, month);
+        now.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        now.set(Calendar.HOUR_OF_DAY, 23);
+        now.set(Calendar.MINUTE, 07);
+        now.set(Calendar.SECOND, 0);
+        now.setTimeInMillis(System.currentTimeMillis());
+        scheduleNotification(getNotification("You have deadline today"), 2000);
+
     }
 
-    private void scheduleNotification (Notification notification , long delay) {
-        Intent notificationIntent = new Intent(this, Reminder.class) ;
-        notificationIntent.putExtra(Reminder. NOTIFICATION_ID , 1 ) ;
-        notificationIntent.putExtra(Reminder. NOTIFICATION , notification) ;
-        PendingIntent pendingIntent = PendingIntent. getBroadcast ( this, 0 , notificationIntent , PendingIntent. FLAG_UPDATE_CURRENT ) ;
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context. ALARM_SERVICE ) ;
+    private void scheduleNotification(Notification notification, long delay) {
+        Intent notificationIntent = new Intent(this, Reminder.class);
+        notificationIntent.putExtra(Reminder.NOTIFICATION_ID, 1);
+        notificationIntent.putExtra(Reminder.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         assert alarmManager != null;
-        alarmManager.set(AlarmManager. ELAPSED_REALTIME_WAKEUP , delay , pendingIntent) ;
-    }
-    private Notification getNotification (String content) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, default_notification_channel_id ) ;
-        builder.setContentTitle( "Scheduled Notification" ) ;
-        builder.setContentText(content) ;
-        builder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
-        builder.setAutoCancel( true ) ;
-        builder.setChannelId( NOTIFICATION_CHANNEL_ID ) ;
-        return builder.build() ;
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, now.getTimeInMillis(), pendingIntent);
     }
 
-
+    private Notification getNotification(String content) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, default_notification_channel_id);
+        builder.setContentTitle("Notification from Emory");
+        builder.setContentText(content);
+        builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+        builder.setAutoCancel(true);
+        builder.setChannelId(NOTIFICATION_CHANNEL_ID);
+        return builder.build();
+    }
 }
+
