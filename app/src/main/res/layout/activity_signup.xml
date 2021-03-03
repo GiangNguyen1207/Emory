@@ -7,6 +7,7 @@
     tools:context=".SignupActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.Emory.AppBarOverlay">
@@ -15,25 +16,24 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorControlHighlight"
+            android:background="@color/primary"
             app:navigationIcon="@drawable/back_arrow"
             app:popupTheme="@style/Theme.Emory.PopupOverlay">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-               android:gravity="center"
-                android:textStyle="bold"
-                android:text="@string/signUp"
-                android:textColor="@color/black"
-                />
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="214dp"
+                    android:layout_height="36dp"
+                    android:gravity="center"
+                    android:text="@string/signUp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
