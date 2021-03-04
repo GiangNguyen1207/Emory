@@ -7,34 +7,40 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class WriteNoteActivity extends AppCompatActivity implements View.OnClickListener {
+public class WriteNoteActivity extends AppCompatActivity {
     private static final String SHARED_PREFS = "sharedPrefs";
     private static final int GALLERY_REQUEST = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 0;
-    private ArrayList<Action> activities = new ArrayList<>();
-    private String icon;
-    private String date, note;
+    private ActionList actionList;
+    private ArrayList<Action> chosenActions =new ArrayList<>();
+    private String icon, date, note, encodedPic;
     private ArrayList<Diary> diaries = new ArrayList<>();
-    private String encodePic;
     private Bitmap bitmap;
     private Dialog dialog;
 
@@ -43,13 +49,10 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_note);
         getDataFromAddMood();
-        getActivity();
+        //getActivity();
+        handleActionIcons();
         getImage();
         saveData();
-
-        /*SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        SharedPreferences settings = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        settings.edit().remove("2. March, 2021").commit();*/
     }
 
     public void getDataFromAddMood() {
@@ -59,98 +62,34 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
 
         int resourceId = getResources().getIdentifier("com.example.emory:drawable/" + icon, null, null);
         ImageView imageView = findViewById(R.id.iconChosen);
-        Drawable drawable = getResources().getDrawable(resourceId);
+        Drawable drawable = ContextCompat.getDrawable(this, resourceId);
         imageView.setImageDrawable(drawable);
     }
 
-    //loop to check id of imageButton
-    public void getActivity() {
-        ViewGroup layout = findViewById(R.id.linearLayout3);
-        for(int h=0; h < layout.getChildCount(); h++) {
-            View view = layout.getChildAt(h);
-            view.setOnClickListener(this);
-        }
-        /*ImageButton familyButton = findViewById(R.id.familyIcon);
-        ImageButton friendButton = findViewById(R.id.friendIcon);
-        ImageButton loveButton = findViewById(R.id.loveIcon);
-        ImageButton sportButton = findViewById(R.id.sportIcon);
-        ImageButton exerciseButton = findViewById(R.id.exerciseIcon);
-        ImageButton moviesButton = findViewById(R.id.movieIcon);
-        ImageButton sleepButton = findViewById(R.id.sleepIcon);
-        ImageButton travelButton = findViewById(R.id.travelIcon);
-        ImageButton studyButton = findViewById(R.id.studyIcon);
-        ImageButton cleanButton = findViewById(R.id.cleanIcon);
-        ImageButton workButton = findViewById(R.id.workIcon);
-        ImageButton shoppingButton = findViewById(R.id.shoppingIcon);
-        ImageButton gameButton = findViewById(R.id.gameIcon);
-        ImageButton birthdayButton = findViewById(R.id.celebration);
+    public void handleActionIcons() {
+        actionList = new ActionList(this);
+        GridView grid = findViewById(R.id.actionList);
+        grid.setAdapter(new ActionList(this, actionList.getAllActions()));
 
-        familyButton.setOnClickListener(this);
-        friendButton.setOnClickListener(this);
-        loveButton.setOnClickListener(this);
-        sportButton.setOnClickListener(this);
-        exerciseButton.setOnClickListener(this);
-        moviesButton.setOnClickListener(this);
-        sleepButton.setOnClickListener(this);
-        travelButton.setOnClickListener(this);
-        studyButton.setOnClickListener(this);
-        cleanButton.setOnClickListener(this);
-        workButton.setOnClickListener(this);
-        shoppingButton.setOnClickListener(this);
-        gameButton.setOnClickListener(this);
-        birthdayButton.setOnClickListener(this);*/
-    }
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                view = grid.getChildAt(position);
+                ColorDrawable viewColor = (ColorDrawable) view.getBackground();
 
-    /*
-    create a layout object
-     */
+                if (viewColor == null) {
+                    view.setBackgroundColor(getColor(R.color.highlight));
+                    chosenActions.add(actionList.getAction(position));
+                    return;
+                }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.familyIcon:
-                iconClicked(v.getId(), "family", R.drawable.action_ic_family);
-                break;
-            case R.id.friendIcon:
-                iconClicked(v.getId(), "friend", R.drawable.action_ic_friends);
-                break;
-            case R.id.loveIcon:
-                activities.add(new Action("favourite", R.drawable.action_ic_favourite));
-                break;
-            case R.id.sportIcon:
-                activities.add(new Action("fitness", R.drawable.action_ic_fitness));
-                break;
-            case R.id.exerciseIcon:
-                activities.add(new Action("walking", R.drawable.action_ic_walking));
-                break;
-            case R.id.movieIcon:
-                activities.add(new Action("movie", R.drawable.action_ic_movie));
-                break;
-            case R.id.sleepIcon:
-                activities.add(new Action("sleep", R.drawable.action_ic_sleep));
-                break;
-            case R.id.travelIcon:
-                activities.add(new Action("travel", R.drawable.action_ic_travel));
-                break;
-            case R.id.studyIcon:
-                activities.add(new Action("study", R.drawable.action_ic_study));
-                break;
-            case R.id.cleanIcon:
-                activities.add(new Action("cleaning", R.drawable.action_ic_cleaning));
-                break;
-            case R.id.workIcon:
-                activities.add(new Action("work", R.drawable.action_ic_work));
-                break;
-            case R.id.shoppingIcon:
-                activities.add(new Action("shopping", R.drawable.action_ic_shopping));
-                break;
-            case R.id.gameIcon:
-                activities.add(new Action("games", R.drawable.action_ic_games));
-                break;
-            case R.id.celebration:
-                activities.add(new Action("celebration", R.drawable.action_ic_celebration));
-                break;
-        }
+                if (viewColor.getColor() == getColor(R.color.highlight)) {
+                    view.setBackgroundColor(getColor(R.color.blur));
+                    chosenActions.remove(actionList.getAction(position));
+                    return;
+                }
+            }
+        });
     }
 
     public void getNote() {
@@ -201,8 +140,8 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
                         bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
                         encodeBitmap();
                         //Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 150, 100, true);
-                        /*Uri selectedImage = data.getData();
-                        InputStream imageStream = getContentResolver().openInputStream(selectedImage);*/
+                        //Uri selectedImage = data.getData();
+                        //InputStream imageStream = getContentResolver().openInputStream(selectedImage);
                         ImageView imageView = findViewById(R.id.photoChosen);
                         imageView.setImageBitmap(bitmap);
                     } catch (FileNotFoundException e) {
@@ -234,7 +173,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
         byte[] b = output.toByteArray();
-        encodePic = Base64.encodeToString(b, Base64.DEFAULT);
+        encodedPic = Base64.encodeToString(b, Base64.DEFAULT);
     }
 
 
@@ -250,7 +189,7 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             diaries = gson.fromJson(data, diaryType);
         }
 
-        diaries.add(new Diary(icon, activities, note, encodePic));
+        diaries.add(new Diary(icon, chosenActions, note, encodedPic));
         editor.putString(date, gson.toJson(diaries));
         editor.apply();
     }
@@ -263,22 +202,5 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             Intent intent = new Intent(this, EntriesActivity.class);
             startActivity(intent);
         });
-    }
-
-    private void iconClicked(int id, String name, int drawable) {
-        /*check if the activities arr list contains the actions family or not
-                if not, the first time user click, add + change background
-                if yes, the second time change background + remove
-                 */
-        Action action = new Action(name, drawable);
-        ImageButton imgBtn = findViewById(id);
-        if(activities.contains(action)){
-            imgBtn.setBackgroundResource(R.drawable.icon_clicked);
-            activities.remove(action);
-        } else {
-            activities.add(action);
-            imgBtn.setBackgroundColor(getColor(R.color.white));
-
-        }
     }
 }
