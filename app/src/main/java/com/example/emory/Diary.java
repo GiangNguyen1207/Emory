@@ -7,15 +7,12 @@ import android.util.Base64;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-public class Diary {
-    private String mood;
-    private ArrayList<Action> actions;
+public class Diary extends Mood {
     private String note;
     private String pic;
 
     public Diary(String mood, ArrayList<Action> actions, String note, String pic) {
-        this.mood = mood;
-        this.actions = actions;
+        super(mood, actions);
         this.note = note;
         this.pic = pic;
     }
@@ -25,10 +22,6 @@ public class Diary {
             return "Nothing was written...";
         }
         return this.note;
-    }
-
-    public ArrayList<Action> getActions() {
-        return this.actions;
     }
 
     public Bitmap decodePic() {
@@ -43,7 +36,7 @@ public class Diary {
 
     public int retrieveMoodIdFromName() {
         try {
-            Field field = R.drawable.class.getDeclaredField(this.mood);
+            Field field = R.drawable.class.getDeclaredField(super.getMood());
             return field.getInt(field);
         } catch (Exception e) {
             e.printStackTrace();
@@ -51,9 +44,6 @@ public class Diary {
         }
     }
 
-    public String toString() {
-        return this.mood + " " + String.valueOf(this.actions);
-    }
 }
 
 
