@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
     private DayMonthYear monthYear;
     private BottomNavigationView bottomNavigationView;
     private MoodGraph moodGraph = new MoodGraph();
+    private MoodCounter terrible, awful, sad, good, happy, excited;
     private static final String SHARED_PREFS = "sharedPrefs";
 
     @Override
@@ -29,7 +31,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mood_analytics);
 
-        month = findViewById(R.id.month);
+        setCounter();
         setDate();
         showGraph();
 
@@ -61,7 +63,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
     }
 
     public void setDate() {
-        TextView month = findViewById(R.id.month);
+        month = findViewById(R.id.month);
         monthYear = new DayMonthYear();
         month.setText(monthYear.getCurrentMonthYear());
     }
@@ -70,6 +72,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         String text = month.getText().toString();
         String prevMonthYear = monthYear.getPrevMonthYear(text);
         month.setText(prevMonthYear);
+        setCounter();
         findTotalDays();
         showGraph();
     }
@@ -78,6 +81,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         String text = month.getText().toString();
         String nextMonthYear = monthYear.getNextMonthYear(text);
         month.setText(nextMonthYear);
+        setCounter();
         findTotalDays();
         showGraph();
     }
@@ -112,6 +116,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
             Type diaryType = new TypeToken<ArrayList<Diary>>() {
             }.getType();
             diaries = gson.fromJson(data, diaryType);
+            countMood(diaries);
             double averageMood = moodGraph.getMoodAverage(diaries);
             moodGraph.addToDataPoints(i, averageMood);
         }
@@ -138,5 +143,64 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
 
         findTotalDays();
         graph.addSeries(moodGraph.getSeries());
+    }
+
+    public void setCounter() {
+        terrible = new MoodCounter();
+        awful = new MoodCounter();
+        sad = new MoodCounter();
+        good = new MoodCounter();
+        happy = new MoodCounter();
+        excited = new MoodCounter();
+    }
+
+    public void countMood(ArrayList<Diary> diaries) {
+        for (Diary diary : diaries) {
+            switch (diary.getMood()) {
+                case "terrible":
+                    terrible.addValue();
+                    break;
+                case "awful":
+                    awful.addValue();
+                    break;
+                case "sad":
+                    sad.addValue();
+                    break;
+                case "good":
+                    good.addValue();
+                    break;
+                case "happy":
+                    happy.addValue();
+                    break;
+                case "excited":
+                    excited.addValue();
+                    break;
+            }
+        }
+        setMood();
+    }
+
+    public void setMood() {
+        TextView terribleVal = findViewById(R.id.terribleCount);
+        TextView awfulVal = findViewById(R.id.awfulCount);
+        TextView sadVal = findViewById(R.id.sadCount);
+        TextView goodVal = findViewById(R.id.goodCount);
+        TextView happyVal = findViewById(R.id.happyCount);
+        TextView excitedVal = findViewById(R.id.excitedCount);
+
+        terribleVal.setText(String.valueOf(terrible.getCount()));
+        awfulVal.setText(String.valueOf(awful.getCount()));
+        sadVal.setText(String.valueOf(sad.getCount()));
+        goodVal.setText(String.valueOf(good.getCount()));
+        happyVal.setText(String.valueOf(happy.getCount()));
+        excitedVal.setText(String.valueOf(excited.getCount()));
+
+        /*Log.d("trb", String.valueOf(terrible.getCount()));
+        Log.d("awful", String.valueOf(awful.getCount()));*/
+        //Log.d("sad", String.valueOf(sad.getCount()));
+        //Log.d("good", String.valueOf(good.getCount()));
+        Log.d("happy", String.valueOf(happy.getCount()));
+        //Log.d("excited", String.valueOf(excited.getCount()));//
+
     }
 }
