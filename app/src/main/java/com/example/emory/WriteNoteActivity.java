@@ -49,9 +49,9 @@ public class WriteNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_note);
         getDataFromAddMood();
-        //getActivity();
         handleActionIcons();
         getImage();
+        getNoteExpansion();
         saveData();
     }
 
@@ -90,8 +90,36 @@ public class WriteNoteActivity extends AppCompatActivity {
                     img.setBackground(normalBackground);
                     img.setTag("unselected");
                     chosenActions.remove(actionList.getAction(position));
+                    return;
                 }
             }
+        });
+    }
+
+    public void getNoteExpansion() {
+        ImageButton expandNote = findViewById(R.id.expandNote);
+        expandNote.setOnClickListener((View v) -> {
+            dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_note_expansion);
+            saveNoteExpansion(dialog);
+            dialog.show();
+        });
+    }
+
+    public void saveNoteExpansion(Dialog dialog) {
+        FloatingActionButton doneIcon = dialog.findViewById(R.id.doneIcon);
+        doneIcon.setOnClickListener((View v) -> {
+            EditText textContent = dialog.findViewById(R.id.noteContent);
+            String noteExpansion = textContent.getText().toString();
+            EditText editText = findViewById(R.id.writeNote);
+            note = editText.getText().toString();
+
+            if (note != null) {
+                editText.setText(note + " " + noteExpansion);
+            } else {
+                editText.setText(noteExpansion);
+            }
+            dialog.dismiss();
         });
     }
 
@@ -142,9 +170,6 @@ public class WriteNoteActivity extends AppCompatActivity {
                     try {
                         bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
                         encodeBitmap();
-                        //Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 150, 100, true);
-                        //Uri selectedImage = data.getData();
-                        //InputStream imageStream = getContentResolver().openInputStream(selectedImage);
                         ImageView imageView = findViewById(R.id.photoChosen);
                         imageView.setImageBitmap(bitmap);
                     } catch (FileNotFoundException e) {
@@ -179,7 +204,6 @@ public class WriteNoteActivity extends AppCompatActivity {
         encodedPic = Base64.encodeToString(b, Base64.DEFAULT);
     }
 
-
     public void saveDiary() {
         Gson gson = new Gson();
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -203,6 +227,7 @@ public class WriteNoteActivity extends AppCompatActivity {
             getNote();
             saveDiary();
             Intent intent = new Intent(this, EntriesActivity.class);
+            Log.d("note", note);
             startActivity(intent);
         });
     }
