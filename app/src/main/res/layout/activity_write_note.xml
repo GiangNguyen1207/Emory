@@ -68,13 +68,14 @@
                     android:id="@+id/note"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/baseline_notes_black_18dp"
-                    android:drawableLeft="@drawable/baseline_notes_black_18dp"
                     android:drawablePadding="5dp"
-                    android:drawableTint="@color/black"
                     android:text="@string/note"
                     android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical"
+                    app:drawableStartCompat="@drawable/outline_text_snippet_black_18dp"
+                    app:drawableTint="@color/black" />
 
                 <ImageButton
                     android:id="@+id/expandNote"
@@ -114,19 +115,19 @@
                 android:id="@+id/photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_camera"
                 android:drawablePadding="5dp"
-                android:drawableTint="@color/black"
                 android:gravity="center_vertical"
                 android:text="@string/photo"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:drawableTint="@color/black"
+                app:drawableStartCompat="@drawable/outline_photo_camera_black_18dp" />
 
             <ImageButton
                 android:id="@+id/addPhoto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="250dp"
+                android:layout_marginLeft="270dp"
                 android:background="#FFFFFF"
                 android:tint="@color/black"
                 app:srcCompat="@drawable/ic_add"
@@ -136,12 +137,11 @@
 
         <ImageView
             android:id="@+id/photoChosen"
-            android:layout_width="wrap_content"
+            android:layout_width="3dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
             android:adjustViewBounds="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -12,15 +12,17 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_width="313dp"
+            android:layout_height="79dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="32dp"
             android:gravity="center_horizontal"
             android:text="@string/Signup_message"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="18sp"></TextView>
+            android:textSize="24sp"
+            android:textStyle="bold"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +31,9 @@
             android:layout_marginTop="16dp"
             android:text="@string/nickname"
             android:textColor="@color/black"
-            android:textSize="16sp"></TextView>
+            android:textSize="16sp">
+
+        </TextView>
 
         <EditText
             android:id="@+id/edName"
@@ -50,7 +54,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/age"
             android:textColor="@color/black"
-            android:textSize="16sp"></TextView>
+            android:textSize="16sp">
+        </TextView>
 
         <EditText
             android:id="@+id/edAge"
@@ -71,7 +76,9 @@
             android:layout_marginTop="16dp"
             android:text="@string/email"
             android:textColor="@color/black"
-            android:textSize="16sp"></TextView>
+            android:textSize="16sp">
+
+        </TextView>
 
         <EditText
             android:id="@+id/edEmail"
@@ -92,7 +99,9 @@
             android:layout_marginTop="16dp"
             android:text="@string/password"
             android:textColor="@color/black"
-            android:textSize="16sp"></TextView>
+            android:textSize="16sp">
+
+        </TextView>
 
         <EditText
             android:id="@+id/edPassword"
