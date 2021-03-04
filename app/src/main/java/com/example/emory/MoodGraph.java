@@ -80,7 +80,6 @@ public class MoodGraph {
 
     public double getPreviousDataPoint(int index) {
         DataPoint prevDataPoint = this.dataPoints[index];
-        Log.d("data point", String.valueOf(prevDataPoint));
         return prevDataPoint.getY();
     }
 

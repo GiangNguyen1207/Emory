@@ -63,7 +63,7 @@
     <string name="moodCountTitle">Mood Count</string>
     <string name="moodGraphTitle">Mood Graph</string>
     <string name="editDetails">Edit</string>
-    <string name="error_message">Error</string
+    <string name="error_message">Error</string>
     <string name="zero">Terrible: 0</string>
     <string name="one">Awful: 1</string>
     <string name="two">Sad: 2</string>

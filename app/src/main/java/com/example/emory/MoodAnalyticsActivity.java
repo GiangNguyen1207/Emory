@@ -70,7 +70,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         String text = month.getText().toString();
         String prevMonthYear = monthYear.getPrevMonthYear(text);
         month.setText(prevMonthYear);
-        createDataPoints();
+        findTotalDays();
         showGraph();
     }
 
@@ -78,18 +78,35 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         String text = month.getText().toString();
         String nextMonthYear = monthYear.getNextMonthYear(text);
         month.setText(nextMonthYear);
-        createDataPoints();
+        findTotalDays();
         showGraph();
     }
 
-    public void createDataPoints() {
+    public boolean compareMonthYear() {
+        String mthYear = month.getText().toString();
+        DayMonthYear curMthYear = new DayMonthYear();
+
+        return curMthYear.getCurrentMonthYear().equals(mthYear);
+    }
+
+    public void findTotalDays() {
         String mthYear = month.getText().toString();
         Integer currentDay = monthYear.getCurrentDay();
-        moodGraph = new MoodGraph(currentDay + 1);
+        Integer daysInMonth = monthYear.getDaysInMonth(mthYear);
+
+        if (compareMonthYear()) {
+            createDataPoints(currentDay, mthYear);
+        } else {
+            createDataPoints(daysInMonth, mthYear);
+        }
+    }
+
+    public void createDataPoints(int size, String mthYear) {
+        ArrayList<Diary> diaries;
+        moodGraph = new MoodGraph(size + 1);
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
-        ArrayList<Diary> diaries;
-        for (int i = 1; i <= currentDay; i++) {
+        for (int i = 1; i <= size; i++) {
             Gson gson = new Gson();
             String data = sharedPreferences.getString(i + ". " + mthYear, String.valueOf(new ArrayList<Diary>()));
             Type diaryType = new TypeToken<ArrayList<Diary>>() {
@@ -97,7 +114,6 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
             diaries = gson.fromJson(data, diaryType);
             double averageMood = moodGraph.getMoodAverage(diaries);
             moodGraph.addToDataPoints(i, averageMood);
-
         }
         moodGraph.addToSeries();
     }
@@ -108,13 +124,19 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
 
         int currentDay = monthYear.getCurrentDay();
         int daysInMonth = monthYear.getDaysInMonth(month.getText().toString());
+
+        if (compareMonthYear()) {
+            graph.getViewport().setMaxX(moodGraph.getMaxX(currentDay, daysInMonth));
+        } else {
+            graph.getViewport().setMaxX(moodGraph.getMaxX(daysInMonth, daysInMonth));
+        }
+
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinX(1.0);
-        graph.getViewport().setMaxX(moodGraph.getMaxX(currentDay, daysInMonth));
         graph.getViewport().setMaxY(5.0);
 
-        createDataPoints();
+        findTotalDays();
         graph.addSeries(moodGraph.getSeries());
     }
 }
