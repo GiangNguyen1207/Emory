@@ -53,10 +53,11 @@
 
         <ImageView
             android:id="@+id/itemPic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
             android:scaleType="fitCenter"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
     </LinearLayout>
 
