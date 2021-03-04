@@ -11,10 +11,13 @@ import androidx.fragment.app.DialogFragment;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+//the class extends dialog fragment to create a calendar dialog and take it into use.
+//please find the reference "Date picker and Calendar Dialog" on References box on Planner.
 public class DayMonthYear extends DialogFragment {
     private ArrayList<String> months;
     private Calendar calendar;
 
+    //the method to create calendar dialog
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -45,12 +48,14 @@ public class DayMonthYear extends DialogFragment {
         months.add("December");
     }
 
+    //get full current date, for example, 4. March, 2021
     public String getCurrentFullDate() {
         return calendar.get(Calendar.DATE) + ". " +
                 this.months.get(calendar.get(Calendar.MONTH)) + ", " +
                 calendar.get(Calendar.YEAR);
     }
 
+    //get current month and year, for example March, 2021
     public String getCurrentMonthYear() {
         return this.months.get(calendar.get(Calendar.MONTH)) + ", " + calendar.get(Calendar.YEAR);
     }
@@ -61,12 +66,14 @@ public class DayMonthYear extends DialogFragment {
         String prevMonth = "";
         int curYear = year;
 
+        //if the month is January, set the previous month to be December, and the year will be minus 1
         if (parts[0].equals("January")) {
             prevMonth = "December";
             curYear -= 1;
             return prevMonth + ", " + curYear;
         }
 
+        //Otherwise, loop through months arraylist to find the previous index in months
         for (int i = 0; i < months.size(); i++) {
             if (months.get(i).equals(parts[0])) {
                 prevMonth = months.get(i - 1);
@@ -81,12 +88,14 @@ public class DayMonthYear extends DialogFragment {
         String nextMonth = "";
         int curYear = year;
 
+        //if the month is December, set the next month to be January, and the year will be added 1
         if (parts[0].equals("December")) {
             nextMonth = "January";
             curYear += 1;
             return nextMonth + ", " + curYear;
         }
 
+        //otherwise, loop through months arraylist to find the next index in months
         for (int i = 0; i < months.size(); i++) {
             if (months.get(i).equals(parts[0])) {
                 nextMonth = months.get(i + 1);
@@ -95,11 +104,12 @@ public class DayMonthYear extends DialogFragment {
         return nextMonth + ", " + curYear;
     }
 
-
+    //set a random date in a month, for example 28. February, 2021
     public String setFullDate(int year, int month, int date) {
         return date + ". " + this.months.get((month)) + ", " + year;
     }
 
+    //get total days in a month provided in parameter
     public int getDaysInMonth(String monthYear) {
         String[] parts = monthYear.split(", ");
         calendar.set(Calendar.MONTH, months.indexOf(parts[0]));

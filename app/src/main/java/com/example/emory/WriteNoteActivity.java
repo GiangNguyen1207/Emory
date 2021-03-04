@@ -7,12 +7,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -101,6 +99,9 @@ public class WriteNoteActivity extends AppCompatActivity {
         expandNote.setOnClickListener((View v) -> {
             dialog = new Dialog(this);
             dialog.setContentView(R.layout.dialog_note_expansion);
+            getNote();
+            EditText textContent = dialog.findViewById(R.id.noteContent);
+            textContent.setText(note);
             saveNoteExpansion(dialog);
             dialog.show();
         });
@@ -112,13 +113,8 @@ public class WriteNoteActivity extends AppCompatActivity {
             EditText textContent = dialog.findViewById(R.id.noteContent);
             String noteExpansion = textContent.getText().toString();
             EditText editText = findViewById(R.id.writeNote);
-            note = editText.getText().toString();
+            editText.setText(noteExpansion);
 
-            if (note != null) {
-                editText.setText(note + " " + noteExpansion);
-            } else {
-                editText.setText(noteExpansion);
-            }
             dialog.dismiss();
         });
     }
@@ -227,7 +223,6 @@ public class WriteNoteActivity extends AppCompatActivity {
             getNote();
             saveDiary();
             Intent intent = new Intent(this, EntriesActivity.class);
-            Log.d("note", note);
             startActivity(intent);
         });
     }
