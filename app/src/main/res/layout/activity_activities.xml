@@ -49,7 +49,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:background="@drawable/circle2"
+        android:background="@drawable/circle_selected"
         android:text="Button"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

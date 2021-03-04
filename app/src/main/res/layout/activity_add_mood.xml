@@ -71,7 +71,7 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/smile"
+                    android:id="@+id/good"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -193,7 +193,7 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/cry"
+                    android:id="@+id/awful"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -221,7 +221,7 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/awful"
+                    android:id="@+id/terrible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"

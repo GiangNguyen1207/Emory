@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/secondary"
     tools:context=".TodoDetailsActivity">
 
     <LinearLayout
@@ -29,13 +30,14 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="340dp"
-        android:layout_height="640dp"
-        android:background="@color/whiteBlur"
+        android:layout_width="350dp"
+        android:layout_height="620dp"
+        android:background="@drawable/radius_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.643">
 
         <EditText
             android:id="@+id/nameTodoEditText"
@@ -79,7 +81,7 @@
             android:id="@+id/addTodo"
             android:layout_width="171dp"
             android:layout_height="48dp"
-            android:background="@drawable/circle2"
+            android:background="@drawable/circle_selected"
             android:gravity="center"
             android:text="@string/addTodobutton"
             android:textColor="@color/white"
@@ -98,13 +100,13 @@
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
-            android:paddingTop="10dp"
             android:drawableStart="@drawable/ic_calendar_black"
             android:drawableLeft="@drawable/ic_calendar_black"
             android:drawablePadding="5dp"
             android:onClick="onCalendarClick"
             android:paddingStart="20dp"
             android:paddingLeft="20dp"
+            android:paddingTop="10dp"
             android:text="@string/calendar"
             android:textColor="@color/icon"
             android:textSize="24sp"

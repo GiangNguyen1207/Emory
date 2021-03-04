@@ -6,6 +6,8 @@
         android:name="android.hardware.camera"
         android:required="true" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <queries>
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -30,7 +32,8 @@
         <activity android:name=".WriteNoteActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".MoodAnalyticsActivity">
+        <activity android:name=".MoodAnalyticsActivity" />
+        <activity android:name=".MainScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,7 +44,11 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <receiver android:name=".Reminder"/>
+        <receiver android:name=".Reminder" android:exported="false">
+        <intent-filter>
+            <action android:name="NOTIFICATION_SERVICE" />
+        </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

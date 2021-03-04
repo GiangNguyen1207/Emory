@@ -2,6 +2,7 @@ package com.example.emory;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AddMoodActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private TextView chosenDate;
     private DayMonthYear fullDate;
-    private ImageButton btnSmile, btnHappy, btnExcited, btnSad, btnCry, btnAwful, btnClose;
     private Button btnSaveMood;
     public static final String EMORY_SHARED_PREFERENCES = "EMORY_SHARED_PREFERENCES";
 
@@ -24,21 +24,21 @@ public class AddMoodActivity extends AppCompatActivity implements DatePickerDial
         setContentView(R.layout.activity_add_mood);
 
         chosenDate = findViewById(R.id.calendar);
-        btnSmile = findViewById(R.id.smile);
-        btnHappy = findViewById(R.id.happy);
-        btnExcited = findViewById(R.id.excited);
-        btnSad = findViewById(R.id.sad);
-        btnCry = findViewById(R.id.cry);
-        btnAwful = findViewById(R.id.awful);
-        btnClose = findViewById(R.id.close);
+        ImageButton btnGood = findViewById(R.id.good);
+        ImageButton btnHappy = findViewById(R.id.happy);
+        ImageButton btnExcited = findViewById(R.id.excited);
+        ImageButton btnSad = findViewById(R.id.sad);
+        ImageButton btnAwful = findViewById(R.id.awful);
+        ImageButton btnTerrible = findViewById(R.id.terrible);
+        ImageButton btnClose = findViewById(R.id.close);
         btnSaveMood = findViewById(R.id.saveMood);
         btnSaveMood.setVisibility(View.GONE);
 
         fullDate = new DayMonthYear();
         chosenDate.setText(fullDate.getCurrentFullDate());
 
-        btnSmile.setOnClickListener((View v) -> {
-            startNote("smile");
+        btnGood.setOnClickListener((View v) -> {
+            startNote("good");
         });
 
         btnHappy.setOnClickListener((View v) -> {
@@ -53,12 +53,12 @@ public class AddMoodActivity extends AppCompatActivity implements DatePickerDial
             startNote("sad");
         });
 
-        btnCry.setOnClickListener((View v) -> {
-            startNote("cry");
-        });
-
         btnAwful.setOnClickListener((View v) -> {
             startNote("awful");
+        });
+
+        btnTerrible.setOnClickListener((View v) -> {
+            startNote("terrible");
         });
 
         btnClose.setOnClickListener((View v) -> {

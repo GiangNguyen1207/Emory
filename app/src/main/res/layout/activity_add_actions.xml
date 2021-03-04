@@ -19,7 +19,7 @@
         android:id="@+id/button"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:background="@drawable/circle2"
+        android:background="@drawable/circle_selected"
         android:text="@string/addAction"
         android:textColor="@color/white"
         android:textSize="20sp"

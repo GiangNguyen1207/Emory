@@ -3,6 +3,7 @@ package com.example.emory;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -63,8 +64,11 @@ public class DiaryAdapter extends BaseAdapter {
         itemNote.setText("Note: " + diary.getNote());
         itemPic.setImageBitmap(diary.decodePic());
         Bitmap pic = diary.decodePic();
-        itemPic.setImageBitmap(pic);
-
+        if (pic != null) {
+            itemPic.setVisibility(View.VISIBLE);
+            itemPic.setImageBitmap(pic);
+        }
+        Log.d("pic", String.valueOf(pic));
         return convertView;
     }
 }
