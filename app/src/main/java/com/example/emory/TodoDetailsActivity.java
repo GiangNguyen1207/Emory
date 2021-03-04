@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
@@ -50,19 +52,23 @@ public class TodoDetailsActivity extends AppCompatActivity implements DatePicker
             nameEditText = findViewById(R.id.nameTodoEditText);
             deadlineEditText = findViewById(R.id.deadlineEditText);
             noteEditText = findViewById(R.id.noteEditText);
-            Todo todo = new Todo(nameEditText.getText().toString(),
-                    deadlineEditText.getText().toString(), noteEditText.getText().toString());
-            todo2.get(0).addActivity(todo);
-            todos.add(todo2.get(0));
-            Log.d("haha", String.valueOf(todos));
-            Gson gson2 = new Gson();
-            SharedPreferences sp = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-            SharedPreferences.Editor editor = sp.edit();
-            editor.putString("todolist", gson2.toJson(todos));
-            editor.apply();
-            Intent intent = new Intent(TodoDetailsActivity.this, AddTodoListActivity.class);
-            startActivity(intent);
-            finish();
+            if (nameEditText.getText().toString().matches("")) {
+                Toast.makeText(this, "You did not enter Name", Toast.LENGTH_SHORT).show();
+            } else {
+                Todo todo = new Todo(nameEditText.getText().toString(),
+                        deadlineEditText.getText().toString(), noteEditText.getText().toString());
+                todo2.get(0).addActivity(todo);
+                todos.add(todo2.get(0));
+                Log.d("haha", String.valueOf(todos));
+                Gson gson2 = new Gson();
+                SharedPreferences sp = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString("todolist", gson2.toJson(todos));
+                editor.apply();
+                Intent intent = new Intent(TodoDetailsActivity.this, AddTodoListActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }
 

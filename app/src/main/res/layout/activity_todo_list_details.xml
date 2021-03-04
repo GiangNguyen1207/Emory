@@ -11,7 +11,7 @@
         android:id="@+id/constaint"
         android:layout_width="350dp"
         android:layout_height="620dp"
-        android:background="@drawable/radius_background"
+        android:background="@drawable/shape_radius_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
