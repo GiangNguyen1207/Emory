@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -31,8 +30,9 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mood_analytics);
 
-        setCounter();
         setDate();
+        setCounter();
+        findTotalDays();
         showGraph();
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -141,7 +141,6 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         graph.getViewport().setMinX(1.0);
         graph.getViewport().setMaxY(5.0);
 
-        findTotalDays();
         graph.addSeries(moodGraph.getSeries());
     }
 
@@ -194,13 +193,5 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         goodVal.setText(String.valueOf(good.getCount()));
         happyVal.setText(String.valueOf(happy.getCount()));
         excitedVal.setText(String.valueOf(excited.getCount()));
-
-        /*Log.d("trb", String.valueOf(terrible.getCount()));
-        Log.d("awful", String.valueOf(awful.getCount()));*/
-        //Log.d("sad", String.valueOf(sad.getCount()));
-        //Log.d("good", String.valueOf(good.getCount()));
-        Log.d("happy", String.valueOf(happy.getCount()));
-        //Log.d("excited", String.valueOf(excited.getCount()));//
-
     }
 }
