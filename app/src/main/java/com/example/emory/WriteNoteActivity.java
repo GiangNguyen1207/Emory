@@ -75,18 +75,21 @@ public class WriteNoteActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view = grid.getChildAt(position);
-                ColorDrawable viewColor = (ColorDrawable) view.getBackground();
+                ImageView img = view.findViewById(R.id.imageView);
+                Drawable normalBackground = ContextCompat.getDrawable(WriteNoteActivity.this, R.drawable.circle);
+                Drawable backgroundSelected = ContextCompat.getDrawable(WriteNoteActivity.this, R.drawable.circle_selected);
 
-                if (viewColor == null) {
-                    view.setBackgroundColor(getColor(R.color.highlight));
+                if (img.getTag().equals("unselected")) {
+                    img.setBackground(backgroundSelected);
+                    img.setTag("selected");
                     chosenActions.add(actionList.getAction(position));
                     return;
                 }
 
-                if (viewColor.getColor() == getColor(R.color.highlight)) {
-                    view.setBackgroundColor(getColor(R.color.blur));
+                if (img.getTag().equals("selected")) {
+                    img.setBackground(normalBackground);
+                    img.setTag("unselected");
                     chosenActions.remove(actionList.getAction(position));
-                    return;
                 }
             }
         });

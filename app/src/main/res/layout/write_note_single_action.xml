@@ -14,7 +14,8 @@
         android:layout_height="50dp"
         android:background="@drawable/circle"
         android:padding="10dp"
-        app:tint="@color/icon" />
+        app:tint="@color/icon"
+        android:tag="unselected"/>
 
     <TextView
         android:id="@+id/itemActionText"
