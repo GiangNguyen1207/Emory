@@ -114,6 +114,8 @@
             android:layout_margin="16dp"
             android:background="@drawable/button_shape"
             android:text="@string/signUp"
+            android:textSize="18sp"
+            android:textColor="@color/white"
             android:id="@+id/btnSignUp"
             android:textAllCaps="false">
 
