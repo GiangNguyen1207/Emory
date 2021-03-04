@@ -63,7 +63,7 @@
     <string name="moodCountTitle">Mood Count</string>
     <string name="editDetails">Edit</string>
     <string name="error_message">Error</string>
-    <string name="note_title">Add Note</string>
+    <string name="note_title">Note</string>
     <string name="text_title">Text Title</string>
     <string name="emory">E M O R Y</string>
 </resources>

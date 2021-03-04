@@ -3,15 +3,15 @@ package com.example.emory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TodoList {
-    private static final TodoList listInstance = new TodoList();
+public class TodoListSingleton {
+    private static final TodoListSingleton listInstance = new TodoListSingleton();
 
-    public static TodoList getInstance() {
+    public static TodoListSingleton getInstance() {
         return listInstance;
     }
 
     private ArrayList<Todo> todolist;
-    private TodoList() {
+    private TodoListSingleton() {
         this.todolist = new ArrayList<>();
     }
 
@@ -32,8 +32,8 @@ public class TodoList {
         return "name";
     }
 
-    public Todo remove(int indexOfTodo) {
-        return this.todolist.remove(indexOfTodo);
+    public void remove(Todo todo) {
+        this.todolist.remove(todo);
     }
 }
 

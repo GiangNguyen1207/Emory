@@ -2,10 +2,8 @@ package com.example.emory;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -15,7 +13,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class TodoListDetails extends AppCompatActivity {
-    ArrayList<TodoList> todo3 = new ArrayList<>();
+    ArrayList<TodoListSingleton> todo3 = new ArrayList<>();
 
     private static final String SHARED_PREFS = "sharedPrefs";
 
@@ -24,12 +22,12 @@ public class TodoListDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_list_details);
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String dataReceived = sharedPreferences.getString("todolist", String.valueOf(new ArrayList<TodoList>()));
+        String dataReceived = sharedPreferences.getString("todolist", String.valueOf(new ArrayList<TodoListSingleton>()));
         Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<TodoList>>() {
+        Type type = new TypeToken<ArrayList<TodoListSingleton>>() {
         }.getType();
         todo3 = gson.fromJson(dataReceived, type);
-        //TodoList todoList = TodoList.getInstance();
+        TodoListSingleton todoListSingleton = TodoListSingleton.getInstance();
         Bundle b = getIntent().getExtras();
         int indexOfTodo = b.getInt("indexOfTodo");
 
