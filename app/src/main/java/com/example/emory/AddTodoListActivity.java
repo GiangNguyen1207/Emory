@@ -1,12 +1,10 @@
 package com.example.emory;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,10 +25,11 @@ import java.util.ArrayList;
 
 
 public class AddTodoListActivity extends AppCompatActivity {
-    ArrayList<TodoList> todo2 = new ArrayList<>();
+    ArrayList<TodoListSingleton> todo2 = new ArrayList<>();
     private static final String SHARED_PREFS = "sharedPrefs";
     ArrayAdapter<Todo> arrayAdapter;
-    TodoList todolist = TodoList.getInstance();
+    TodoListSingleton todolist = TodoListSingleton.getInstance();
+    private int position = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +69,11 @@ public class AddTodoListActivity extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);*/
     private void reload() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String dataReceived = sharedPreferences.getString("todolist", String.valueOf(new ArrayList<TodoList>()));
+        String dataReceived = sharedPreferences.getString("todolist", String.valueOf(new ArrayList<TodoListSingleton>()));
         Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<TodoList>>() {
+        Type type = new TypeToken<ArrayList<TodoListSingleton>>() {
         }.getType();
         todo2 = gson.fromJson(dataReceived, type);
         Log.d("hello", String.valueOf(todo2));
@@ -93,9 +89,8 @@ public class AddTodoListActivity extends AppCompatActivity {
 
         });
 
-        //lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
         lv.setOnItemLongClickListener((adapterView, view, i, l) -> {
+            position = i;
             openContextMenu(lv);
             return true;
         });
@@ -105,12 +100,11 @@ public class AddTodoListActivity extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         getMenuInflater().inflate(R.menu.todolist_menu, menu);
+
     }
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        int position = info.position;
         switch (item.getItemId()) {
             case R.id.option_1:
                 Intent nextActivity = new Intent(AddTodoListActivity.this, TodoListDetails.class);
@@ -129,23 +123,20 @@ public class AddTodoListActivity extends AppCompatActivity {
 
     public void removeItem(Todo todo) {
         arrayAdapter.remove(todo);
-        arrayAdapter.notifyDataSetChanged();
-    }
-
-    /*@Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("tag", "app onPause...");
+        todolist.remove(todo);
         saveData();
+        arrayAdapter.notifyDataSetChanged();
     }
 
     private void saveData() {
         Gson gson = new Gson();
         SharedPreferences sp = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("todolist", gson.toJson(todolist));
+        todo2.add(todolist);
+        editor.putString("todolist", gson.toJson(todo2));
+        editor.apply();
         Log.d("hi", String.valueOf(todolist));
-    }*/
+    }
 
 
 }

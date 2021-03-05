@@ -44,11 +44,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <receiver android:name=".Reminder" android:exported="false">
-        <intent-filter>
-            <action android:name="NOTIFICATION_SERVICE" />
-        </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

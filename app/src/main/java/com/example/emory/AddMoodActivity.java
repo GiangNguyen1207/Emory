@@ -2,7 +2,6 @@ package com.example.emory;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,11 +11,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+//the class take the calendar into use, so it needs to implement DatePickerDiaLog.OnDateSetListener
 public class AddMoodActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private TextView chosenDate;
     private DayMonthYear fullDate;
     private Button btnSaveMood;
-    public static final String EMORY_SHARED_PREFERENCES = "EMORY_SHARED_PREFERENCES";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,26 +66,24 @@ public class AddMoodActivity extends AppCompatActivity implements DatePickerDial
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        //chosenBtn.setBackgroundResource(R.color.secondary);
-
-    }
-
+    //start the note
     public void startNote(String drawable) {
         btnSaveMood.setVisibility(View.VISIBLE);
 
         Intent intent = new Intent(this, WriteNoteActivity.class);
+        //send icon with name to next activity
         intent.putExtra("icon", drawable);
+        //send date to next activity
         intent.putExtra("date", chosenDate.getText().toString());
         startActivity(intent);
     }
 
+    //the method to open calendar dialog
     public void onCalendarClick(View v) {
         fullDate.show(getSupportFragmentManager(), "date picker");
     }
 
+    //the method to set full date to current text view, for example 4. March, 2021
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         chosenDate.setText(fullDate.setFullDate(year, month, dayOfMonth));
