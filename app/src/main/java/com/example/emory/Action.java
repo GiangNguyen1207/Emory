@@ -27,7 +27,8 @@ public class Action {
         return this.icon;
     }
 
-    public int retrieveName() {
+    //please find the reference "Ger resource Id from name" on Reference 2 box on Planner
+    public int retrieveId() {
         try {
             Field field = R.drawable.class.getDeclaredField(this.getResourceName());
             return field.getInt(field);
