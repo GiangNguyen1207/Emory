@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class TodoDetailsActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     TodoListSingleton todolist = TodoListSingleton.getInstance();
     ArrayList<TodoListSingleton> todos = new ArrayList<>();
-    ArrayList<TodoListSingleton> todo2 = new ArrayList<>();
+    //ArrayList<TodoListSingleton> todo2 = new ArrayList<>();
     private static final String SHARED_PREFS = "sharedPrefs";
     private DayMonthYear fullDate;
     EditText nameEditText, noteEditText;
@@ -41,12 +41,13 @@ public class TodoDetailsActivity extends AppCompatActivity implements DatePicker
     }
 
     public void saveTodoList() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        /*SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         String dataReceived = sharedPreferences.getString("todolist", String.valueOf(new ArrayList<TodoListSingleton>()));
         Gson gson1 = new Gson();
         Type type = new TypeToken<ArrayList<TodoListSingleton>>() {
         }.getType();
         todo2 = gson1.fromJson(dataReceived, type);
+        Log.d("todo2", String.valueOf(todo2));*/
         Button addBtn = findViewById(R.id.addTodo);
         addBtn.setOnClickListener(v -> {
             nameEditText = findViewById(R.id.nameTodoEditText);
@@ -57,13 +58,14 @@ public class TodoDetailsActivity extends AppCompatActivity implements DatePicker
             } else {
                 Todo todo = new Todo(nameEditText.getText().toString(),
                         deadlineEditText.getText().toString(), noteEditText.getText().toString());
-                todo2.get(0).addActivity(todo);
-                todos.add(todo2.get(0));
+                todolist.addActivity(todo);
+                todos.add(todolist);
                 Log.d("haha", String.valueOf(todos));
                 Gson gson2 = new Gson();
                 SharedPreferences sp = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putString("todolist", gson2.toJson(todos));
+                Log.d("todos", String.valueOf(todos));
                 editor.apply();
                 Intent intent = new Intent(TodoDetailsActivity.this, AddTodoListActivity.class);
                 startActivity(intent);

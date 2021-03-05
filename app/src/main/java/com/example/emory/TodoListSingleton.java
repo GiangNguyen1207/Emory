@@ -1,5 +1,12 @@
 package com.example.emory;
 
+import android.content.SharedPreferences;
+import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +20,7 @@ public class TodoListSingleton {
     private ArrayList<Todo> todolist;
     private TodoListSingleton() {
         this.todolist = new ArrayList<>();
+        this.todolist.add(new Todo("Homework", "8, March, 2021", "Done"));
     }
 
     public List<Todo> getAllTodo() {

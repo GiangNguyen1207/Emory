@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 public class AddTodoListActivity extends AppCompatActivity {
     ArrayList<TodoListSingleton> todo2 = new ArrayList<>();
+    ArrayList<TodoListSingleton> todos = new ArrayList<>();
     private static final String SHARED_PREFS = "sharedPrefs";
     ArrayAdapter<Todo> arrayAdapter;
     TodoListSingleton todolist = TodoListSingleton.getInstance();
@@ -36,6 +37,7 @@ public class AddTodoListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todolist);
 
+        saveData();
         FloatingActionButton floatBtn = findViewById(R.id.addTodoBtn);
         floatBtn.setOnClickListener(view -> getDetails());
 
@@ -70,6 +72,9 @@ public class AddTodoListActivity extends AppCompatActivity {
     }
 
     private void reload() {
+    /*@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);*/
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         String dataReceived = sharedPreferences.getString("todolist", String.valueOf(new ArrayList<TodoListSingleton>()));
         Gson gson = new Gson();
@@ -132,10 +137,15 @@ public class AddTodoListActivity extends AppCompatActivity {
         Gson gson = new Gson();
         SharedPreferences sp = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        todo2.add(todolist);
-        editor.putString("todolist", gson.toJson(todo2));
+        todos.add(todolist);
+
+        if(!(todo2.isEmpty())) {
+            Log.d("if todo", String.valueOf(todo2));
+            todos.add(todo2.get(0));
+        }
+        editor.putString("todolist", gson.toJson(todos));
         editor.apply();
-        Log.d("hi", String.valueOf(todolist));
+        Log.d("hi", String.valueOf(todo2));
     }
 
 

@@ -8,6 +8,7 @@
     tools:context=".TodoDetailsActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:orientation="horizontal"
@@ -36,8 +37,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.643">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
         <EditText
             android:id="@+id/nameTodoEditText"
@@ -81,7 +81,7 @@
             android:id="@+id/addTodo"
             android:layout_width="171dp"
             android:layout_height="48dp"
-            android:background="@drawable/circle_selected"
+            android:background="@drawable/button_radius"
             android:gravity="center"
             android:text="@string/addTodobutton"
             android:textColor="@color/white"
