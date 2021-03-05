@@ -43,7 +43,7 @@
     <string name="Nickname">Nickname</string>
     <string name="editnickname">Change nickname</string>
     <string name="editpassword">Change password</string>
-    <string name="editactions">Edit activity</string>
+    <string name="set_reminder">Set reminder</string>
     <string name="group5">Group 5</string>
     <string name="giang">Giang</string>
     <string name="my">My</string>
@@ -66,4 +66,5 @@
     <string name="note_title">Note</string>
     <string name="text_title">Text Title</string>
     <string name="emory">E M O R Y</string>
+    <string name="choose_time">Choose time!</string>
 </resources>
