@@ -20,11 +20,10 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import static com.example.emory.SharedPref.TODOLIST;
+
 public class TodoDetailsActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-    TodoListSingleton todolist = TodoListSingleton.getInstance();
-    ArrayList<TodoListSingleton> todos = new ArrayList<>();
-    ArrayList<TodoListSingleton> todo2 = new ArrayList<>();
-    private static final String SHARED_PREFS = "sharedPrefs";
+    ArrayList<Todo> todo2 = new ArrayList<>();
     private DayMonthYear fullDate;
     EditText nameEditText, noteEditText;
     TextView deadlineEditText;
@@ -33,18 +32,17 @@ public class TodoDetailsActivity extends AppCompatActivity implements DatePicker
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_details);
+        SharedPref.init(getApplicationContext());
         fullDate = new DayMonthYear();
         deadlineEditText = findViewById(R.id.deadlineEditText);
         deadlineEditText.setText(fullDate.getCurrentFullDate());
-
         saveTodoList();
     }
 
     public void saveTodoList() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String dataReceived = sharedPreferences.getString("todolist", String.valueOf(new ArrayList<TodoListSingleton>()));
+        String dataReceived = SharedPref.read(TODOLIST, String.valueOf(new ArrayList<Todo>()));
         Gson gson1 = new Gson();
-        Type type = new TypeToken<ArrayList<TodoListSingleton>>() {
+        Type type = new TypeToken<ArrayList<Todo>>() {
         }.getType();
         todo2 = gson1.fromJson(dataReceived, type);
         Button addBtn = findViewById(R.id.addTodo);
@@ -57,14 +55,10 @@ public class TodoDetailsActivity extends AppCompatActivity implements DatePicker
             } else {
                 Todo todo = new Todo(nameEditText.getText().toString(),
                         deadlineEditText.getText().toString(), noteEditText.getText().toString());
-                todo2.get(0).addActivity(todo);
-                todos.add(todo2.get(0));
-                Log.d("haha", String.valueOf(todos));
+                todo2.add(todo);
+                Log.d("haha", String.valueOf(todo2));
                 Gson gson2 = new Gson();
-                SharedPreferences sp = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putString("todolist", gson2.toJson(todos));
-                editor.apply();
+                SharedPref.write(TODOLIST, gson2.toJson(todo2));
                 Intent intent = new Intent(TodoDetailsActivity.this, AddTodoListActivity.class);
                 startActivity(intent);
                 finish();

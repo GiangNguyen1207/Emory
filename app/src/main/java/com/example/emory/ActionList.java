@@ -35,7 +35,7 @@ public class ActionList extends BaseAdapter {
         this.actionList.add(new Action("shopping", R.drawable.action_ic_shopping));
         this.actionList.add(new Action("games", R.drawable.action_ic_games));
         this.actionList.add(new Action("celebration", R.drawable.action_ic_celebration));
-        this.actionList.add(new Action("beach", R.drawable.action_ic_beach));
+        this.actionList.add(new Action("relax", R.drawable.action_ic_relax));
         this.actionList.add(new Action("sick", R.drawable.action_ic_sick));
     }
 

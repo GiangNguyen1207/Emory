@@ -23,21 +23,23 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
+import static com.example.emory.SharedPref.TODOLIST;
+
 
 public class AddTodoListActivity extends AppCompatActivity {
-    ArrayList<TodoListSingleton> todo2 = new ArrayList<>();
-    private static final String SHARED_PREFS = "sharedPrefs";
+    ArrayList<Todo> todo2 = new ArrayList<>();
     ArrayAdapter<Todo> arrayAdapter;
-    TodoListSingleton todolist = TodoListSingleton.getInstance();
     private int position = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todolist);
-
+        SharedPref.init(getApplicationContext());
         FloatingActionButton floatBtn = findViewById(R.id.addTodoBtn);
-        floatBtn.setOnClickListener(view -> getDetails());
+        floatBtn.setOnClickListener((View v) -> {
+            getDetails();
+        });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.toDoList);
@@ -70,10 +72,9 @@ public class AddTodoListActivity extends AppCompatActivity {
     }
 
     private void reload() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String dataReceived = sharedPreferences.getString("todolist", String.valueOf(new ArrayList<TodoListSingleton>()));
+        String dataReceived = SharedPref.read(TODOLIST, String.valueOf(new ArrayList<Todo>()));
         Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<TodoListSingleton>>() {
+        Type type = new TypeToken<ArrayList<Todo>>() {
         }.getType();
         todo2 = gson.fromJson(dataReceived, type);
         Log.d("hello", String.valueOf(todo2));
@@ -81,7 +82,7 @@ public class AddTodoListActivity extends AppCompatActivity {
         ListView lv = findViewById(R.id.listView);
         arrayAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_multiple_choice,
-                todo2.get(0).getAllTodo());
+                todo2);
         lv.setAdapter(arrayAdapter);
 
 
@@ -113,7 +114,7 @@ public class AddTodoListActivity extends AppCompatActivity {
                 startActivity(nextActivity);
                 return true;
             case R.id.option_2:
-                removeItem(todo2.get(0).getTodo(position));
+                removeItem(todo2.get(position));
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -123,19 +124,14 @@ public class AddTodoListActivity extends AppCompatActivity {
 
     public void removeItem(Todo todo) {
         arrayAdapter.remove(todo);
-        todolist.remove(todo);
+        todo2.remove(todo);
         saveData();
         arrayAdapter.notifyDataSetChanged();
     }
 
     private void saveData() {
         Gson gson = new Gson();
-        SharedPreferences sp = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        todo2.add(todolist);
-        editor.putString("todolist", gson.toJson(todo2));
-        editor.apply();
-        Log.d("hi", String.valueOf(todolist));
+        SharedPref.write(TODOLIST, gson.toJson(todo2));
     }
 
 
