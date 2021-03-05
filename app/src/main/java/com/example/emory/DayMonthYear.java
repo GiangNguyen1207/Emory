@@ -48,6 +48,10 @@ public class DayMonthYear extends DialogFragment {
         months.add("December");
     }
 
+    public int getCurrentDay() {
+        return calendar.get(Calendar.DATE);
+    }
+
     //get full current date, for example, 4. March, 2021
     public String getCurrentFullDate() {
         return calendar.get(Calendar.DATE) + ". " +

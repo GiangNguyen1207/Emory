@@ -61,8 +61,16 @@
     <string name="deadlineTodo">Deadline</string>
     <string name="noteTodo">Note</string>
     <string name="moodCountTitle">Mood Count</string>
+    <string name="moodGraphTitle">Mood Graph</string>
     <string name="editDetails">Edit</string>
     <string name="error_message">Error</string>
+    <string name="zero">Terrible: 0</string>
+    <string name="one">Awful: 1</string>
+    <string name="two">Sad: 2</string>
+    <string name="three">Good: 3</string>
+    <string name="four">Happy: 4</string>
+    <string name="five">Excited: 5</string>
+    <string name="mood_index">Mood index:</string>
     <string name="note_title">Note</string>
     <string name="text_title">Text Title</string>
     <string name="emory">E M O R Y</string>
