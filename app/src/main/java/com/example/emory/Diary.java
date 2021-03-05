@@ -24,6 +24,7 @@ public class Diary extends Mood {
         return this.note;
     }
 
+    //please find the reference "Encode/Decode a bitmap to base64" on References box on Planner
     public Bitmap decodePic() {
         Bitmap bitmap = null;
         if (this.pic != null) {
@@ -34,6 +35,7 @@ public class Diary extends Mood {
         return bitmap;
     }
 
+    //please find the reference "Ger resource Id from name" on Reference 2 box on Planner
     public int retrieveMoodIdFromName() {
         try {
             Field field = R.drawable.class.getDeclaredField(super.getMood());

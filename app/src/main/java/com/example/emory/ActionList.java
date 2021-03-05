@@ -12,10 +12,12 @@ import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 
+//the function of this adapter is to load all activities to grid view displayed on write note xml
 public class ActionList extends BaseAdapter {
     private Context context;
     private ArrayList<Action> actionList;
 
+    //constructor to create the adapter, and add action to actionList
     public ActionList(Context context) {
         this.context = context;
         this.actionList = new ArrayList<>();
@@ -71,17 +73,26 @@ public class ActionList extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        //get each action from action list based on each position
         Action action = this.actionList.get(position);
 
         if (convertView == null) {
+            //then, inflate the specific custom view
+            //and then, apply to grid view
             convertView = View.inflate(this.context, R.layout.write_note_single_action, null);
         }
 
+        //find element in the convert view
         ImageView itemView = convertView.findViewById(R.id.imageView);
         TextView itemActionText = convertView.findViewById(R.id.itemActionText);
 
-        Drawable actionIcon = ContextCompat.getDrawable(context, action.retrieveName());
+        //get drawable from id, please find reference from "Get drawable from resourceId " from Reference 2 box on Planner
+        Drawable actionIcon = ContextCompat.getDrawable(context, action.retrieveId());
+
+        //set drawable to image view
         itemView.setImageDrawable(actionIcon);
+
+        //set text to text view
         itemActionText.setText(action.getName());
 
         return convertView;
