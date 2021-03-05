@@ -32,7 +32,6 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
 
         setDate();
         setCounter();
-        findTotalDays();
         showGraph();
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -73,7 +72,6 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         String prevMonthYear = monthYear.getPrevMonthYear(text);
         month.setText(prevMonthYear);
         setCounter();
-        findTotalDays();
         showGraph();
     }
 
@@ -82,7 +80,6 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         String nextMonthYear = monthYear.getNextMonthYear(text);
         month.setText(nextMonthYear);
         setCounter();
-        findTotalDays();
         showGraph();
     }
 
@@ -141,6 +138,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         graph.getViewport().setMinX(1.0);
         graph.getViewport().setMaxY(5.0);
 
+        findTotalDays();
         graph.addSeries(moodGraph.getSeries());
     }
 
