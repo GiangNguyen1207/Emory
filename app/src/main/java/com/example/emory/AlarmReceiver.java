@@ -24,18 +24,19 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
+        Notification.Builder builder = new Notification.Builder(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence channelName = "My Notification";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
 
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, channelName, importance);
             notificationManager.createNotificationChannel(channel);
+            builder.setChannelId(CHANNEL_ID);
         }
-        Notification.Builder builder = new Notification.Builder(context);
-        builder.setSmallIcon(R.drawable.baseline_alarm_on_black_18dp)
-                .setContentTitle("Deadline in Emory")
-                .setContentText("Go to Emory now")
-                .setAutoCancel(true)
+
+        builder.setSmallIcon(android.R.drawable.ic_popup_reminder)
+                .setContentTitle("You have deadline today.")
+                .setContentText("Go to Emory now!")
                 .setPriority(Notification.PRIORITY_DEFAULT)
                 .setContentIntent(contentIntent);
 
