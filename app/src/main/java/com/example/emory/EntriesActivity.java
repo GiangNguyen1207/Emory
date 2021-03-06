@@ -32,6 +32,7 @@ public class EntriesActivity extends AppCompatActivity {
         setDate();
         navigateBottom();
         createListView();
+        
     }
 
     public void setDate() {

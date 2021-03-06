@@ -39,6 +39,7 @@ public class MoodGraph {
         if (currentDay < 25) {
             return 26;
         }
+
         return daysInMonth;
     }
 
