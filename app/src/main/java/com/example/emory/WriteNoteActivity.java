@@ -36,7 +36,7 @@ public class WriteNoteActivity extends AppCompatActivity {
     private static final int GALLERY_REQUEST = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 0;
     private ActionList actionList;
-    private ArrayList<Action> chosenActions =new ArrayList<>();
+    private ArrayList<Action> chosenActions = new ArrayList<>();
     private String icon, date, note, encodedPic;
     private ArrayList<Diary> diaries = new ArrayList<>();
     private Bitmap bitmap;
