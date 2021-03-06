@@ -55,12 +55,12 @@ public class SignInActivity extends AppCompatActivity {
 
     private void validateLogin(String userEmail, String userPassword) {
         if (userEmail.equals(email) && userPassword.equals(password)) {
-            Toast.makeText(SignInActivity.this,"Login SuccessFul",Toast.LENGTH_LONG).show();
+            Toast.makeText(SignInActivity.this,"Login SuccessFul",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(SignInActivity.this, AddMoodActivity.class);
             startActivity(intent);
         }
         else {
-            Toast.makeText(SignInActivity.this,"Username or password is incorrect", Toast.LENGTH_LONG).show();
+            Toast.makeText(SignInActivity.this,"Username or password is incorrect", Toast.LENGTH_SHORT).show();
         }
     }
 }

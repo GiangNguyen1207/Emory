@@ -20,16 +20,15 @@
 
         <ImageView
             android:id="@+id/ava"
-            android:layout_width="115dp"
-            android:layout_height="104dp"
+            android:layout_width="92dp"
+            android:layout_height="88dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"
             android:layout_weight="0.3"
-            android:src="@drawable/user"
-            app:tint="@color/happy"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:src="@drawable/good"
+            app:tint="@color/diaryText" />
 
         <TextView
             android:id="@+id/nickname"
