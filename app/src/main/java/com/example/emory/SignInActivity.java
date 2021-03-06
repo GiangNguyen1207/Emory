@@ -63,6 +63,8 @@ public class SignInActivity extends AppCompatActivity {
             sharedPreferences.edit().putBoolean("isUserLogin",false).apply();
             // startMainActivity();
             Toast.makeText(SignInActivity.this,"Login SuccessFul",Toast.LENGTH_LONG).show();
+            Intent intent=new Intent(SignInActivity.this,MainScreen.class);
+            startActivity(intent);
         }
         else {
             Toast.makeText(SignInActivity.this,"Username or password is incorrect",Toast.LENGTH_LONG).show();

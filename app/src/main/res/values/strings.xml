@@ -79,4 +79,10 @@
 <string name="error_name">Please fill in your name</string>
 <string name="error_age">Please check your age again</string>
 <string name="error_email">Please provide a valid email</string>
+    <string name="change_nickname">Change your nickname</string>
+    <string name="your_nickname">Current nickname</string>
+    <string name="button_change">Change</string>
+    <string name="change_password">Change your password</string>
+    <string name="new_password">Enter your new password</string>
+    <string name="confirm_password">Confirm your password</string>
 </resources>

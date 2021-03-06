@@ -48,7 +48,16 @@ public class SettingsActivity extends AppCompatActivity {
             Intent intent = new Intent(SettingsActivity.this, ReminderActivity.class);
             startActivity(intent);
         });
-
+        Button btnNickName=findViewById(R.id.changeNickname);
+        btnNickName.setOnClickListener((View v) -> {
+            Intent intent = new Intent(SettingsActivity.this, ChangeNicknameActivity.class);
+            startActivity(intent);
+        });
+        Button btnPassword=findViewById(R.id.changePassword);
+        btnPassword.setOnClickListener((View v) -> {
+            Intent intent = new Intent(SettingsActivity.this, ChangePasswordActivity.class);
+            startActivity(intent);
+        });
     }
 
 }
