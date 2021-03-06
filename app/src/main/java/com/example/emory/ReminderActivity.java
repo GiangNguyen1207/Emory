@@ -41,6 +41,7 @@ public class ReminderActivity extends AppCompatActivity {
 
             alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
             Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
+            finish();
         });
     }
 }
