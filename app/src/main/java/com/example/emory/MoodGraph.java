@@ -21,23 +21,23 @@ public class MoodGraph {
 
     public int getMaxX(int currentDay, int daysInMonth) {
         if (currentDay < 5) {
-            return 10;
+            return 6;
         }
 
         if (currentDay < 10) {
-            return 15;
+            return 11;
         }
 
         if (currentDay < 15) {
-            return 20;
+            return 16;
         }
 
         if (currentDay < 20) {
-            return 25;
+            return 21;
         }
 
         if (currentDay < 25) {
-            return 30;
+            return 26;
         }
         return daysInMonth;
     }

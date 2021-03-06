@@ -97,7 +97,7 @@ public class EntriesActivity extends AppCompatActivity {
         String date = month.getText().toString();
         Integer daysOfMonths = monthYear.getDaysInMonth(date);
 
-        for (int i = 1; i <= daysOfMonths; i++) {
+        for (int i = daysOfMonths; i >= 1; i--) {
             String data = sharedPreferences.getString(i + ". " + date, String.valueOf(new ArrayList<Diary>()));
             Type diaryType = new TypeToken<ArrayList<Diary>>() {
             }.getType();
