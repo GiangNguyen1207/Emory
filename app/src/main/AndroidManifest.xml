@@ -16,24 +16,27 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/emotions"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/emotions"
         android:supportsRtl="true"
         android:theme="@style/Theme.Emory">
 
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".TodoDetailsActivity"/>
-        <activity android:name=".AddTodoListActivity"/>
+        <activity android:name=".AddTodoActivity"/>
+        <activity android:name=".TodoListActivity"/>
         <activity android:name=".TodoListDetails" />
-        <activity android:name=".AddMoodActivity" />
+        <activity android:name=".MoodAnalyticsActivity" />
         <activity android:name=".EntriesActivity" />
         <activity android:name=".WriteNoteActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".MoodAnalyticsActivity" />
-        <activity android:name=".MainScreen">
+        <activity android:name=".MainScreen" />
+        <activity android:name=".ReminderActivity"/>
+        <activity android:name=".AddMoodActivity"/>
+        <activity android:name=".ChangePasswordActivity"></activity>
+        <activity android:name=".ChangeNicknameActivity" />
+        <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,6 +47,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <receiver android:name=".AlarmReceiver"/>
     </application>
 
 </manifest>

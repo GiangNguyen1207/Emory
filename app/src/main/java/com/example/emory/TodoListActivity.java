@@ -1,9 +1,10 @@
 package com.example.emory;
 
+
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,22 +24,28 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
+import static com.example.emory.SharedPref.GET_CHECKED;
+import static com.example.emory.SharedPref.TODOLIST;
 
-public class AddTodoListActivity extends AppCompatActivity {
-    ArrayList<TodoListSingleton> todo2 = new ArrayList<>();
-    private static final String SHARED_PREFS = "sharedPrefs";
-    ArrayAdapter<Todo> arrayAdapter;
-    TodoListSingleton todolist = TodoListSingleton.getInstance();
+
+public class TodoListActivity extends AppCompatActivity {
+    private ArrayList<Todo> todoList = new ArrayList<>();
+    private ArrayAdapter<Todo> arrayAdapter;
     private int position = 0;
+    private String itemSelected = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todolist);
+        //Call shared preferences singleton
+        SharedPref.init(getApplicationContext());
 
+        //button to next activity to add item to list
         FloatingActionButton floatBtn = findViewById(R.id.addTodoBtn);
-        floatBtn.setOnClickListener(view -> getDetails());
+        floatBtn.setOnClickListener((View v) -> getDetails());
 
+        //Bottom navigation link
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.toDoList);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -59,43 +66,65 @@ public class AddTodoListActivity extends AppCompatActivity {
             }
             return false;
         });
+
+        //Call float context menu
         ListView lv = findViewById(R.id.listView);
         registerForContextMenu(lv);
+
+        //call function of list view
         reload();
+
+        //save checked state of checkbox in list view
+        getSavedItem();
+
     }
 
     private void getDetails() {
-        Intent intent = new Intent(this, TodoDetailsActivity.class);
+        Intent intent = new Intent(this, AddTodoActivity.class);
         startActivityForResult(intent, 1);
     }
 
     private void reload() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String dataReceived = sharedPreferences.getString("todolist", String.valueOf(new ArrayList<TodoListSingleton>()));
+        //Shared Preferences singleton to take the array list sent from AddTodoActivity
+        String dataReceived = SharedPref.read(TODOLIST, String.valueOf(new ArrayList<Todo>()));
         Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<TodoListSingleton>>() {
+        Type type = new TypeToken<ArrayList<Todo>>() {
         }.getType();
-        todo2 = gson.fromJson(dataReceived, type);
-        Log.d("hello", String.valueOf(todo2));
+        todoList = gson.fromJson(dataReceived, type);
+        Log.d("array", String.valueOf(todoList));
 
+        //cast list view to array adapter
         ListView lv = findViewById(R.id.listView);
         arrayAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_multiple_choice,
-                todo2.get(0).getAllTodo());
+                todoList);
         lv.setAdapter(arrayAdapter);
 
-
+        //on Item click will save the state of checkbox clicked
         lv.setOnItemClickListener((AdapterView<?> adapterView, View view, int i, long l) -> {
-
+            int count = lv.getCount();
+            SparseBooleanArray sparseBooleanArray = lv.getCheckedItemPositions();
+            for (int h = 0; h < count; h++) {
+                if (sparseBooleanArray.get(h)) {
+                    itemSelected += lv.getItemAtPosition(h).toString() + " ";
+                    Log.d("TAGGG", itemSelected);
+                    SharedPref.write(GET_CHECKED, itemSelected);
+                }
+            }
         });
+        //user can choose multiple item
+        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
+        //on long click will pop-up a float context menu
         lv.setOnItemLongClickListener((adapterView, view, i, l) -> {
             position = i;
             openContextMenu(lv);
             return true;
         });
+
     }
 
+    //Create context menu and set function to options
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -106,38 +135,51 @@ public class AddTodoListActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            //option 1 to TdoDetails activity, check name, note and deadline of to do
             case R.id.option_1:
-                Intent nextActivity = new Intent(AddTodoListActivity.this, TodoListDetails.class);
+                Intent nextActivity = new Intent(TodoListActivity.this, TodoListDetails.class);
                 nextActivity.putExtra("indexOfTodo", position);
                 Log.d("mi", String.valueOf(position));
                 startActivity(nextActivity);
                 return true;
+            //option 2 delete item
             case R.id.option_2:
-                removeItem(todo2.get(0).getTodo(position));
+                removeItem(todoList.get(position));
                 return true;
             default:
                 return super.onContextItemSelected(item);
         }
     }
 
-
-    public void removeItem(Todo todo) {
+    //function to remove item from list and update checked state
+    private void removeItem(Todo todo) {
         arrayAdapter.remove(todo);
-        todolist.remove(todo);
+        todoList.remove(todo);
         saveData();
+        getSavedItem();
         arrayAdapter.notifyDataSetChanged();
     }
 
+    //save array list to singleton shared prefs
     private void saveData() {
         Gson gson = new Gson();
-        SharedPreferences sp = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        todo2.add(todolist);
-        editor.putString("todolist", gson.toJson(todo2));
-        editor.apply();
-        Log.d("hi", String.valueOf(todolist));
+        SharedPref.write(TODOLIST, gson.toJson(todoList));
     }
 
-
+    //get the checked item from shared prefs after activity is destroyed
+    private void getSavedItem() {
+        String savedItem = SharedPref.read(GET_CHECKED, "");
+        Log.d("SELECTED", savedItem);
+        ListView lv = findViewById(R.id.listView);
+        int count = lv.getAdapter().getCount();
+        for (int i = 0; i < count; i++) {
+            String currentItem = lv.getAdapter().getItem(i).toString();
+            if (savedItem.contains(currentItem)) {
+                lv.setItemChecked(i, true);
+            } else {
+                lv.setItemChecked(i, false);
+            }
+        }
+    }
 }
 

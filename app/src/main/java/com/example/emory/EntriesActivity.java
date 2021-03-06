@@ -53,7 +53,7 @@ public class EntriesActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.toDoList:
-                    startActivity(new Intent(this, AddTodoListActivity.class));
+                    startActivity(new Intent(this, TodoListActivity.class));
                     return true;
 
                 case R.id.settings:

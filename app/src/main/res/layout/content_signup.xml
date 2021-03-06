@@ -58,6 +58,8 @@
         </TextView>
 
         <EditText
+            android:inputType="number"
+            android:maxLength="2"
             android:id="@+id/edAge"
             android:textColor="@color/black"
             android:layout_width="match_parent"
