@@ -47,7 +47,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.toDoList:
-                    startActivity(new Intent(this, TodoDetailsActivity.class));
+                    startActivity(new Intent(this, AddTodoActivity.class));
                     return true;
 
                 case R.id.settings:

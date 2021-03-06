@@ -33,6 +33,7 @@ import java.util.ArrayList;
 
 public class WriteNoteActivity extends AppCompatActivity {
     private static final String SHARED_PREFS = "sharedPrefs";
+    //request key for camera and gallery intent
     private static final int GALLERY_REQUEST = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 0;
     private ActionList actionList;
@@ -53,6 +54,7 @@ public class WriteNoteActivity extends AppCompatActivity {
         saveData();
     }
 
+    //get mood icon from AddMoodActivity
     public void getDataFromAddMood() {
         Intent intent = getIntent();
         icon = intent.getStringExtra("icon");
@@ -64,6 +66,7 @@ public class WriteNoteActivity extends AppCompatActivity {
         imageView.setImageDrawable(drawable);
     }
 
+    //change background color of icon clicked
     public void handleActionIcons() {
         actionList = new ActionList(this);
         GridView grid = findViewById(R.id.actionList);
@@ -94,6 +97,7 @@ public class WriteNoteActivity extends AppCompatActivity {
         });
     }
 
+    //expand note
     public void getNoteExpansion() {
         ImageButton expandNote = findViewById(R.id.expandNote);
         expandNote.setOnClickListener((View v) -> {
@@ -107,6 +111,7 @@ public class WriteNoteActivity extends AppCompatActivity {
         });
     }
 
+    //get text from noteExpansion
     public void saveNoteExpansion(Dialog dialog) {
         FloatingActionButton doneIcon = dialog.findViewById(R.id.doneIcon);
         doneIcon.setOnClickListener((View v) -> {
@@ -119,11 +124,13 @@ public class WriteNoteActivity extends AppCompatActivity {
         });
     }
 
+    //get text from small note to expanded note
     public void getNote() {
         EditText editText = findViewById(R.id.writeNote);
         note = editText.getText().toString();
     }
 
+    //get image from gallery of camera
     public void getImage() {
         ImageButton addImage = findViewById(R.id.addPhoto);
         addImage.setOnClickListener((View v) -> {
@@ -134,6 +141,7 @@ public class WriteNoteActivity extends AppCompatActivity {
         });
     }
 
+    //check if user choose camera of gallery button
     public void checkBtnClick(Dialog dialog) {
         ImageButton btnCamera = dialog.findViewById(R.id.takePhotoBtn);
         ImageButton btnGallery = dialog.findViewById(R.id.openGalleryBtn);
@@ -145,11 +153,13 @@ public class WriteNoteActivity extends AppCompatActivity {
         });
     }
 
+    //intent to open camera
     private void openCamera() {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
     }
 
+    //intent to open gallery
     public void openGallery() {
         Intent cameraIntent = new Intent(Intent.ACTION_GET_CONTENT);
         cameraIntent.setType("image/*");
@@ -157,6 +167,10 @@ public class WriteNoteActivity extends AppCompatActivity {
         startActivityForResult(cameraIntent, GALLERY_REQUEST);
     }
 
+    /*
+    on activity result of open camera or gallery
+    image is saved get and decode to bitmap and scale to the size we want
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -200,6 +214,7 @@ public class WriteNoteActivity extends AppCompatActivity {
         encodedPic = Base64.encodeToString(b, Base64.DEFAULT);
     }
 
+    //save mood, action, note and picture to diary by gson, mood is required type
     public void saveDiary() {
         Gson gson = new Gson();
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -217,6 +232,7 @@ public class WriteNoteActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    //save all data to shared pref when button clicked and return to EntriesActivity
     public void saveData() {
         FloatingActionButton floatBtn = findViewById(R.id.doneIcon);
         floatBtn.setOnClickListener(view -> {

@@ -19,10 +19,11 @@ public class ReminderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder);
 
-
+        //set handler for Float button, when it clicked it generate an alarm at the user picked time
         FloatingActionButton floatBtn = findViewById(R.id.doneChooseTime);
         floatBtn.setOnClickListener(view -> {
             TimePicker timePicker = findViewById(R.id.timePicker);
+            //this intent link to Alarm manager class
             Intent intent = new Intent(ReminderActivity.this, AlarmReceiver.class);
             intent.putExtra("notification", notificationId);
 
@@ -30,16 +31,19 @@ public class ReminderActivity extends AppCompatActivity {
                     intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
             AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-            int hour = timePicker.getHour();
-            int minute = timePicker.getMinute();
+            //hour and minute picked by user
+            int hour = timePicker.getCurrentHour();
+            int minute = timePicker.getCurrentMinute();
 
+            //call Calendar singleton
             Calendar startTime = Calendar.getInstance();
             startTime.set(Calendar.HOUR_OF_DAY, hour);
             startTime.set(Calendar.MINUTE, minute);
             startTime.set(Calendar.SECOND, 0);
             long alarmStartTime = startTime.getTimeInMillis();
 
-            alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+            //not a repeating alarm
+            alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime, AlarmManager.INTERVAL_DAY, alarmIntent);
             Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
             finish();
         });
