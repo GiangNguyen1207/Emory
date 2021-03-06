@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="@color/highlight"
         android:orientation="horizontal"
         android:padding="5dp"
@@ -36,10 +36,10 @@
             android:layout_weight="1"
             android:fontFamily="serif"
             android:gravity="center"
-            android:onClick="@"
             android:text="@string/month"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/next"

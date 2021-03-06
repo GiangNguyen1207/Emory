@@ -32,5 +32,5 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/_70_happy_8"
-        app:tint="@color/happy" />
+        app:tint="@color/secondary" />
 </androidx.constraintlayout.widget.ConstraintLayout>

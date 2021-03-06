@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
 
         <Button
             android:id="@+id/addTodo"
-            android:layout_width="171dp"
+            android:layout_width="170dp"
             android:layout_height="48dp"
             android:background="@drawable/button_radius"
             android:gravity="center"
