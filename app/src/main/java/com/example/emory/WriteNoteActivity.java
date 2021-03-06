@@ -1,210 +1,220 @@
 package com.example.emory;
 
 
+import android.app.Dialog;
 import android.content.Context;
-import android.database.Cursor;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.content.Intent;
 import android.content.SharedPreferences;
-
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.content.Intent;
-
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-
-import android.renderscript.ScriptGroup;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Type;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
-public class WriteNoteActivity extends AppCompatActivity implements View.OnClickListener {
+public class WriteNoteActivity extends AppCompatActivity {
     private static final String SHARED_PREFS = "sharedPrefs";
+    //request key for camera and gallery intent
     private static final int GALLERY_REQUEST = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 0;
-    private ArrayList<Action> activities = new ArrayList<>();
-    private int icon;
-    private String date, note;
+    private ActionList actionList;
+    private ArrayList<Action> chosenActions =new ArrayList<>();
+    private String icon, date, note, encodedPic;
     private ArrayList<Diary> diaries = new ArrayList<>();
-    private String encodePic;
     private Bitmap bitmap;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_note);
         getDataFromAddMood();
-        getActivity();
+        handleActionIcons();
         getImage();
+        getNoteExpansion();
         saveData();
     }
 
+    //get mood icon from AddMoodActivity
     public void getDataFromAddMood() {
         Intent intent = getIntent();
-        icon = intent.getIntExtra("icon", 0);
+        icon = intent.getStringExtra("icon");
         date = intent.getStringExtra("date");
 
-        Drawable drawable = getResources().getDrawable(icon);
+        int resourceId = getResources().getIdentifier("com.example.emory:drawable/" + icon, null, null);
         ImageView imageView = findViewById(R.id.iconChosen);
+        Drawable drawable = ContextCompat.getDrawable(this, resourceId);
         imageView.setImageDrawable(drawable);
     }
 
-    public void getActivity() {
-        ImageButton familyButton = findViewById(R.id.familyIcon);
-        ImageButton friendButton = findViewById(R.id.friendIcon);
-        ImageButton loveButton = findViewById(R.id.loveIcon);
-        ImageButton sportButton = findViewById(R.id.sportIcon);
-        ImageButton exerciseButton = findViewById(R.id.exerciseIcon);
-        ImageButton moviesButton = findViewById(R.id.movieIcon);
-        ImageButton sleepButton = findViewById(R.id.sleepIcon);
-        ImageButton travelButton = findViewById(R.id.travelIcon);
-        ImageButton studyButton = findViewById(R.id.studyIcon);
-        ImageButton cleanButton = findViewById(R.id.cleanIcon);
-        ImageButton workButton = findViewById(R.id.workIcon);
-        ImageButton shoppingButton = findViewById(R.id.shoppingIcon);
-        ImageButton gameButton = findViewById(R.id.gameIcon);
-        ImageButton birthdayButton = findViewById(R.id.celebration);
+    //change background color of icon clicked
+    public void handleActionIcons() {
+        actionList = new ActionList(this);
+        GridView grid = findViewById(R.id.actionList);
+        grid.setAdapter(new ActionList(this, actionList.getAllActions()));
 
-        familyButton.setOnClickListener(this);
-        friendButton.setOnClickListener(this);
-        loveButton.setOnClickListener(this);
-        sportButton.setOnClickListener(this);
-        exerciseButton.setOnClickListener(this);
-        moviesButton.setOnClickListener(this);
-        sleepButton.setOnClickListener(this);
-        travelButton.setOnClickListener(this);
-        studyButton.setOnClickListener(this);
-        cleanButton.setOnClickListener(this);
-        workButton.setOnClickListener(this);
-        shoppingButton.setOnClickListener(this);
-        gameButton.setOnClickListener(this);
-        birthdayButton.setOnClickListener(this);
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                view = grid.getChildAt(position);
+                ImageView img = view.findViewById(R.id.imageView);
+                Drawable normalBackground = ContextCompat.getDrawable(WriteNoteActivity.this, R.drawable.circle);
+                Drawable backgroundSelected = ContextCompat.getDrawable(WriteNoteActivity.this, R.drawable.circle_selected);
+
+                if (img.getTag().equals("unselected")) {
+                    img.setBackground(backgroundSelected);
+                    img.setTag("selected");
+                    chosenActions.add(actionList.getAction(position));
+                    return;
+                }
+
+                if (img.getTag().equals("selected")) {
+                    img.setBackground(normalBackground);
+                    img.setTag("unselected");
+                    chosenActions.remove(actionList.getAction(position));
+                    return;
+                }
+            }
+        });
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.familyIcon:
-                activities.add(new Action("family", R.drawable.action_ic_family));
-                break;
-            case R.id.friendIcon:
-                activities.add(new Action("friend", R.drawable.action_ic_friends));
-                break;
-            case R.id.loveIcon:
-                activities.add(new Action("love", R.drawable.action_ic_favourite));
-                break;
-            case R.id.sportIcon:
-                activities.add(new Action("sport", R.drawable.action_ic_fitness));
-                break;
-            case R.id.exerciseIcon:
-                activities.add(new Action("exercise", R.drawable.action_ic_walking));
-                break;
-            case R.id.movieIcon:
-                activities.add(new Action("movie", R.drawable.action_ic_movie));
-                break;
-            case R.id.sleepIcon:
-                activities.add(new Action("sleep", R.drawable.action_ic_sleep));
-                break;
-            case R.id.travelIcon:
-                activities.add(new Action("travel", R.drawable.action_ic_travel));
-                break;
-            case R.id.studyIcon:
-                activities.add(new Action("study", R.drawable.action_ic_study));
-                break;
-            case R.id.cleanIcon:
-                activities.add(new Action("clean", R.drawable.action_ic_cleaning));
-                break;
-            case R.id.workIcon:
-                activities.add(new Action("work", R.drawable.action_ic_work));
-                break;
-            case R.id.shoppingIcon:
-                activities.add(new Action("shopping", R.drawable.action_ic_shopping));
-                break;
-            case R.id.gameIcon:
-                activities.add(new Action("game", R.drawable.action_ic_games));
-                break;
-            case R.id.celebration:
-                activities.add(new Action("birthday", R.drawable.action_ic_celebration));
-                break;
-        }
+    //expand note
+    public void getNoteExpansion() {
+        ImageButton expandNote = findViewById(R.id.expandNote);
+        expandNote.setOnClickListener((View v) -> {
+            dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_note_expansion);
+            getNote();
+            EditText textContent = dialog.findViewById(R.id.noteContent);
+            textContent.setText(note);
+            saveNoteExpansion(dialog);
+            dialog.show();
+        });
     }
 
+    //get text from noteExpansion
+    public void saveNoteExpansion(Dialog dialog) {
+        FloatingActionButton doneIcon = dialog.findViewById(R.id.doneIcon);
+        doneIcon.setOnClickListener((View v) -> {
+            EditText textContent = dialog.findViewById(R.id.noteContent);
+            String noteExpansion = textContent.getText().toString();
+            EditText editText = findViewById(R.id.writeNote);
+            editText.setText(noteExpansion);
+
+            dialog.dismiss();
+        });
+    }
+
+    //get text from small note to expanded note
     public void getNote() {
         EditText editText = findViewById(R.id.writeNote);
         note = editText.getText().toString();
     }
 
+    //get image from gallery of camera
     public void getImage() {
         ImageButton addImage = findViewById(R.id.addPhoto);
         addImage.setOnClickListener((View v) -> {
-            Intent intent = new Intent(this, AddImage.class);
-            startActivityForResult(intent, 1);
+            dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_import_picture);
+            checkBtnClick(dialog);
+            dialog.show();
         });
-
     }
 
+    //check if user choose camera of gallery button
+    public void checkBtnClick(Dialog dialog) {
+        ImageButton btnCamera = dialog.findViewById(R.id.takePhotoBtn);
+        ImageButton btnGallery = dialog.findViewById(R.id.openGalleryBtn);
+        btnCamera.setOnClickListener((View v) -> {
+            openCamera();
+        });
+        btnGallery.setOnClickListener((View v) -> {
+            openGallery();
+        });
+    }
+
+    //intent to open camera
+    private void openCamera() {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
+    }
+
+    //intent to open gallery
+    public void openGallery() {
+        Intent cameraIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        cameraIntent.setType("image/*");
+        cameraIntent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(cameraIntent, GALLERY_REQUEST);
+    }
+
+    /*
+    on activity result of open camera or gallery
+    image is saved get and decode to bitmap and scale to the size we want
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {
-            try {
-                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
-                encodeBitmap();
-                //Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 150, 100, true);
-                /*Uri selectedImage = data.getData();
-                InputStream imageStream = getContentResolver().openInputStream(selectedImage);*/
-                ImageView imageView = findViewById(R.id.photoChosen);
-                imageView.setImageBitmap(bitmap);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+        switch (requestCode) {
+            case GALLERY_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    try {
+                        bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(data.getData()));
+                        encodeBitmap();
+                        ImageView imageView = findViewById(R.id.photoChosen);
+                        imageView.setImageBitmap(bitmap);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        Toast.makeText(this, "Error loading file", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+
+            case REQUEST_IMAGE_CAPTURE:
+                if (resultCode == RESULT_OK) {
+                    Bundle extras = data.getExtras();
+                    bitmap = (Bitmap) extras.get("data");
+                    encodeBitmap();
+                    ImageView imageView = findViewById(R.id.photoChosen);
+                    imageView.setImageBitmap(bitmap);
+                } else {
+                    Toast.makeText(this, "Error loading file", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            default:
+                break;
         }
-
-        /*if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
-            Bundle extras = data.getExtras();
-            Bitmap image = (Bitmap) extras.get("data");
-            ImageView imageView = findViewById(R.id.photoChosen);
-            imageView.setImageBitmap(image);
-
-        }*/
+        dialog.dismiss();
     }
 
     public void encodeBitmap() {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
         byte[] b = output.toByteArray();
-        encodePic = Base64.encodeToString(b, Base64.DEFAULT);
+        encodedPic = Base64.encodeToString(b, Base64.DEFAULT);
     }
 
-
+    //save mood, action, note and picture to diary by gson, mood is required type
     public void saveDiary() {
         Gson gson = new Gson();
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -217,11 +227,12 @@ public class WriteNoteActivity extends AppCompatActivity implements View.OnClick
             diaries = gson.fromJson(data, diaryType);
         }
 
-        diaries.add(new Diary(icon, activities, note, encodePic));
+        diaries.add(new Diary(icon, chosenActions, note, encodedPic));
         editor.putString(date, gson.toJson(diaries));
         editor.apply();
     }
 
+    //save all data to shared pref when button clicked and return to EntriesActivity
     public void saveData() {
         FloatingActionButton floatBtn = findViewById(R.id.doneIcon);
         floatBtn.setOnClickListener(view -> {

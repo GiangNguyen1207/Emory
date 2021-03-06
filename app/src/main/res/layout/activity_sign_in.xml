@@ -93,23 +93,29 @@
             android:layout_gravity="center"
             android:layout_margin="16dp"
             android:orientation="horizontal">
+
             <Button
+                android:id="@+id/btnLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@drawable/button_shape"
+                android:text="@string/login"
                 android:textAllCaps="false"
-                android:id="@+id/btnLogin"
-                android:text="@string/login">
+                android:textColor="@color/white"
+                android:textSize="18sp">
 
             </Button>
+
             <Button
+                android:id="@+id/btnRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/signUp"
                 android:layout_marginLeft="16dp"
-                android:id="@+id/btnRegister"
+                android:background="@drawable/button_shape"
+                android:text="@string/signUp"
                 android:textAllCaps="false"
-                android:background="@drawable/button_shape">
+                android:textColor="@color/white"
+                android:textSize="18sp">
 
             </Button>
         </LinearLayout>

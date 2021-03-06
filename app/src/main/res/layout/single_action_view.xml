@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:layout_constraintTop_toTopOf="parent"
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/itemActionIcon"
@@ -17,8 +18,8 @@
         android:id="@+id/itemActionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:textColor="@color/diaryText"
-        android:textSize="12sp" />
+        android:textSize="11sp"
+        android:text="@string/celebration"/>
 
 </LinearLayout>

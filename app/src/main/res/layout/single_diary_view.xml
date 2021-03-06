@@ -27,9 +27,8 @@
             <ImageView
                 android:id="@+id/itemMood"
                 android:layout_width="120dp"
-                android:layout_height="100dp"
+                android:layout_height="60dp"
                 android:layout_weight="1"
-                android:src="@drawable/awful"
                 app:tint="@color/diaryText" />
 
             <GridView
@@ -39,7 +38,9 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:numColumns="4" />
+                android:nestedScrollingEnabled="true"
+                android:numColumns="4"
+                android:verticalSpacing="10dp" />
 
         </LinearLayout>
 
@@ -51,10 +52,12 @@
 
         <ImageView
             android:id="@+id/itemPic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="fitCenter"
-            android:layout_gravity="center" />
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:scaleType="fitStart"
+            android:paddingTop="8dp"
+            android:layout_gravity="start"
+            android:visibility="gone" />
 
     </LinearLayout>
 

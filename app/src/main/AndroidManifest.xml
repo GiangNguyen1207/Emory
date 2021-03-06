@@ -5,9 +5,9 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <queries>
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -16,26 +16,25 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/emotions"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/emotions"
         android:supportsRtl="true"
         android:theme="@style/Theme.Emory">
-        <activity android:name=".NoteActivity"></activity>
+
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".TodoDetailsActivity" />
-        <activity android:name=".AddTodoListActivity" />
+        <activity android:name=".AddTodoActivity"/>
+        <activity android:name=".TodoListActivity"/>
         <activity android:name=".TodoListDetails" />
-        <activity android:name=".MoodAnalytics" />
-        <activity android:name=".AddImage" />
+        <activity android:name=".MoodAnalyticsActivity" />
         <activity android:name=".EntriesActivity" />
         <activity android:name=".WriteNoteActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".AddMoodActivity" />
-        <activity
-            android:name=".SignInActivity"
-            android:theme="@style/Theme.Emory.NoActionBar">
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".ReminderActivity"/>
+        <activity android:name=".AddMoodActivity"/>
+        <activity android:name=".MainScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,8 +45,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-        <receiver android:name=".Reminder" />
+        <receiver android:name=".AlarmReceiver"/>
     </application>
 
 </manifest>

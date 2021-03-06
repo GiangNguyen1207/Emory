@@ -1,514 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.53" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.7" />
-
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="397dp"
-        android:layout_height="63dp"
-        android:background="@color/secondary"
-        android:fadingEdge="none"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-
-        <ImageView
-            android:id="@+id/iconChosen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/note"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:drawableLeft="@drawable/baseline_notes_black_18dp"
-        android:drawableTint="@color/black"
-        android:text="@string/note"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:drawableStartCompat="@drawable/baseline_notes_black_18dp"
-        app:layout_constraintBottom_toTopOf="@+id/writeNote"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.0"
-        android:drawableStart="@drawable/baseline_notes_black_18dp" />
-
-    <ImageButton
-        android:id="@+id/expandNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#00FFFFFF"
-        android:tint="#131313"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/baseline_open_in_full_black_18dp" />
-
-    <EditText
-        android:id="@+id/writeNote"
-        android:layout_width="358dp"
-        android:layout_height="83dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/radius"
-        android:ems="10"
-        android:gravity="start"
-        android:hint="@string/add_note"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.736" />
-
-    <TextView
-        android:id="@+id/photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:drawableLeft="@drawable/ic_camera"
-        android:drawableTint="@color/black"
-        android:text="@string/photo"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:gravity="center_vertical"
-        app:drawableStartCompat="@drawable/ic_camera"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
-    <ImageButton
-        android:id="@+id/addPhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#FFFFFF"
-        android:tint="#0E0E0E"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:srcCompat="@drawable/ic_add"
-        tools:ignore="VectorDrawableCompat" />
-
-    <TextView
-        android:id="@+id/question"
-        android:layout_width="287dp"
-        android:layout_height="37dp"
-        android:fontFamily="serif"
-        android:text="@string/question"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.025"
-        android:gravity="center"/>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="389dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="28dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question">
-
-        <ImageButton
-            android:id="@+id/familyIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:background="@drawable/circle"
-            android:tint="@color/icon"
-            app:srcCompat="@drawable/action_ic_family" />
-
-        <ImageButton
-            android:id="@+id/friendIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:background="@drawable/circle"
-            android:tint="@color/icon"
-            app:srcCompat="@drawable/action_ic_friends" />
-
-        <ImageButton
-            android:id="@+id/loveIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:background="@drawable/circle"
-            android:tint="@color/icon"
-            app:srcCompat="@drawable/action_ic_favourite" />
-
-        <ImageButton
-            android:id="@+id/sportIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:background="@drawable/circle"
-            android:tint="@color/icon"
-            app:srcCompat="@drawable/action_ic_fitness" />
-
-        <ImageButton
-            android:id="@+id/exerciseIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:background="@drawable/circle"
-            android:tint="@color/icon"
-            app:srcCompat="@drawable/action_ic_walking" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="396dp"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-        <TextView
-            android:id="@+id/family"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:text="@string/family" />
-
-        <TextView
-            android:id="@+id/friend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:layout_marginLeft="22dp"
-            android:layout_marginEnd="36dp"
-            android:layout_marginRight="36dp"
-            android:text="@string/friend" />
-
-        <TextView
-            android:id="@+id/love"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:layout_marginRight="48dp"
-            android:text="@string/love" />
-
-        <TextView
-            android:id="@+id/sport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:text="@string/sport" />
-
-        <TextView
-            android:id="@+id/exercise"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/exercise" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="389dp"
-        android:layout_height="52dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-        <ImageButton
-            android:id="@+id/movieIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:background="@drawable/circle"
-            android:tint="@color/icon"
-            app:srcCompat="@drawable/action_ic_movie" />
-
-        <ImageButton
-            android:id="@+id/sleepIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:background="@drawable/circle"
-            android:tint="@color/icon"
-            app:srcCompat="@drawable/action_ic_sleep" />
-
-        <ImageButton
-            android:id="@+id/travelIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:background="@drawable/circle"
-            android:tint="@color/icon"
-            app:srcCompat="@drawable/action_ic_travel" />
-
-        <ImageButton
-            android:id="@+id/studyIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:background="@drawable/circle"
-            android:tint="@color/icon"
-            app:srcCompat="@drawable/action_ic_study" />
-
-        <ImageButton
-            android:id="@+id/cleanIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/circle"
-            android:tint="@color/icon"
-            app:srcCompat="@drawable/action_ic_cleaning" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout7"
-        android:layout_width="396dp"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
-
-        <TextView
-            android:id="@+id/movie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:text="@string/movies" />
-
-        <TextView
-            android:id="@+id/sleep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginEnd="45dp"
-            android:layout_marginRight="45dp"
-            android:text="@string/sleep" />
-
-        <TextView
-            android:id="@+id/travel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="42dp"
-            android:layout_marginRight="42dp"
-            android:text="@string/travel" />
-
-        <TextView
-            android:id="@+id/study"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="34dp"
-            android:layout_marginRight="34dp"
-            android:text="@string/study" />
-
-        <TextView
-            android:id="@+id/cleaning"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/cleaning" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout8"
-        android:layout_width="389dp"
-        android:layout_height="52dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
-
-        <ImageButton
-            android:id="@+id/workIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginLeft="44dp"
-            android:background="@drawable/circle"
-            android:tint="@color/icon"
-            app:srcCompat="@drawable/action_ic_work" />
-
-        <ImageButton
-            android:id="@+id/shoppingIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginLeft="36dp"
-            android:background="@drawable/circle"
-            android:tint="@color/icon"
-            app:srcCompat="@drawable/action_ic_shopping" />
-
-        <ImageButton
-            android:id="@+id/gameIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginLeft="36dp"
-            android:background="@drawable/circle"
-            android:tint="@color/icon"
-            app:srcCompat="@drawable/action_ic_games" />
-
-        <ImageButton
-            android:id="@+id/celebration"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginLeft="36dp"
-            android:tint="@color/icon"
-            android:background="@drawable/circle"
-            app:srcCompat="@drawable/action_ic_celebration"
-            tools:ignore="VectorDrawableCompat" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="396dp"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout8"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/work"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/work"
-            android:layout_marginStart="52dp"
-            android:layout_marginLeft="52dp"/>
-
-        <TextView
-            android:id="@+id/shopping"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/shopping"
-            android:layout_marginStart="48dp"
-            android:layout_marginLeft="48dp"/>
-
-        <TextView
-            android:id="@+id/game"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/gaming"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"/>
-
-        <TextView
-            android:id="@+id/celebrationText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/celebration"
-            android:layout_marginStart="36dp"
-            android:layout_marginLeft="36dp"/>
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/photoChosen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:adjustViewBounds="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:layout_constraintVertical_bias="0.255" />
+        android:orientation="vertical">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/doneIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:clickable="true"
-        android:layout_gravity="end|center"
-        android:tint="@color/white"
-        app:backgroundTint="@color/icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/baseline_done_black_18dp" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:background="@color/secondary"
+            android:fadingEdge="none"
+            android:orientation="horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/iconChosen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                app:tint="@color/primary" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="@string/question"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <GridView
+            android:id="@+id/actionList"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:numColumns="4"
+            android:verticalSpacing="10dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/question" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:id="@+id/note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:text="@string/note"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical"
+                    app:drawableStartCompat="@drawable/outline_text_snippet_black_18dp"
+                    app:drawableTint="@color/black" />
+
+                <ImageButton
+                    android:id="@+id/expandNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="280dp"
+                    android:background="@color/blur"
+                    android:tint="@color/black"
+                    app:srcCompat="@drawable/baseline_open_in_full_black_18dp" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/writeNote"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/radius"
+                android:ems="10"
+                android:gravity="start"
+                android:hint="@string/add_note"
+                android:inputType="textMultiLine"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="@string/photo"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:drawableTint="@color/black"
+                app:drawableStartCompat="@drawable/outline_photo_camera_black_18dp" />
+
+            <ImageButton
+                android:id="@+id/addPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="270dp"
+                android:background="#FFFFFF"
+                android:tint="@color/black"
+                app:srcCompat="@drawable/ic_add"
+                tools:ignore="VectorDrawableCompat" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/photoChosen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/writeNote"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/doneIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="4dp"
+            android:clickable="true"
+            android:tint="@color/white"
+            app:backgroundTint="@color/icon"
+            app:srcCompat="@drawable/baseline_done_black_18dp" />
+
+    </LinearLayout>
+
 </ScrollView>

@@ -18,7 +18,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="58dp"
                 android:background="@color/primary"
                 android:orientation="horizontal"
                 android:padding="5dp">
@@ -33,19 +33,19 @@
                     android:onClick="onBack"
                     android:text="@string/back"
                     android:textColor="@color/secondary"
-                    android:textSize="24sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/annie_use_your_telescope"
+                    android:fontFamily="serif"
                     android:gravity="center"
                     android:onClick="@"
                     android:text="@string/month"
                     android:textColor="@color/black"
-                    android:textSize="24sp" />
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/next"
@@ -57,7 +57,7 @@
                     android:onClick="onNext"
                     android:text="@string/next"
                     android:textColor="@color/secondary"
-                    android:textSize="24sp" />
+                    android:textSize="30sp" />
 
             </LinearLayout>
 
