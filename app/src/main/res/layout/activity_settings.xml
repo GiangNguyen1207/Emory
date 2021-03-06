@@ -20,15 +20,19 @@
 
         <ImageView
             android:id="@+id/ava"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.3"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:src="@drawable/user"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/nickname"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingStart="20dp"
@@ -122,7 +126,7 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.6"
             android:gravity="center"
             android:text="@string/giang"
             android:textColor="@color/black"
