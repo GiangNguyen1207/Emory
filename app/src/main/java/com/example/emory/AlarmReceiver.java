@@ -12,7 +12,7 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
 public class AlarmReceiver extends BroadcastReceiver {
-    private static final String CHANNEL_ID = "CHANNEL_SAMPLE";
+    private static final String CHANNEL_ID = "CHANNEL_EMORY";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -27,7 +27,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Notification.Builder builder = new Notification.Builder(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence channelName = "My Notification";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            int importance = NotificationManager.IMPORTANCE_HIGH;
 
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, channelName, importance);
             notificationManager.createNotificationChannel(channel);
@@ -37,7 +37,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         builder.setSmallIcon(android.R.drawable.ic_popup_reminder)
                 .setContentTitle("You have deadline today.")
                 .setContentText("Go to Emory now!")
-                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setPriority(Notification.PRIORITY_MAX)
                 .setContentIntent(contentIntent);
 
         notificationManager.notify(notificationId, builder.build());
