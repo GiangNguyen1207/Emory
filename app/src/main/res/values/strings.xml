@@ -62,8 +62,9 @@
     <string name="noteTodo">Note</string>
     <string name="moodCountTitle">Mood Count</string>
     <string name="editDetails">Edit</string>
-    <string name="error_message">Should not be empty</string>
-    <string name="note_title">Write Note Expansion</string>
-    <string name="text_title">Enter Title...</string>
-    <string name="note_add">Add note...</string>
+    <string name="error_name">Please fill in your name</string>
+    <string name="error_age">Please check your age again</string>
+    <string name="error_email">Please provide a valid email</string>
+    <string name="note_title">Write note expansion</string>
+    <string name="text_title">Enter title...</string>
 </resources>
