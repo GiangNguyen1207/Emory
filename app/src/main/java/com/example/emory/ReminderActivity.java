@@ -42,7 +42,7 @@ public class ReminderActivity extends AppCompatActivity {
             startTime.set(Calendar.SECOND, 0);
             long alarmStartTime = startTime.getTimeInMillis();
 
-            //not a repeating alarm
+            //repeat alarm everyday at the time set
             alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime, AlarmManager.INTERVAL_DAY, alarmIntent);
             Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
             finish();

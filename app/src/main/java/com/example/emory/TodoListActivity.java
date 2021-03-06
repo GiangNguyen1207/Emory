@@ -63,6 +63,10 @@ public class TodoListActivity extends AppCompatActivity {
                 case R.id.settings:
                     startActivity(new Intent(this, SettingsActivity.class));
                     return true;
+
+                case R.id.moodGraph:
+                    startActivity(new Intent(this, MoodAnalyticsActivity.class));
+                    return true;
             }
             return false;
         });
