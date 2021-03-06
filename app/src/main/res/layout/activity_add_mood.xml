@@ -244,15 +244,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/saveMood"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/ic_check_circle"
-            android:enabled="false" />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
