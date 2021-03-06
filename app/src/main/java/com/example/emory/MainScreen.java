@@ -13,6 +13,7 @@ public class MainScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
+        //this handler start an intent to have a delay splash screen and then return to Entries Activity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
