@@ -8,9 +8,9 @@
 
     <LinearLayout
         android:id="@+id/linearLayout9"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="40dp"
         android:background="@color/primary"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,25 +20,26 @@
 
         <ImageView
             android:id="@+id/ava"
-            android:layout_width="130dp"
-            android:layout_height="146dp"
+            android:layout_width="115dp"
+            android:layout_height="104dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"
             android:layout_weight="0.3"
             android:src="@drawable/user"
+            app:tint="@color/happy"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/nickname"
-            android:layout_width="220dp"
+            android:layout_width="250dp"
             android:layout_height="match_parent"
+            android:fontFamily="serif"
             android:gravity="center_vertical"
             android:paddingStart="20dp"
-            android:paddingLeft="20dp"
             android:text="@string/Nickname"
-            android:textColor="@color/black"
+            android:textColor="@color/diaryText"
             android:textSize="24sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -48,7 +49,7 @@
         android:layout_width="0dp"
         android:layout_height="58dp"
         android:layout_marginTop="36dp"
-        android:background="@color/highlight"
+        android:background="@color/white"
         android:drawableStart="@drawable/outline_person_pin_black_18dp"
         android:drawableEnd="@drawable/baseline_play_arrow_black_18dp"
         android:drawableTint="@color/icon"
@@ -85,7 +86,7 @@
         android:layout_width="0dp"
         android:layout_height="58dp"
         android:layout_marginTop="55dp"
-        android:background="@color/highlight"
+        android:background="@color/white"
         android:drawableStart="@drawable/baseline_add_alert_black_18dp"
         android:drawableEnd="@drawable/baseline_play_arrow_black_18dp"
         android:drawableTint="@color/icon"
@@ -104,7 +105,7 @@
         android:background="@color/highlight"
         android:gravity="center"
         android:text="@string/group5"
-        android:textColor="@color/icon"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +116,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="58dp"
-        android:background="@color/primary"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

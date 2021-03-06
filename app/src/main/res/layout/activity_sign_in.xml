@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="70dp"
             android:fontFamily="serif"
             android:text="@string/app_name"
             android:textAllCaps="true"
@@ -30,8 +30,6 @@
             android:layout_width="98dp"
             android:layout_height="84dp"
             android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:src="@drawable/heart_img"
             app:srcCompat="@drawable/_70_happy_8"
             app:tint="@color/happy">
 
@@ -40,49 +38,51 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:fontFamily="serif"
             android:text="@string/email"
             android:textColor="@color/black"
-            android:textSize="24sp"/>
+            android:textSize="20sp" />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="16dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="16dp"
             android:id="@+id/edLoginEmail"
             android:textColor="@color/black"
-            android:background="@drawable/edit_text_shape"
-            android:layout_marginRight="16dp">
+            android:background="@drawable/edit_text_shape">
 
         </EditText>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="serif"
             android:text="@string/password"
             android:textColor="@color/black"
-            android:textSize="24sp"/>
+            android:textSize="20sp" />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="16dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="16dp"
             android:id="@+id/edLoginPassword"
             android:textColor="@color/black"
             android:inputType="textWebPassword"
             android:background="@drawable/edit_text_shape"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginRight="20dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="16dp"
+            android:layout_marginTop="40dp"
             android:orientation="horizontal">
 
             <Button
@@ -108,23 +108,6 @@
 
             </Button>
         </LinearLayout>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:src="@drawable/fb_login"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:gravity="center_horizontal"
-            android:text="@string/cancel"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold" />
 
     </LinearLayout>
 </ScrollView>
