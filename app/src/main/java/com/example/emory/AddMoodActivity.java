@@ -1,7 +1,9 @@
 package com.example.emory;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AddMoodActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private TextView chosenDate;
     private DayMonthYear fullDate;
-    private Button btnSaveMood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +31,6 @@ public class AddMoodActivity extends AppCompatActivity implements DatePickerDial
         ImageButton btnAwful = findViewById(R.id.awful);
         ImageButton btnTerrible = findViewById(R.id.terrible);
         ImageButton btnClose = findViewById(R.id.close);
-        btnSaveMood = findViewById(R.id.saveMood);
-        btnSaveMood.setVisibility(View.GONE);
 
         fullDate = new DayMonthYear();
         chosenDate.setText(fullDate.getCurrentFullDate());
@@ -68,8 +67,6 @@ public class AddMoodActivity extends AppCompatActivity implements DatePickerDial
 
     //start the note
     public void startNote(String drawable) {
-        btnSaveMood.setVisibility(View.VISIBLE);
-
         Intent intent = new Intent(this, WriteNoteActivity.class);
         //send icon with name to next activity
         intent.putExtra("icon", drawable);

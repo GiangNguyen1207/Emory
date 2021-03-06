@@ -34,7 +34,9 @@
         <activity android:name=".SignInActivity" />
         <activity android:name=".ReminderActivity"/>
         <activity android:name=".AddMoodActivity"/>
-        <activity android:name=".MainScreen">
+        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".ChangeNicknameActivity" />
+        <activity android:name=".MainScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

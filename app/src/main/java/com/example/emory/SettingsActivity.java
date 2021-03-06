@@ -10,13 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingsActivity extends AppCompatActivity {
-    private BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.settings);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -48,7 +47,16 @@ public class SettingsActivity extends AppCompatActivity {
             Intent intent = new Intent(SettingsActivity.this, ReminderActivity.class);
             startActivity(intent);
         });
-
+        Button btnNickName=findViewById(R.id.changeNickname);
+        btnNickName.setOnClickListener((View v) -> {
+            Intent intent = new Intent(SettingsActivity.this, ChangeNicknameActivity.class);
+            startActivity(intent);
+        });
+        Button btnPassword=findViewById(R.id.changePassword);
+        btnPassword.setOnClickListener((View v) -> {
+            Intent intent = new Intent(SettingsActivity.this, ChangePasswordActivity.class);
+            startActivity(intent);
+        });
     }
 
 }
