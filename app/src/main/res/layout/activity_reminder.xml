@@ -12,6 +12,7 @@
         android:layout_height="71dp"
         android:layout_marginTop="92dp"
         android:background="@color/highlight"
+        android:fontFamily="serif"
         android:gravity="center"
         android:text="@string/choose_time"
         android:textColor="@color/icon"

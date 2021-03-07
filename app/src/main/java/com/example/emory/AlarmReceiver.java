@@ -11,6 +11,11 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+/*
+this class is to create a notification manager which is
+triggered by alarm intent from ReminderActivity
+See reference in planner
+ */
 public class AlarmReceiver extends BroadcastReceiver {
     private static final String CHANNEL_ID = "CHANNEL_EMORY";
 
