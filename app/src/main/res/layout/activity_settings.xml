@@ -7,16 +7,40 @@
     android:background="@color/primary">
 
     <LinearLayout
-        android:id="@+id/linearLayout9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@color/primary"
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@color/secondary"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:textColor="@color/primary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="@string/settings"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:background="@color/primary"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <ImageView
             android:id="@+id/ava"
@@ -46,7 +70,7 @@
     <Button
         android:id="@+id/changeNickname"
         android:layout_width="0dp"
-        android:layout_height="58dp"
+        android:layout_height="55dp"
         android:layout_marginTop="36dp"
         android:background="@color/white"
         android:drawableStart="@drawable/outline_person_pin_black_18dp"
@@ -64,8 +88,8 @@
     <Button
         android:id="@+id/changePassword"
         android:layout_width="0dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="28dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
         android:background="@color/highlight"
         android:drawableStart="@drawable/outline_manage_accounts_black_18dp"
         android:drawableEnd="@drawable/baseline_play_arrow_black_18dp"
@@ -83,8 +107,8 @@
     <Button
         android:id="@+id/setAlarm"
         android:layout_width="0dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
         android:background="@color/white"
         android:drawableStart="@drawable/baseline_add_alert_black_18dp"
         android:drawableEnd="@drawable/baseline_play_arrow_black_18dp"
@@ -94,13 +118,14 @@
         android:text="@string/set_reminder"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changePassword" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"
-        android:layout_height="58dp"
+        android:layout_height="55dp"
         android:background="@color/highlight"
         android:gravity="center"
         android:text="@string/group5"
@@ -108,13 +133,14 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setAlarm"
-        app:layout_constraintVertical_bias="0.287" />
+        app:layout_constraintVertical_bias="0.231" />
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="58dp"
+        android:layout_height="55dp"
         android:background="@color/white"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
