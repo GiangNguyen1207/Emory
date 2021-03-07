@@ -23,7 +23,10 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         int notificationId = intent.getIntExtra("notificationID", 0);
 
-        Intent mainIntent = new Intent(context, ReminderActivity.class);
+        //This intent is for coming back to main screen after user click on the notification
+        Intent mainIntent = new Intent(context, MainScreen.class);
+
+        //pending intent for notification
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
 
         NotificationManager notificationManager =
