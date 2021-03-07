@@ -8,6 +8,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DiaryListAdapter extends BaseAdapter {
     private Context context;
@@ -48,7 +49,11 @@ public class DiaryListAdapter extends BaseAdapter {
         ListView itemView = convertView.findViewById(R.id.itemView);
 
         date.setText(String.valueOf(diaryList.getDate()));
-        itemView.setAdapter(new DiaryAdapter(this.context, diaryList.getDiaryData()));
+
+        //reverse the list to put the newest one on the top and the oldest one below
+        ArrayList<Diary> reversedList = new ArrayList<>(diaryList.getDiaryData());
+        Collections.reverse(reversedList);
+        itemView.setAdapter(new DiaryAdapter(this.context, reversedList));
 
         return convertView;
     }
