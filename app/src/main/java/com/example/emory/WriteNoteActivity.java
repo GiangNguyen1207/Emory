@@ -60,6 +60,7 @@ public class WriteNoteActivity extends AppCompatActivity {
         icon = intent.getStringExtra("icon");
         date = intent.getStringExtra("date");
 
+        //please find the references on Planner in References List 2 "Get resource Id from name"
         int resourceId = getResources().getIdentifier("com.example.emory:drawable/" + icon, null, null);
         ImageView imageView = findViewById(R.id.iconChosen);
         Drawable drawable = ContextCompat.getDrawable(this, resourceId);
@@ -77,9 +78,14 @@ public class WriteNoteActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view = grid.getChildAt(position);
                 ImageView img = view.findViewById(R.id.imageView);
+
+                //find the drawable needed to change the background
                 Drawable normalBackground = ContextCompat.getDrawable(WriteNoteActivity.this, R.drawable.circle);
                 Drawable backgroundSelected = ContextCompat.getDrawable(WriteNoteActivity.this, R.drawable.circle_selected);
 
+                //by default, the tag of each element is "unselected"
+                /* when user clicks on a button, it will change the tag to "selected",
+                change background and add the list of chosen actions*/
                 if (img.getTag().equals("unselected")) {
                     img.setBackground(backgroundSelected);
                     img.setTag("selected");
@@ -87,6 +93,10 @@ public class WriteNoteActivity extends AppCompatActivity {
                     return;
                 }
 
+                /*
+                when user unclicks a button, it will change the tag to "unselected",
+                change background and remove the list of chosen actions
+                 */
                 if (img.getTag().equals("selected")) {
                     img.setBackground(normalBackground);
                     img.setTag("unselected");
@@ -105,6 +115,8 @@ public class WriteNoteActivity extends AppCompatActivity {
             dialog.setContentView(R.layout.dialog_note_expansion);
             getNote();
             EditText textContent = dialog.findViewById(R.id.noteContent);
+
+            //the text that user is typing before opening dialog is embedded to the note in expansion view
             textContent.setText(note);
             saveNoteExpansion(dialog);
             dialog.show();
@@ -117,6 +129,8 @@ public class WriteNoteActivity extends AppCompatActivity {
         doneIcon.setOnClickListener((View v) -> {
             EditText textContent = dialog.findViewById(R.id.noteContent);
             String noteExpansion = textContent.getText().toString();
+
+            //embedded the text from the note in dialog expansion view to the note box in this activity
             EditText editText = findViewById(R.id.writeNote);
             editText.setText(noteExpansion);
 
@@ -170,6 +184,7 @@ public class WriteNoteActivity extends AppCompatActivity {
     /*
     on activity result of open camera or gallery
     image is saved get and decode to bitmap and scale to the size we want
+    please find the reference on Planner Reference List 1 "Reference for add photo taken by camera"
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -207,6 +222,7 @@ public class WriteNoteActivity extends AppCompatActivity {
         dialog.dismiss();
     }
 
+    //plase find the reference on Planner in References List 1 "Encode/Decode a bitmap to base64"
     public void encodeBitmap() {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);

@@ -31,6 +31,9 @@ public class SignupActivity extends AppCompatActivity {
         edPassword = findViewById(R.id.edPassword);
         btnSignUp = findViewById(R.id.btnSignUp);
 
+        /*when user clicks button sign up
+        set error code to 0 and validate sign up again
+        */
         btnSignUp.setOnClickListener((View v) -> {
             error = 0;
             name = edName.getText().toString();
@@ -42,10 +45,12 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void validateSignup() {
+        //set an error code for each error
         if (name.isEmpty()) error = 1;
         if (age.isEmpty()) error = 2;
         if (email.isEmpty() || (!checkErrorEmail(email.toLowerCase()))) error = 3;
 
+        //check each case and provide specific error notification
         switch (error) {
             case 1:
                 edName.setError(getResources().getString(R.string.error_name));
@@ -57,6 +62,7 @@ public class SignupActivity extends AppCompatActivity {
                 edEmail.setError(getResources().getString(R.string.error_email));
                 break;
             case 0:
+                //if none of error cases, save user data to shared preferences
                 SharedPreferences sharedPreferences = getSharedPreferences("SignUp", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("Name", name);
@@ -71,9 +77,12 @@ public class SignupActivity extends AppCompatActivity {
         }
     }
 
+    //check error if the email input is wrong
     private boolean checkErrorEmail(String emailInput) {
+        //email should have "@"
         if (!(emailInput.contains("@"))) return false;
         String mailDomain = emailInput.substring(emailInput.indexOf('@') + 1);
+        //email domain should have "." and there is text after ".
         if (!mailDomain.contains(".")) return false;
         if (mailDomain.indexOf('.') == 0) return false;
         if (mailDomain.indexOf('.') == (mailDomain.length() - 1)) return false;
