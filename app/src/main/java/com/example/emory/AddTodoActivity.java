@@ -59,7 +59,6 @@ public class AddTodoActivity extends AppCompatActivity implements DatePickerDial
                 Todo todo = new Todo(nameEditText.getText().toString(),
                         deadlineEditText.getText().toString(), noteEditText.getText().toString());
                 todoList.add(todo);
-                Log.d("list_updated", String.valueOf(todoList));
                 //save to shared again
                 Gson gson2 = new Gson();
                 SharedPref.write(TODOLIST, gson2.toJson(todoList));

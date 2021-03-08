@@ -34,7 +34,6 @@ public class SignupActivity extends AppCompatActivity {
         /*when user clicks button sign up
         set error code to 0 and validate sign up again
         */
-        //button click
         btnSignUp.setOnClickListener((View v) -> {
             error = 0;
             name = edName.getText().toString();
@@ -44,7 +43,7 @@ public class SignupActivity extends AppCompatActivity {
             validateSignup();
         });
     }
-//validation fields empty or not
+
     private void validateSignup() {
         //set an error code for each error
         if (name.isEmpty()) error = 1;
@@ -64,7 +63,6 @@ public class SignupActivity extends AppCompatActivity {
                 break;
             case 0:
                 //if none of error cases, save user data to shared preferences
-                //create sharedPreferences
                 SharedPreferences sharedPreferences = getSharedPreferences("SignUp", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("Name", name);
