@@ -57,12 +57,14 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        //go to change nickname activity
         Button btnNickName=findViewById(R.id.changeNickname);
         btnNickName.setOnClickListener((View v) -> {
             Intent intent = new Intent(SettingsActivity.this, ChangeNicknameActivity.class);
             startActivity(intent);
         });
 
+        //got to change password activity
         Button btnPassword=findViewById(R.id.changePassword);
         btnPassword.setOnClickListener((View v) -> {
             Intent intent = new Intent(SettingsActivity.this, ChangePasswordActivity.class);

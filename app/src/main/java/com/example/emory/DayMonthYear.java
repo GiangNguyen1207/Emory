@@ -70,7 +70,8 @@ public class DayMonthYear extends DialogFragment {
         String prevMonth = "";
         int curYear = year;
 
-        //if the month is January, set the previous month to be December, and the year will be minus 1
+        /*if the month is January, set the previous month to be December,
+        and the year will be minus 1 */
         if (parts[0].equals("January")) {
             prevMonth = "December";
             curYear -= 1;
@@ -92,7 +93,8 @@ public class DayMonthYear extends DialogFragment {
         String nextMonth = "";
         int curYear = year;
 
-        //if the month is December, set the next month to be January, and the year will be added 1
+        /*if the month is December, set the next month to be January,
+        and the year will be added 1 */
         if (parts[0].equals("December")) {
             nextMonth = "January";
             curYear += 1;

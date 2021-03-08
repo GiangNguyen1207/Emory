@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class MoodAnalyticsActivity extends AppCompatActivity {
     private TextView month;
     private DayMonthYear monthYear;
-    private BottomNavigationView bottomNavigationView;
     private MoodGraph moodGraph = new MoodGraph();
     private MoodCounter terrible, awful, sad, good, happy, excited;
     private static final String SHARED_PREFS = "sharedPrefs";
@@ -34,7 +33,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         setCounter();
         showGraph();
 
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.moodGraph);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -61,12 +60,17 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         });
     }
 
+    //set current month and year to the nav bar
     public void setDate() {
         month = findViewById(R.id.month);
         monthYear = new DayMonthYear();
         month.setText(monthYear.getCurrentMonthYear());
     }
 
+    /* when user click button back,
+    set previous month year to the text view,
+    set Counter back to 0 and show graph
+     */
     public void onBack(View v) {
         String text = month.getText().toString();
         String prevMonthYear = monthYear.getPrevMonthYear(text);
@@ -75,6 +79,10 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         showGraph();
     }
 
+    /* when user click button back,
+    set next month year to the text view,
+    set Counter back to 0 and show graph
+     */
     public void onNext(View v) {
         String text = month.getText().toString();
         String nextMonthYear = monthYear.getNextMonthYear(text);
@@ -83,6 +91,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         showGraph();
     }
 
+    //to check if the month year is the current month year or not
     public boolean compareMonthYear() {
         String mthYear = month.getText().toString();
         DayMonthYear curMthYear = new DayMonthYear();
@@ -90,6 +99,11 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         return curMthYear.getCurrentMonthYear().equals(mthYear);
     }
 
+    /*
+    if the current month year is displayed on the top nav bar,
+    just create the data points until a specific days.
+    Otherwise, take all days in a month
+     */
     public void findTotalDays() {
         String mthYear = month.getText().toString();
         Integer currentDay = monthYear.getCurrentDay();
@@ -102,6 +116,11 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    loop through the data in shared preferences, calculate the mood average
+    count the mood and add the data points to the current array.
+    Finally, add that array to series.
+     */
     public void createDataPoints(int size, String mthYear) {
         ArrayList<Diary> diaries;
         moodGraph = new MoodGraph(size + 1);
@@ -120,6 +139,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         moodGraph.addToSeries();
     }
 
+    //to show the graph
     public void showGraph() {
         GraphView graph = findViewById(R.id.graph);
         graph.removeAllSeries();
@@ -127,6 +147,11 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         int currentDay = monthYear.getCurrentDay();
         int daysInMonth = monthYear.getDaysInMonth(month.getText().toString());
 
+        /*
+        to check if the month year is the current month year or not
+        if true, take the current day as the max size on x-axis
+        if false, take the total days in month as the max size on x-axis
+         */
         if (compareMonthYear()) {
             graph.getViewport().setMaxX(moodGraph.getMaxX(currentDay, daysInMonth));
         } else {
@@ -151,6 +176,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         excited = new MoodCounter();
     }
 
+    //loop through the whole data and count the value for each case
     public void countMood(ArrayList<Diary> diaries) {
         for (Diary diary : diaries) {
             switch (diary.getMood()) {
@@ -177,6 +203,7 @@ public class MoodAnalyticsActivity extends AppCompatActivity {
         setMood();
     }
 
+    //set the count value to the view
     public void setMood() {
         TextView terribleVal = findViewById(R.id.terribleCount);
         TextView awfulVal = findViewById(R.id.awfulCount);
