@@ -28,6 +28,7 @@ public class SignInActivity extends AppCompatActivity {
         edEmail = findViewById(R.id.edLoginEmail);
         edPassword = findViewById(R.id.edLoginPassword);
 
+        //take user data from shared preferences
         SharedPreferences sharedPreferences = getSharedPreferences("SignUp", MODE_PRIVATE);
         email = sharedPreferences.getString("Email","DEFAULT_EMAIL");
         password = sharedPreferences.getString("Password","DEFAULT_PASSWORD");
@@ -36,6 +37,7 @@ public class SignInActivity extends AppCompatActivity {
         login();
     }
 
+    //move to sign up
     private void signUp() {
         btnSignUp.setOnClickListener((View v) -> {
             Intent intent = new Intent(SignInActivity.this, SignupActivity.class);
@@ -43,6 +45,7 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
+    //activate login action
     private void login() {
         btnLogin.setOnClickListener((View v) -> {
             String email = edEmail.getText().toString();
@@ -52,14 +55,15 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-
+    /*if user provides correct email and password in shared preferences
+    they are validated to log in
+     */
     private void validateLogin(String userEmail, String userPassword) {
         if (userEmail.equals(email) && userPassword.equals(password)) {
             Toast.makeText(SignInActivity.this,"Login SuccessFul",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(SignInActivity.this, AddMoodActivity.class);
             startActivity(intent);
-        }
-        else {
+        } else {
             Toast.makeText(SignInActivity.this,"Username or password is incorrect", Toast.LENGTH_SHORT).show();
         }
     }

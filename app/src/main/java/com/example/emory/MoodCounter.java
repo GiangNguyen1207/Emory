@@ -1,5 +1,8 @@
 package com.example.emory;
 
+/*the class is used in Mood Analytics Activity
+to count each mood that users input in every month
+ */
 public class MoodCounter {
     private int count;
 
