@@ -12,6 +12,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
 
+/*
+this class is to call intent to trigger Alarm service
+please see reference on planner
+ */
 public class ReminderActivity extends AppCompatActivity {
     private int notificationId = 1;
     @Override
