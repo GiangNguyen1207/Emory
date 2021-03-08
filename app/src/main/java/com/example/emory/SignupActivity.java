@@ -30,7 +30,7 @@ public class SignupActivity extends AppCompatActivity {
         edEmail = findViewById(R.id.edEmail);
         edPassword = findViewById(R.id.edPassword);
         btnSignUp = findViewById(R.id.btnSignUp);
-
+        //button click
         btnSignUp.setOnClickListener((View v) -> {
             error = 0;
             name = edName.getText().toString();
@@ -40,7 +40,7 @@ public class SignupActivity extends AppCompatActivity {
             validateSignup();
         });
     }
-
+//validation fields empty or not
     private void validateSignup() {
         if (name.isEmpty()) error = 1;
         if (age.isEmpty()) error = 2;
@@ -57,6 +57,7 @@ public class SignupActivity extends AppCompatActivity {
                 edEmail.setError(getResources().getString(R.string.error_email));
                 break;
             case 0:
+                //create sharedPreferences
                 SharedPreferences sharedPreferences = getSharedPreferences("SignUp", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("Name", name);
@@ -70,7 +71,7 @@ public class SignupActivity extends AppCompatActivity {
                 break;
         }
     }
-
+//check email pattern
     private boolean checkErrorEmail(String emailInput) {
         if (!(emailInput.contains("@"))) return false;
         String mailDomain = emailInput.substring(emailInput.indexOf('@') + 1);
