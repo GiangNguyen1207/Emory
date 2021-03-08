@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 //This activity for change nickname
 public class ChangeNicknameActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;

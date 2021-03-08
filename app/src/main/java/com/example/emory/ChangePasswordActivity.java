@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 //activity for change password
 public class ChangePasswordActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;

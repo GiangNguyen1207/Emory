@@ -1,6 +1,5 @@
 package com.example.emory;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,7 +25,6 @@ import java.util.ArrayList;
 
 import static com.example.emory.SharedPref.GET_CHECKED;
 import static com.example.emory.SharedPref.TODOLIST;
-
 
 public class TodoListActivity extends AppCompatActivity {
     private ArrayList<Todo> todoList = new ArrayList<>();
@@ -95,7 +93,6 @@ public class TodoListActivity extends AppCompatActivity {
         Type type = new TypeToken<ArrayList<Todo>>() {
         }.getType();
         todoList = gson.fromJson(dataReceived, type);
-        Log.d("array", String.valueOf(todoList));
 
         //cast list view to array adapter
         ListView lv = findViewById(R.id.listView);
@@ -111,7 +108,6 @@ public class TodoListActivity extends AppCompatActivity {
             for (int h = 0; h < count; h++) {
                 if (sparseBooleanArray.get(h)) {
                     itemSelected += lv.getItemAtPosition(h).toString() + " ";
-                    Log.d("TAGGG", itemSelected);
                     SharedPref.write(GET_CHECKED, itemSelected);
                 }
             }
@@ -173,7 +169,6 @@ public class TodoListActivity extends AppCompatActivity {
     //get the checked item from shared prefs after activity is destroyed
     private void getSavedItem() {
         String savedItem = SharedPref.read(GET_CHECKED, "");
-        Log.d("SELECTED", savedItem);
         ListView lv = findViewById(R.id.listView);
         int count = lv.getAdapter().getCount();
         for (int i = 0; i < count; i++) {
