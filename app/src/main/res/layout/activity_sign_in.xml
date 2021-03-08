@@ -30,7 +30,7 @@
             android:layout_width="98dp"
             android:layout_height="84dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/_70_happy_8"
+            app:srcCompat="@drawable/happy"
             app:tint="@color/happy">
 
         </ImageView>
