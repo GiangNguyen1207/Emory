@@ -11,10 +11,13 @@ Emory is a friend whom you can confide in, rely on and accompany. Whether you ar
 ## Install Emory:
 Install and launch Android Studio: [Download here](https://developer.android.com/studio?gclid=Cj0KCQiA2af-BRDzARIsAIVQUOegnlm_V6W7UdtvmBmKbhlZcjJnPJeRJwOqNqZD-LK2bt-wXA7WuQoaAsAyEALw_wcB&gclsrc=aw.ds)
 [Git clone](https://gitlab.metropolia.fi/mobilesb3002/team5/emory.git)
+
 In Android Studio: 
-Open an existing project
-Add emulator device to run the app: Instruction
-Choose device and click “Run” 
+
+- Open an existing project
+
+- Add emulator device to run the app: Instruction
+- Choose device and click “Run” 
 
 
 ## How Emory works?
