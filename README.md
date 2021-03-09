@@ -17,7 +17,7 @@ In Android Studio:
 
 - Open an existing project
 
-- Add emulator device to run the app: Instruction
+- Add emulator device to run the app: [Instruction](https://developer.android.com/studio/run/managing-avds?authuser=3#createavd)
 - Choose device and click “Run” 
 
 
