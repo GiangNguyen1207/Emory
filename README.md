@@ -11,7 +11,11 @@ Emory is a friend whom you can confide in, rely on and accompany. Whether you ar
 ## Install Emory:
 Install and launch Android Studio: [Download here](https://developer.android.com/studio?gclid=Cj0KCQiA2af-BRDzARIsAIVQUOegnlm_V6W7UdtvmBmKbhlZcjJnPJeRJwOqNqZD-LK2bt-wXA7WuQoaAsAyEALw_wcB&gclsrc=aw.ds)
 
-[Git clone](https://gitlab.metropolia.fi/mobilesb3002/team5/emory.git)
+Clone the project:
+```git clone git@gitlab.metropolia.fi:mobilesb3002/team5/emory.git ```
+
+If you can not use ssh url, use https url: 
+```git clone https://gitlab.metropolia.fi/mobilesb3002/team5/emory.git```
 
 In Android Studio: 
 
@@ -34,9 +38,16 @@ Step 4: Look out at the Mood Graph, where your mood fluctuation is displayed. Do
 Step 5: If you have a list of things to do, TodoList will be there to help. Add tasks, deadlines and things you might forget to the list. Turn on reminder and you are on schedule!
 
 
-### UML: [class diagram](https://drive.google.com/file/d/1wb_dRsa_r9JWggeUO3BJe6Staq5Fu2aB/view)
-### JavaDoc: [Link](http://users.metropolia.fi/~mym/Emory%20javadoc/)
-### References: [link to our planner](https://tasks.office.com/metropoliafi.onmicrosoft.com/Home/PlanViews/40y0QtIAOkebdgVeE6_VNJYAHwQ9?Type=PlanLink&Channel=Link&CreatedTime=637508790974550000)
+## Materials and References
+- [UML](https://drive.google.com/file/d/1wb_dRsa_r9JWggeUO3BJe6Staq5Fu2aB/view)
+- [JavaDoc](http://users.metropolia.fi/~mym/Emory%20javadoc/)
+- [Documented test cases](https://docs.google.com/document/u/2/d/1FkbmBbmzimix1sO6MN_MqzA5d-0D258vKKlm5ryoO74/edit?usp=sharing)
+- [Mockup](https://www.figma.com/file/vk9KTJ9eNw1eh432rHq7ym/Diary-App?node-id=1:2)
+- [References list on Planner](https://tasks.office.com/metropoliafi.onmicrosoft.com/Home/PlanViews/40y0QtIAOkebdgVeE6_VNJYAHwQ9?Type=PlanLink&Channel=Link&CreatedTime=637508790974550000)
 
-**Team members**: My Mai, Giang Nguyen, Subash K.C
+
+## Team 5
+- My Mai
+- Giang Nguyen
+- Subash K.C
 
