@@ -1,4 +1,4 @@
-# **Emory**
+# **Emory** :calendar:
 
 *Android application that creates balance in your life!*
 
