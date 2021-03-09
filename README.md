@@ -5,11 +5,12 @@
 Emory is a friend whom you can confide in, rely on and accompany. Whether you are happy, sad or confused, it will be there to “listen” to your stories and help to organize your life.
 
 
-## [Demo video](https://youtu.be/lXGb_AlDxrY)
+### [Demo video](https://youtu.be/lXGb_AlDxrY)
 
 
 ## Install Emory:
 Install and launch Android Studio: [Download here](https://developer.android.com/studio?gclid=Cj0KCQiA2af-BRDzARIsAIVQUOegnlm_V6W7UdtvmBmKbhlZcjJnPJeRJwOqNqZD-LK2bt-wXA7WuQoaAsAyEALw_wcB&gclsrc=aw.ds)
+
 [Git clone](https://gitlab.metropolia.fi/mobilesb3002/team5/emory.git)
 
 In Android Studio: 
