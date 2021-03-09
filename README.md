@@ -12,10 +12,14 @@ Emory is a friend whom you can confide in, rely on and accompany. Whether you ar
 Install and launch Android Studio: [Download here](https://developer.android.com/studio?gclid=Cj0KCQiA2af-BRDzARIsAIVQUOegnlm_V6W7UdtvmBmKbhlZcjJnPJeRJwOqNqZD-LK2bt-wXA7WuQoaAsAyEALw_wcB&gclsrc=aw.ds)
 
 Clone the project:
-```git clone git@gitlab.metropolia.fi:mobilesb3002/team5/emory.git ```
+```
+git clone git@gitlab.metropolia.fi:mobilesb3002/team5/emory.git 
+```
 
 If you can not use ssh url, use https url: 
-```git clone https://gitlab.metropolia.fi/mobilesb3002/team5/emory.git```
+```
+git clone https://gitlab.metropolia.fi/mobilesb3002/team5/emory.git
+```
 
 In Android Studio: 
 
